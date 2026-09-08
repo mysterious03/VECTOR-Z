@@ -1,0 +1,58 @@
+<svg width="860" height="280" viewBox="0 0 860 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="280" rx="14" fill="#0E0E15" stroke="#252538" stroke-width="1.5"/>
+  
+  <!-- Table Header -->
+  <rect x="20" y="20" width="400" height="34" rx="6" fill="#241014" stroke="#FF1744" stroke-width="1"/>
+  <text x="35" y="42" fill="#FF5252" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800">❌ EVERYDAY INDIAN DIGITAL THREATS</text>
+
+  <rect x="440" y="20" width="400" height="34" rx="6" fill="#0C2016" stroke="#00E676" stroke-width="1"/>
+  <text x="455" y="42" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800">✅ VECTOR-Z AMBIENT GUARDIAN</text>
+
+  <!-- Row 1 -->
+  <g transform="translate(20, 64)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">UPI Refund / Cashback QR Traps</text>
+    <text x="15" y="34" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Victims type PIN thinking they are receiving funds.</text>
+  </g>
+  <g transform="translate(440, 64)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Payment Intent Guard</text>
+    <text x="15" y="34" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Detects intent conflict &amp; halts PIN screen before launch.</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(20, 118)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Unmasked Aadhaar / KYC Document Leaks</text>
+    <text x="15" y="34" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Photos uploaded across unverified apps &amp; brokers.</text>
+  </g>
+  <g transform="translate(440, 118)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Hardware Keystore &amp; Masked Autofill</text>
+    <text x="15" y="34" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">AES-256-GCM enclave storage + Biometric Prompt gate.</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(20, 172)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Electricity Bill &amp; TRAI APK Dropper SMS</text>
+    <text x="15" y="34" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Urgent disconnection panic lures with trojan links.</text>
+  </g>
+  <g transform="translate(440, 172)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Notification Scam Interceptor</text>
+    <text x="15" y="34" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Parses URLs in real time &amp; blocks unverified .apk files.</text>
+  </g>
+
+  <!-- Row 4 -->
+  <g transform="translate(20, 226)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">AI Voice Clones &amp; Deepfake KYC Calls</text>
+    <text x="15" y="34" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Family emergency distress voice notes demanding cash.</text>
+  </g>
+  <g transform="translate(440, 226)">
+    <rect width="400" height="46" rx="6" fill="#14141E"/>
+    <text x="15" y="20" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Multi-Modal Hexagon NPU Inspector</text>
+    <text x="15" y="34" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Flags harmonic phase glitches &amp; zero acoustic decay.</text>
+  </g>
+</svg>

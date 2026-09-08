@@ -1,0 +1,60 @@
+<svg width="860" height="260" viewBox="0 0 860 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="260" rx="14" fill="#0E0E15" stroke="#252538" stroke-width="1.5"/>
+
+  <!-- Top Metrics Bar -->
+  <g transform="translate(25, 20)">
+    <!-- Metric 1 -->
+    <rect width="250" height="60" rx="8" fill="#14141E" stroke="#00E5FF" stroke-width="1"/>
+    <text x="16" y="24" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">AVG ON-DEVICE LATENCY</text>
+    <text x="16" y="48" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900">1.84 ms</text>
+    <text x="120" y="48" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="10">Hexagon NPU</text>
+
+    <!-- Metric 2 -->
+    <g transform="translate(275, 0)">
+      <rect width="250" height="60" rx="8" fill="#14141E" stroke="#00E676" stroke-width="1"/>
+      <text x="16" y="24" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">EPHEMERAL RAM HEAP</text>
+      <text x="16" y="48" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900">14.2 MB</text>
+      <text x="120" y="48" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="10">Zero-Leak Wipe</text>
+    </g>
+
+    <!-- Metric 3 -->
+    <g transform="translate(550, 0)">
+      <rect width="260" height="60" rx="8" fill="#14141E" stroke="#FF5500" stroke-width="1"/>
+      <text x="16" y="24" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">CLOUD TRANSMISSION</text>
+      <text x="16" y="48" fill="#FF5500" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900">0.00 KB</text>
+      <text x="120" y="48" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="10">100% Air-Gapped</text>
+    </g>
+  </g>
+
+  <!-- Live Vector Execution Stream Mockup -->
+  <g transform="translate(25, 95)">
+    <text x="0" y="14" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" letter-spacing="1">15-VECTOR REAL-TIME STRESS TEST STREAM</text>
+
+    <!-- Vector 1 -->
+    <g transform="translate(0, 24)">
+      <rect width="810" height="34" rx="6" fill="#14141E" stroke="#FF1744" stroke-width="0.8"/>
+      <text x="15" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">[VEC_01] Electricity Disconnection APK Dropper</text>
+      <text x="360" y="21" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">NPU Latency: 0.92ms</text>
+      <rect x="730" y="7" width="65" height="20" rx="4" fill="#D50000"/>
+      <text x="762" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800" text-anchor="middle">BLOCKED</text>
+    </g>
+
+    <!-- Vector 2 -->
+    <g transform="translate(0, 64)">
+      <rect width="810" height="34" rx="6" fill="#14141E" stroke="#FF1744" stroke-width="0.8"/>
+      <text x="15" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">[VEC_03] FedEx Narcotics Extortion / Digital Arrest</text>
+      <text x="360" y="21" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">NPU Latency: 1.25ms</text>
+      <rect x="730" y="7" width="65" height="20" rx="4" fill="#D50000"/>
+      <text x="762" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800" text-anchor="middle">BLOCKED</text>
+    </g>
+
+    <!-- Vector 3 -->
+    <g transform="translate(0, 104)">
+      <rect width="810" height="34" rx="6" fill="#14141E" stroke="#00E676" stroke-width="0.8"/>
+      <text x="15" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">[VEC_15] Swiggy Legitimate Delivery Order</text>
+      <text x="360" y="21" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">NPU Latency: 0.74ms</text>
+      <rect x="730" y="7" width="65" height="20" rx="4" fill="#00C853"/>
+      <text x="762" y="21" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800" text-anchor="middle">CLEARED</text>
+    </g>
+  </g>
+</svg>

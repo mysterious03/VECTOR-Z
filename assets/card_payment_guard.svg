@@ -1,0 +1,60 @@
+<svg width="860" height="260" viewBox="0 0 860 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="260" rx="14" fill="#0E0E15" stroke="#252538" stroke-width="1.5"/>
+  
+  <!-- Left Side: Phone UI Screen Representation -->
+  <g transform="translate(25, 20)">
+    <rect width="320" height="220" rx="12" fill="#14141E" stroke="#FF1744" stroke-width="1.5"/>
+    
+    <!-- Status bar -->
+    <rect x="15" y="12" width="290" height="12" rx="4" fill="#1C1B2A"/>
+    <text x="20" y="21" fill="#8E8EA0" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">10:14  5G  •  iQOO 12 Pro</text>
+    <text x="280" y="21" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">98%</text>
+
+    <!-- Header badge -->
+    <rect x="15" y="32" width="290" height="24" rx="6" fill="rgba(255, 23, 68, 0.15)" stroke="#FF1744" stroke-width="0.8"/>
+    <text x="25" y="48" fill="#FF5252" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">🚨 PAYMENT INTENT INVERSION DETECTED</text>
+
+    <!-- Body Info -->
+    <rect x="15" y="64" width="290" height="96" rx="8" fill="#0B0B10"/>
+    <text x="25" y="82" fill="#8E8EA0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Target VPA:</text>
+    <text x="90" y="82" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700">refund-desk@fakebank</text>
+
+    <text x="25" y="98" fill="#8E8EA0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Amount:</text>
+    <text x="90" y="98" fill="#FF5252" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">₹25,000.00 (DEBIT)</text>
+
+    <rect x="25" y="108" width="270" height="42" rx="4" fill="rgba(255, 23, 68, 0.1)"/>
+    <text x="32" y="122" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700">⚠️ SCAM INSTRUCTION ALERT:</text>
+    <text x="32" y="134" fill="#E0E0E0" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">Seller told you to scan QR to "RECEIVE" money.</text>
+    <text x="32" y="144" fill="#FFD54F" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700">➔ You NEVER enter your UPI PIN to receive funds.</text>
+
+    <!-- Buttons -->
+    <rect x="15" y="170" width="140" height="34" rx="6" fill="#D50000"/>
+    <text x="85" y="191" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-anchor="middle">BLOCK &amp; ABORT</text>
+
+    <rect x="165" y="170" width="140" height="34" rx="6" fill="#252538"/>
+    <text x="235" y="191" fill="#8E8EA0" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Override Warning</text>
+  </g>
+
+  <!-- Right Side: Architecture Narrative & Highlights -->
+  <g transform="translate(380, 30)">
+    <text x="0" y="24" fill="#FF5500" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" letter-spacing="1">HERO CAPABILITY 01</text>
+    <text x="0" y="52" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800">Payment Intent Guard</text>
+    
+    <text x="0" y="80" fill="#B0B0C0" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400">
+      Intercepts QR codes &amp; UPI deep links before banking apps open.
+    </text>
+
+    <!-- Key Bullet Points -->
+    <g transform="translate(0, 105)">
+      <circle cx="6" cy="6" r="4" fill="#00E5FF"/>
+      <text x="20" y="10" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Deterministic Intent Inversion Analysis</text>
+      <text x="20" y="26" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Flags contradictions between verbal refund claims &amp; debit payloads.</text>
+    </g>
+
+    <g transform="translate(0, 145)">
+      <circle cx="6" cy="6" r="4" fill="#00E676"/>
+      <text x="20" y="10" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">Sub-2ms On-Device NPU Execution</text>
+      <text x="20" y="26" fill="#888899" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Zero latency overhead. Runs locally without sending financial data off-device.</text>
+    </g>
+  </g>
+</svg>
