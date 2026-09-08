@@ -534,6 +534,9 @@ function jumpToStep(step) {
     } else if (step === 13) {
         openScreen("indic");
         updateIndicAlert();
+    } else if (step === 14) {
+        openScreen("video");
+        runVideoDeepfakeAudit(true);
     }
 }
 
@@ -871,4 +874,68 @@ function unwrapQuishingQr() {
         addAuditEntry("QUISHING_GUARD", "QR Scanner", `Verified clean QR destination: ${url}`, "SAFE", "VERIFIED");
     }
 }
+
+// 18. VIDEO CALL DEEPFAKE SHIELD & NETWORK SNIFFER (PHASE 11)
+function runVideoDeepfakeAudit(isDeepfake) {
+    const box = document.getElementById("videoAuditResultBox");
+    const badge = document.getElementById("videoNpuBadge");
+    if (!box) return;
+    box.style.display = "block";
+
+    if (isDeepfake) {
+        if (badge) {
+            badge.innerText = "🚨 SYNTHETIC DEEPFAKE (96% CONF)";
+            badge.style.background = "rgba(255, 23, 68, 0.25)";
+            badge.style.borderColor = "#ff1744";
+            badge.style.color = "#ff5252";
+        }
+        box.style.background = "rgba(255, 23, 68, 0.15)";
+        box.style.border = "1px solid #ff1744";
+        box.style.color = "#ff8a80";
+        box.innerHTML = `
+            <strong style="color:#ff1744;">🚨 SYNTHETIC FACE-SWAP DETECTED IN VIDEO STREAM</strong><br>
+            • Face Landmark Jitter Ratio: <strong>68.4% (Threshold: 45%)</strong><br>
+            • Boundary Blend Discontinuity: <strong>58.2% (Face-Swap Artifact)</strong><br>
+            • Lighting Glitch: <strong>Temporal Frame Irregularity</strong><br>
+            • Action: <strong>Stream Flagged • Audio Output Suppressed (0ms Cloud)</strong>
+        `;
+        triggerHeadsUp("🚨 VIDEO DEEPFAKE BLOCKED", "Caller face is synthetic AI generation. Do not transfer funds.");
+        addAuditEntry("VIDEO_SHIELD", "WhatsApp Video", "Blocked Deepfake Video Impersonation", "HIGH_RISK", "SUPPRESSED");
+    } else {
+        if (badge) {
+            badge.innerText = "✅ AUTHENTIC FEED (0ms NPU)";
+            badge.style.background = "rgba(0, 230, 118, 0.2)";
+            badge.style.borderColor = "#00e676";
+            badge.style.color = "#00e676";
+        }
+        box.style.background = "rgba(0, 230, 118, 0.15)";
+        box.style.border = "1px solid #00e676";
+        box.style.color = "#00e676";
+        box.innerHTML = `
+            <strong>✅ AUTHENTIC CAMERA FEED VERIFIED</strong><br>
+            • Landmark Micro-Motion: Natural (0.04 jitter)<br>
+            • Optical Flow: Continuous 60 FPS<br>
+            • Status: Verified Natural Human
+        `;
+        addAuditEntry("VIDEO_SHIELD", "WhatsApp Video", "Verified Authentic Camera Feed", "SAFE", "VERIFIED");
+    }
+}
+
+function runNetworkSnifferAudit() {
+    const box = document.getElementById("networkAuditResultBox");
+    if (!box) return;
+    box.style.display = "block";
+    box.style.background = "rgba(0, 230, 118, 0.15)";
+    box.style.border = "1px solid #00e676";
+    box.style.color = "#00e676";
+    box.innerHTML = `
+        <strong>🛡️ WI-FI & TLS INTEGRITY: SECURE</strong><br>
+        • Active Gateway: 192.168.1.1 (Clean ARP)<br>
+        • Upstream DNS: 1.1.1.1 (Cloudflare Trusted)<br>
+        • Rogue Proxy: None Detected (No MITM)<br>
+        • User CA Certificates: 0 Injected
+    `;
+    addAuditEntry("NETWORK_AUDIT", "Wi-Fi Interface", "Audited Wi-Fi Gateway & DNS (Clean)", "SAFE", "VERIFIED");
+}
+
 

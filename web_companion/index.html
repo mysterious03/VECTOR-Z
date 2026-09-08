@@ -127,6 +127,13 @@
                             <small>12 Indian languages & QR unwrap</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(14)">
+                        <span class="step-num">14</span>
+                        <div class="step-meta">
+                            <strong>Video Call & Network Sniffer (P11)</strong>
+                            <small>Deepfake face jitter & MITM proxy audit</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -224,84 +231,146 @@
                         </div>
                     </div>
 
-                    <!-- Screen: HOME DASHBOARD -->
+                    <!-- Screen: ORIGIN OS FLAGSHIP PHONE LAUNCHER -->
                     <div class="app-screen active" id="screenHome">
-                        <div class="screen-header">
-                            <div>
-                                <h2 class="screen-title">VECTOR-<span class="cyan-text">Z</span></h2>
-                                <p class="screen-sub">Trust before action.</p>
-                            </div>
-                            <button class="icon-btn" onclick="openScreen('privacy')">🛡️</button>
-                        </div>
-
-                        <!-- Protection Status Card -->
-                        <div class="hero-status-card">
-                            <div class="status-header">
-                                <div class="badge-active">
-                                    <span class="dot"></span> NPU HARDWARE ENCLAVE
-                                </div>
-                                <span class="zero-cloud">0% Cloud</span>
-                            </div>
-                            <h3>Phone-Native Trust Layer</h3>
-                            <p>Understands what is on screen, guards payments & commerce, and protects identity.</p>
-                            
-                            <div class="bubble-switch-row">
-                                <div class="bubble-info">
-                                    <span>🛡️ Vector-Z Trust Bubble</span>
-                                    <small>Docked at screen edge</small>
-                                </div>
-                                <label class="switch">
-                                    <input type="checkbox" checked id="bubbleToggleCheckbox" onchange="toggleBubbleVisibility(this.checked)">
-                                    <span class="slider round"></span>
-                                </label>
+                        <!-- Clock & Weather Widget -->
+                        <div class="os-widget-clock">
+                            <div class="os-time-large">09:41</div>
+                            <div class="os-date-row">
+                                <span>Tuesday, September 8</span>
+                                <span class="os-weather">⛅ 24°C Bengaluru</span>
                             </div>
                         </div>
 
-                        <!-- 6 Core Capabilities Grid -->
-                        <div class="section-label">CORE TRUST CAPABILITIES</div>
-                        <div class="capabilities-grid-6">
-                            <div class="cap-card" onclick="openScreen('vault')">
-                                <div class="cap-icon-box cyan-box">🔒</div>
-                                <h4>Identity Vault</h4>
-                                <p>Aadhaar, PAN, Passport</p>
-                            </div>
-                            <div class="cap-card" onclick="openScreen('payment')">
-                                <div class="cap-icon-box amber-box">💳</div>
-                                <h4>Payment Guard</h4>
-                                <p>UPI & QR Intent Check</p>
-                            </div>
-                            <div class="cap-card" onclick="openScreen('commerce')">
-                                <div class="cap-icon-box green-box">🛒</div>
-                                <h4>Commerce Guard</h4>
-                                <p>Price, Return & Fee Risk</p>
-                            </div>
-                            <div class="cap-card" onclick="openScreen('truth')">
-                                <div class="cap-icon-box red-box">🔍</div>
-                                <h4>Truth & Media</h4>
-                                <p>Claim & Synthetic Check</p>
-                            </div>
-                            <div class="cap-card" onclick="openScreen('agent')">
-                                <div class="cap-icon-box blue-box">🤖</div>
-                                <h4>Bounded Agent</h4>
-                                <p>Policy-Gated Actions</p>
-                            </div>
-                            <div class="cap-card" onclick="openScreen('privacy')">
-                                <div class="cap-icon-box purple-box">📊</div>
-                                <h4>Privacy Ledger</h4>
-                                <p>Logs & Policy Controls</p>
-                            </div>
-                        </div>
-
-                        <!-- Simulator Entry -->
-                        <div class="simulator-card" onclick="openScreen('simulator')">
-                            <div class="sim-left">
-                                <div class="play-icon">▶</div>
+                        <!-- Vector-Z NPU Live Shield Widget -->
+                        <div class="os-npu-widget" onclick="openScreen('vault')">
+                            <div class="npu-widget-left">
+                                <div class="npu-pulsing-dot"></div>
                                 <div>
-                                    <h4>Interactive KYC Simulator</h4>
-                                    <p>Test live Autofill & Biometric gate</p>
+                                    <strong>VECTOR-Z NPU GUARDIAN</strong>
+                                    <small>100% Air-Gapped • 1.84ms Latency • 0 Cloud Leaks</small>
                                 </div>
                             </div>
-                            <span class="arrow">›</span>
+                            <span class="npu-status-tag">ACTIVE</span>
+                        </div>
+
+                        <!-- 4x3 Realistic Smartphone App Grid -->
+                        <div class="os-app-grid">
+                            <!-- App 1: PhonePe -->
+                            <div class="os-app-item" onclick="openScreen('payment')">
+                                <div class="os-app-icon icon-phonepe">
+                                    <span>💳</span>
+                                    <span class="os-badge-count">1</span>
+                                </div>
+                                <span class="os-app-label">PhonePe</span>
+                            </div>
+
+                            <!-- App 2: WhatsApp -->
+                            <div class="os-app-item" onclick="openScreen('notification')">
+                                <div class="os-app-icon icon-whatsapp">
+                                    <span>💬</span>
+                                    <span class="os-badge-count">2</span>
+                                </div>
+                                <span class="os-app-label">WhatsApp</span>
+                            </div>
+
+                            <!-- App 3: Amazon -->
+                            <div class="os-app-item" onclick="openScreen('commerce')">
+                                <div class="os-app-icon icon-amazon">
+                                    <span>🛒</span>
+                                </div>
+                                <span class="os-app-label">Amazon</span>
+                            </div>
+
+                            <!-- App 4: BGMI Monster -->
+                            <div class="os-app-item" onclick="openScreen('monster')">
+                                <div class="os-app-icon icon-bgmi">
+                                    <span>🎮</span>
+                                    <span class="os-badge-special">120 FPS</span>
+                                </div>
+                                <span class="os-app-label">BGMI</span>
+                            </div>
+
+                            <!-- App 5: Vector-Z Master Hub -->
+                            <div class="os-app-item" onclick="openScreen('vault')">
+                                <div class="os-app-icon icon-vectorz">
+                                    <span>🛡️</span>
+                                </div>
+                                <span class="os-app-label">Vector-Z</span>
+                            </div>
+
+                            <!-- App 6: Chrome KYC -->
+                            <div class="os-app-item" onclick="openScreen('simulator')">
+                                <div class="os-app-icon icon-chrome">
+                                    <span>🌐</span>
+                                </div>
+                                <span class="os-app-label">Chrome</span>
+                            </div>
+
+                            <!-- App 7: Dialer Voice -->
+                            <div class="os-app-item" onclick="openScreen('media')">
+                                <div class="os-app-icon icon-phone">
+                                    <span>📞</span>
+                                </div>
+                                <span class="os-app-label">Dialer</span>
+                            </div>
+
+                            <!-- App 8: Deepfake Video Call -->
+                            <div class="os-app-item" onclick="openScreen('video')">
+                                <div class="os-app-icon icon-video">
+                                    <span>📹</span>
+                                    <span class="os-badge-new">NEW</span>
+                                </div>
+                                <span class="os-app-label">Video Shield</span>
+                            </div>
+
+                            <!-- App 9: 15-Vector Stress -->
+                            <div class="os-app-item" onclick="openScreen('benchmark')">
+                                <div class="os-app-icon icon-benchmark">
+                                    <span>⚡</span>
+                                </div>
+                                <span class="os-app-label">Stress NPU</span>
+                            </div>
+
+                            <!-- App 10: AI Honeypot -->
+                            <div class="os-app-item" onclick="openScreen('honeypot')">
+                                <div class="os-app-icon icon-honeypot">
+                                    <span>🤖</span>
+                                </div>
+                                <span class="os-app-label">Honeypot</span>
+                            </div>
+
+                            <!-- App 11: Indic Voice -->
+                            <div class="os-app-item" onclick="openScreen('indic')">
+                                <div class="os-app-icon icon-indic">
+                                    <span>🗣️</span>
+                                </div>
+                                <span class="os-app-label">Indic Voice</span>
+                            </div>
+
+                            <!-- App 12: Security & Panic -->
+                            <div class="os-app-item" onclick="openScreen('privacy')">
+                                <div class="os-app-icon icon-settings">
+                                    <span>⚙️</span>
+                                </div>
+                                <span class="os-app-label">Settings</span>
+                            </div>
+                        </div>
+
+                        <!-- Phone Bottom Dock (4 Quick Launch Apps) -->
+                        <div class="os-dock-container">
+                            <div class="os-dock-app" onclick="openScreen('media')" title="Phone">
+                                <div class="os-dock-icon icon-dock-phone">📞</div>
+                            </div>
+                            <div class="os-dock-app" onclick="openScreen('notification')" title="Messages">
+                                <div class="os-dock-icon icon-dock-msg">💬</div>
+                            </div>
+                            <div class="os-dock-app" onclick="openScreen('simulator')" title="Browser">
+                                <div class="os-dock-icon icon-dock-web">🌐</div>
+                            </div>
+                            <div class="os-dock-app" onclick="openScreen('ocr')" title="Camera OCR">
+                                <div class="os-dock-icon icon-dock-cam">📷</div>
+                            </div>
                         </div>
                     </div>
 
@@ -871,6 +940,52 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                         </div>
                     </div>
 
+                    <!-- Screen: VIDEO CALL DEEPFAKE SHIELD & NETWORK SNIFFER (P11) -->
+                    <div class="app-screen" id="screenVideo">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>VIDEO CALL & NETWORK SHIELD</h3>
+                                <small>Live Face Mesh • MITM Sniffer</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <!-- Video Call HUD Simulation -->
+                        <div class="video-call-box">
+                            <div class="video-call-feed">
+                                <div class="video-face-mesh">
+                                    <div class="mesh-point p1"></div>
+                                    <div class="mesh-point p2"></div>
+                                    <div class="mesh-point p3"></div>
+                                    <div class="mesh-point p4"></div>
+                                    <div class="mesh-box"></div>
+                                </div>
+                                <div class="video-caller-info">
+                                    <strong>Incoming Video Call: Fake Family Distress</strong>
+                                    <small>Encrypted WhatsApp Video Stream</small>
+                                </div>
+                                <div class="video-npu-badge" id="videoNpuBadge">ANALYZING (0ms NPU)</div>
+                            </div>
+                            
+                            <div class="btn-row mt-2">
+                                <button class="primary-btn" onclick="runVideoDeepfakeAudit(true)">AUDIT DEEPFAKE FRAME</button>
+                                <button class="secondary-btn" onclick="runVideoDeepfakeAudit(false)">RESET AUTHENTIC</button>
+                            </div>
+                            <div id="videoAuditResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:11px; line-height:1.4;"></div>
+                        </div>
+
+                        <!-- Rogue Network & MITM Proxy Sniffer -->
+                        <div class="section-label mt-3">ON-DEVICE NETWORK MITM SNIFFER</div>
+                        <div class="card p-3" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px;">
+                                <span>Active Wi-Fi Gateway: <strong>192.168.1.1</strong></span>
+                                <button class="primary-btn" onclick="runNetworkSnifferAudit()" style="width:auto; padding:4px 8px; font-size:10px;">AUDIT WI-FI</button>
+                            </div>
+                            <div id="networkAuditResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Phone Bottom Navigation Bar -->
@@ -898,7 +1013,7 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                 </nav>
 
                 <!-- Android 14 Flagship Gesture Navigation Bar -->
-                <div class="android-gesture-bar">
+                <div class="android-gesture-bar" onclick="openScreen('home')" title="Click or swipe to go Home">
                     <div class="gesture-pill"></div>
                 </div>
 

@@ -374,6 +374,57 @@ class VectorZTests {
         assertEquals("HIGH_RISK", homoglyphResult.riskLevel)
         assertTrue(homoglyphResult.containsHomoglyphSpoof)
     }
+
+    @Test
+    fun `test Video Call Deepfake Shield detects landmark jitter and boundary shifts`() {
+        val videoShield = com.iqoo.vectorz.ai.video.VideoCallShieldEngine()
+        
+        // Deepfake face-swap frame
+        val fakeFrame = videoShield.auditVideoFrame(
+            landmarkJitterRatio = 0.65f,
+            boundaryBlendDiscontinuity = 0.58f,
+            ambientLightingShiftDetected = true
+        )
+        assertTrue(fakeFrame.isDeepfakeDetected)
+        assertEquals("SYNTHETIC_DEEPFAKE_VIDEO_CALL", fakeFrame.threatCategory)
+        assertTrue(fakeFrame.confidenceScore >= 0.90f)
+
+        // Authentic camera feed
+        val realFrame = videoShield.auditVideoFrame(
+            landmarkJitterRatio = 0.05f,
+            boundaryBlendDiscontinuity = 0.02f,
+            ambientLightingShiftDetected = false
+        )
+        assertFalse(realFrame.isDeepfakeDetected)
+        assertEquals("AUTHENTIC_CAMERA_FEED", realFrame.threatCategory)
+    }
+
+    @Test
+    fun `test Network Sniffer Auditor detects rogue proxy and untrusted DNS servers`() {
+        val sniffer = com.iqoo.vectorz.service.network.NetworkSnifferAuditor()
+        
+        // MITM attack scenario
+        val mitmReport = sniffer.auditCurrentConnection(
+            gatewayIp = "192.168.1.1",
+            dnsServer = "192.168.1.105",
+            httpProxyHost = "192.168.1.50",
+            isUserCertAuthorityInstalled = true
+        )
+        assertFalse(mitmReport.isNetworkSecure)
+        assertTrue(mitmReport.isMitmProxyDetected)
+        assertTrue(mitmReport.isDnsPoisoned)
+        assertEquals("CRITICAL_MITM_ATTACK", mitmReport.threatLevel)
+
+        // Clean trusted connection
+        val secureReport = sniffer.auditCurrentConnection(
+            gatewayIp = "192.168.1.1",
+            dnsServer = "1.1.1.1",
+            httpProxyHost = null,
+            isUserCertAuthorityInstalled = false
+        )
+        assertTrue(secureReport.isNetworkSecure)
+        assertEquals("SECURE_CONNECTION", secureReport.threatLevel)
+    }
 }
 
 

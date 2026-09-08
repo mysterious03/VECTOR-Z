@@ -1036,3 +1036,302 @@ input:checked + .slider:before {
     border-radius: var(--radius-sm);
     margin-bottom: 6px;
 }
+
+/* ==========================================================================
+   ORIGIN OS 5 FLAGSHIP SMARTPHONE LAUNCHER & APP GRID
+   ========================================================================== */
+
+/* Clock & Weather Widget */
+.os-widget-clock {
+    padding: 8px 6px 4px 6px;
+    margin-bottom: 8px;
+}
+
+.os-time-large {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+}
+
+.os-date-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.os-weather {
+    color: var(--cyan-primary);
+    font-weight: 600;
+}
+
+/* Vector-Z Live NPU Pill Widget */
+.os-npu-widget {
+    background: linear-gradient(135deg, rgba(240, 80, 35, 0.15) 0%, rgba(16, 16, 24, 0.8) 100%);
+    border: 1px solid rgba(240, 80, 35, 0.35);
+    border-radius: var(--radius-md);
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.os-npu-widget:hover {
+    transform: translateY(-1px);
+    border-color: var(--primary-orange);
+}
+
+.npu-widget-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.npu-pulsing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--emerald-green);
+    box-shadow: 0 0 10px var(--emerald-green);
+    animation: pulse 1.5s infinite;
+}
+
+.npu-widget-left strong {
+    display: block;
+    font-size: 0.70rem;
+    color: #FFFFFF;
+    letter-spacing: 0.04em;
+}
+
+.npu-widget-left small {
+    display: block;
+    font-size: 0.62rem;
+    color: var(--text-muted);
+}
+
+.npu-status-tag {
+    background: var(--emerald-green);
+    color: #000000;
+    font-size: 0.60rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+}
+
+/* 4x3 Realistic App Grid */
+.os-app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 6px;
+    padding: 4px 0 12px 0;
+}
+
+.os-app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    user-select: none;
+}
+
+.os-app-item:hover {
+    transform: scale(1.06);
+}
+
+.os-app-item:active {
+    transform: scale(0.95);
+}
+
+.os-app-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    position: relative;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.icon-phonepe { background: linear-gradient(135deg, #5f259f, #3d1466); }
+.icon-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+.icon-amazon { background: linear-gradient(135deg, #FF9900, #232F3E); }
+.icon-bgmi { background: linear-gradient(135deg, #E65100, #BF360C); }
+.icon-vectorz { background: linear-gradient(135deg, #F05023, #00E5FF); border-color: #00E5FF; }
+.icon-chrome { background: linear-gradient(135deg, #4285F4, #34A853); }
+.icon-phone { background: linear-gradient(135deg, #00E676, #00B0FF); }
+.icon-video { background: linear-gradient(135deg, #FF1744, #7C4DFF); }
+.icon-benchmark { background: linear-gradient(135deg, #00E5FF, #2979FF); }
+.icon-honeypot { background: linear-gradient(135deg, #FF6D00, #D50000); }
+.icon-indic { background: linear-gradient(135deg, #FF9100, #FF3D00); }
+.icon-settings { background: linear-gradient(135deg, #455A64, #263238); }
+
+.os-badge-count {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: #FF1744;
+    color: #FFFFFF;
+    font-size: 0.60rem;
+    font-weight: 800;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #000;
+}
+
+.os-badge-special {
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    background: #FF5500;
+    color: #FFFFFF;
+    font-size: 0.50rem;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+
+.os-badge-new {
+    position: absolute;
+    top: -5px;
+    right: -4px;
+    background: #00E5FF;
+    color: #000000;
+    font-size: 0.50rem;
+    font-weight: 900;
+    padding: 1px 4px;
+    border-radius: 4px;
+}
+
+.os-app-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 58px;
+}
+
+/* Bottom App Dock */
+.os-dock-container {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.os-dock-app {
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.os-dock-app:hover {
+    transform: translateY(-2px);
+}
+
+.os-dock-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.icon-dock-phone { background: linear-gradient(135deg, #00C853, #009624); }
+.icon-dock-msg { background: linear-gradient(135deg, #0091EA, #01579B); }
+.icon-dock-web { background: linear-gradient(135deg, #FF6D00, #D50000); }
+.icon-dock-cam { background: linear-gradient(135deg, #607D8B, #37474F); }
+
+/* Video Call Deepfake Shield Simulation */
+.video-call-box {
+    background: #101016;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+}
+
+.video-call-feed {
+    height: 170px;
+    background: radial-gradient(circle at center, #1E1E2E 0%, #0A0A10 100%);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #333344;
+}
+
+.video-face-mesh {
+    position: absolute;
+    inset: 20px 60px;
+    border: 1.5px dashed var(--cyan-primary);
+    border-radius: 50% 50% 45% 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: meshScan 2s infinite alternate;
+}
+
+@keyframes meshScan {
+    0% { border-color: var(--cyan-primary); opacity: 0.6; }
+    100% { border-color: var(--alert-red); opacity: 1; }
+}
+
+.video-caller-info {
+    position: relative;
+    z-index: 2;
+}
+
+.video-caller-info strong {
+    display: block;
+    font-size: 0.74rem;
+    color: #FFFFFF;
+}
+
+.video-caller-info small {
+    font-size: 0.64rem;
+    color: var(--text-secondary);
+}
+
+.video-npu-badge {
+    align-self: flex-end;
+    background: rgba(0, 229, 255, 0.2);
+    border: 1px solid var(--cyan-primary);
+    color: var(--cyan-primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.60rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+}
+
