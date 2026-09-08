@@ -174,6 +174,51 @@ class VectorZTests {
         )
         assertFalse(safeScreen.requiresScreenShield)
     }
+
+    @Test
+    fun `test Panic Shield wipes memory buffers and freezes Keystore keys`() {
+        val panicEngine = com.iqoo.vectorz.core.security.PanicShieldEngine()
+        val lockdownState = panicEngine.triggerEmergencyLockdown()
+        assertTrue(lockdownState.isLockdownActive)
+        assertTrue(lockdownState.memoryBuffersWipedCount > 0)
+        assertEquals(15, lockdownState.keystoreCooldownMinutesRemaining)
+
+        val restored = panicEngine.liftEmergencyLockdown(biometricProofConfirmed = true)
+        assertTrue(restored)
+        assertFalse(panicEngine.state.value.isLockdownActive)
+    }
+
+    @Test
+    fun `test Threat Intel Engine matches known Indian scam VPAs and domains`() {
+        val intel = com.iqoo.vectorz.ai.threat.ThreatIntelEngine()
+        val vpaResult = intel.queryVpa("refund-desk@fakebank")
+        assertTrue(vpaResult.isKnownMalicious)
+        assertEquals("VERIFIED_UPI_SCAM_VPA", vpaResult.threatCategory)
+
+        val domainResult = intel.queryDomain("power-board.in")
+        assertTrue(domainResult.isKnownMalicious)
+        assertEquals("VERIFIED_PHISHING_DOMAIN", domainResult.threatCategory)
+    }
+
+    @Test
+    fun `test SMS Spoof Analyzer detects 10-digit mobile banking impersonation`() {
+        val spoofAnalyzer = com.iqoo.vectorz.service.notification.SmsSpoofAnalyzer()
+        
+        val fakeBankSms = spoofAnalyzer.auditSmsHeader(
+            sender = "+919876543210",
+            messageBody = "Your SBI netbanking account is blocked. Update immediately."
+        )
+        assertTrue(fakeBankSms.isBankingImpersonation)
+        assertEquals("CRITICAL_SPOOF", fakeBankSms.threatLevel)
+
+        val legitBankSms = spoofAnalyzer.auditSmsHeader(
+            sender = "AD-HDFCBK",
+            messageBody = "₹1,200 spent on your card ending 9182."
+        )
+        assertTrue(legitBankSms.isOfficialDltHeader)
+        assertFalse(legitBankSms.isBankingImpersonation)
+    }
 }
+
 
 

@@ -1,15 +1,18 @@
 <div align="center">
 
-<!-- Hero Graphic Banner -->
+# ⚡ VECTOR-Z
+### *On-Device AI Trust Infrastructure for Indian Digital Life*
+**iQOO Hackathon 2026 • FinTech + Commerce Track**
+
 <p align="center">
-  <img src="assets/banner_hero.svg" alt="VECTOR-Z Hero Banner" width="100%">
+  <img src="assets/banner_hero.svg" alt="VECTOR-Z Banner" width="100%">
 </p>
 
-[![Platform](https://img.shields.io/badge/Platform-Android%2014%20%7C%20API%2034-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
-[![NPU](https://img.shields.io/badge/Qualcomm-Hexagon%20NPU%201.84ms-FF5500?style=for-the-badge&logo=qualcomm&logoColor=white)](https://ai.google.dev/edge)
-[![Security](https://img.shields.io/badge/Security-AES--256--GCM%20Keystore-00E5FF?style=for-the-badge&logo=shield&logoColor=white)](https://developer.android.com/training/articles/keystore)
-[![UI](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-7F52FF?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
-[![Track](https://img.shields.io/badge/Track-FinTech%20%2B%20Commerce-FF1744?style=for-the-badge)](https://iqoo.com)
+[![Android 14](https://img.shields.io/badge/Android-14%20(API%2034)-3DDC84?style=flat-square&logo=android&logoColor=white)](https://developer.android.com)
+[![Qualcomm Hexagon NPU](https://img.shields.io/badge/Qualcomm-Hexagon%20NPU%20(1.84ms)-FF5500?style=flat-square&logo=qualcomm&logoColor=white)](https://ai.google.dev/edge)
+[![Hardware Keystore](https://img.shields.io/badge/Security-AES--256--GCM%20Keystore-00E5FF?style=flat-square&logo=shield&logoColor=white)](https://developer.android.com/training/articles/keystore)
+[![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-7F52FF?style=flat-square&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
+[![Air-Gapped AI](https://img.shields.io/badge/Privacy-100%25%20On--Device%20(0%20Cloud)-00E676?style=flat-square)](https://github.com/mysterious03/VECTOR)
 
 <br/>
 
@@ -17,75 +20,69 @@
 
 <br/>
 
-<!-- Interactive HUD Navigation -->
-<table width="100%">
-  <tr>
-    <td align="center" width="20%"><a href="#-01-the-threat-matrix"><strong>🛡️ 01. Threats</strong></a></td>
-    <td align="center" width="20%"><a href="#-02-core-hero-pillars"><strong>📱 02. Phone Features</strong></a></td>
-    <td align="center" width="20%"><a href="#-03-npu-benchmarks"><strong>⚡ 03. NPU Telemetry</strong></a></td>
-    <td align="center" width="20%"><a href="#-04-system-architecture"><strong>🏗️ 04. Architecture</strong></a></td>
-    <td align="center" width="20%"><a href="#-05-3-minute-pitch"><strong>🎙️ 05. Demo Script</strong></a></td>
-  </tr>
-</table>
-
 </div>
 
 ---
 
-<a name="-01-the-threat-matrix"></a>
-## 🛡️ 01. The Threat Matrix: Everyday Risks vs VECTOR-Z
+## 📌 Executive Summary
 
-<p align="center">
-  <img src="assets/card_threat_matrix.svg" alt="Threat Matrix Comparison" width="100%">
-</p>
+Every month, millions of Indian smartphone users fall prey to **UPI QR refund traps**, **fake electricity disconnection SMS**, **KYC credential harvesting**, and **deceptive 90% flash sale discounts**.
 
-<div align="right"><a href="#">▲ Back to Top</a></div>
+**VECTOR-Z** is an on-device AI Trust Infrastructure designed specifically for **iQOO smartphones**. Sitting between third-party applications and the operating system, it acts as an **ambient guardian** that intercepts financial and identity risk before the user acts — **without sending a single byte of sensitive data to the cloud**.
 
 ---
 
-<a name="-02-core-hero-pillars"></a>
-## 📱 02. Interactive Phone Feature Gallery
+## 🚨 The Everyday Problem vs The VECTOR-Z Solution
+
+<p align="center">
+  <img src="assets/card_threat_matrix.svg" alt="Everyday Threats vs VECTOR-Z Solutions" width="100%">
+</p>
+
+### Detailed Problem & Solution Breakdown:
+
+| # | Real-World Attack in India | The Critical Vulnerability | How VECTOR-Z Solves It |
+|---|---|---|---|
+| **1** | **UPI "Refund" QR Scam** | Scammers send a QR code claiming *"Scan to receive ₹25,000 lottery refund"*. Victims enter their UPI PIN, losing funds. | **Payment Intent Guard** parses the `upi://pay` URI, identifies the intent conflict (Debit vs Credit), and blocks the transaction before the PIN screen loads. |
+| **2** | **KYC Document Harvesting** | Unmasked photos of Aadhaar, PAN, and Passports are uploaded to unverified apps and brokers. | **Hardware Keystore Vault** seals identity credentials in AES-256-GCM hardware enclave. Contextual autofill injects masked fields (`•••• •••• 7819`) with Biometric challenge. |
+| **3** | **Electricity Bill / Trai SMS Scam** | Fake SMS claiming *"Power will be cut at 9:30 PM tonight due to unpaid bill. Download APK to update"*. | **Notification Scam Interceptor** analyzes SMS sender headers (DLT verification) and halts rogue `.apk` dropper links in real-time. |
+| **4** | **AI Voice Clone Distress Calls** | AI-generated audio clips mimicking family members in emergency distress demanding instant money transfers. | **Multi-Modal NPU Inspector** analyzes acoustic phase continuity and room reverberation to flag synthetic deepfake voice clones. |
+| **5** | **Fake 90% Commerce Markdowns** | Low-quality goods listed at fake inflated prices (₹19,999 claimed ➔ sold for ₹999) with non-returnable clauses. | **Commerce Guard** calculates price sanity against historical benchmarks and highlights hidden final-sale traps. |
+| **6** | **Emergency Physical Coercion** | Physical theft or coercion where an attacker demands device unlock and banking access. | **Panic Shield** allows 1-tap emergency lockdown that incinerates ephemeral memory heaps and freezes Keystore keys for 15 minutes. |
+
+---
+
+## 📱 Visual Smartphone Capabilities
 
 <br/>
 
-### 💳 Capability 01: Payment Intent Guard (Anti-Scam Heuristics)
-> **Real-World Attack:** Scammers send collect requests claiming: *"Enter your UPI PIN to claim your ₹25,000 lottery refund."*
+### 1. 💳 Payment Intent Guard (Anti-Scam Heuristics)
+> **Intercepts QR codes & UPI links before banking apps open.**
 
 <p align="center">
-  <img src="assets/card_payment_guard.svg" alt="Payment Intent Guard Preview" width="100%">
+  <img src="assets/card_payment_guard.svg" alt="Payment Guard Preview" width="100%">
 </p>
 
-<details>
-<summary><b>🔍 How Payment Intent Guard Works Under the Hood (Click to Expand)</b></summary>
-<br>
-
-* **Deterministic Intent Parser:** Parses `pa`, `pn`, `am`, and transaction parameters from `upi://pay` deep links.
+* **Deterministic Intent Parser:** Parses `pa`, `pn`, `am`, and message parameters from standard `upi://pay` deep links.
 * **Intent-Conflict Engine:** Detects verbal/clipboard refund lures that contradict underlying debit payment payloads.
 * **Instant Prevention:** Executes in **1.84ms** on Qualcomm Hexagon NPU before launching Google Pay, PhonePe, or Paytm.
-</details>
 
 ---
 
-### 🔐 Capability 02: Hardware Keystore Vault & Biometric Autofill
-> **Real-World Attack:** Sensitive unredacted Aadhaar, PAN, and passport images leaked across unverified financial apps.
+### 2. 🔐 Hardware Keystore Identity Vault & Biometric Autofill
+> **Zero cloud leakage. Sensitive credentials stay locked in hardware.**
 
 <p align="center">
   <img src="assets/card_identity_vault.svg" alt="Identity Vault Preview" width="100%">
 </p>
 
-<details>
-<summary><b>🔍 How Identity Encryption & Ephemeral Memory Works (Click to Expand)</b></summary>
-<br>
-
-* **Hardware Master Key:** Generated directly inside Android Keystore (`KeyGenParameterSpec` with `PURPOSE_ENCRYPT | PURPOSE_DECRYPT`).
-* **Ephemeral RAM Zeroing:** Decrypted byte arrays in memory are explicitly wiped with zeroes (`0x00`) immediately after insertion.
+* **Master Key Enclave:** Key generated directly inside Android Keystore (`KeyGenParameterSpec` with `PURPOSE_ENCRYPT | PURPOSE_DECRYPT`).
+* **Ephemeral Memory Zeroing:** Byte arrays containing unmasked data are explicitly overwritten with zeroes (`0x00`) immediately after insertion.
 * **Android Autofill Framework:** Native `AutofillService` implementation with per-app toggles and biometric authorization challenge.
-</details>
 
 ---
 
-### ⚡ Capability 03: 15-Vector Scam Stress Benchmark & NPU Telemetry
-> **Stress Test:** Testing 15 synthetic Indian fraud archetypes with live on-device hardware telemetry.
+### 3. ⚡ 15-Vector Scam Benchmark & Hardware NPU Profiler
+> **Real-world stress testing across 15 synthetic Indian fraud archetypes.**
 
 <p align="center">
   <img src="assets/card_benchmark.svg" alt="15-Vector Benchmark Preview" width="100%">
@@ -93,54 +90,27 @@
 
 ---
 
-### 🛍️ Capability 04: Commerce & Truth Guard
+## ⚡ Qualcomm Hexagon NPU Performance Telemetry
 
-<table>
-<tr>
-<th width="50%">🛍️ Commerce &amp; Deal Guard</th>
-<th width="50%">🔍 Truth &amp; Media Inspector</th>
-</tr>
-<tr>
-<td>
-• <strong>Price Reality Check:</strong> Detects fake 90% markdown anchors (₹19,999 ➔ ₹999).<br>
-• <strong>Hidden Terms:</strong> Warns of strict non-refundable clauses in small print.<br>
-• <strong>Off-Platform Warning:</strong> Blocks direct WhatsApp / unverified UPI transfers.
-</td>
-<td>
-• <strong>Voice Clone Detection:</strong> Flags phase glitches &amp; zero room reverberation.<br>
-• <strong>Atomic Claims:</strong> Deconstructs viral forwards into verifiable claims.<br>
-• <strong>Deepfake KYC Alert:</strong> Analyzes facial boundary blurring and corneal reflections.
-</td>
-</tr>
-</table>
+All AI classification and heuristic engines operate **100% on-device** with zero network dependency:
 
-<div align="right"><a href="#">▲ Back to Top</a></div>
-
----
-
-<a name="-03-npu-benchmarks"></a>
-## ⚡ 03. Qualcomm Hexagon NPU Benchmark
-
-| On-Device Operation | Hardware Target | NPU Latency | RAM Heap | Cloud Calls |
+| On-Device Engine | Hardware Accelerator | NPU Latency | RAM Footprint | Cloud Leakage |
 | :--- | :--- | :---: | :---: | :---: |
-| **Payment Intent Audit** | Snapdragon 8 Gen 3 NPU | **1.84 ms** | 4.2 MB | **0 (Air-Gapped)** |
-| **Notification URL Sanitizer** | On-Device Heuristic Core | **0.92 ms** | 2.1 MB | **0 (Air-Gapped)** |
-| **OCR Document Parsing** | ML Kit Vision / LiteRT | **8.20 ms** | 14.2 MB | **0 (Air-Gapped)** |
-| **Commerce Price Evaluator** | Qualcomm Hexagon Tensor Core | **2.15 ms** | 3.8 MB | **0 (Air-Gapped)** |
-| **Voice Clone Spectral Audit** | DSP Acoustic Engine | **5.60 ms** | 11.8 MB | **0 (Air-Gapped)** |
-| **Truth Claim Deconstruction** | Local Inference Core | **4.30 ms** | 6.5 MB | **0 (Air-Gapped)** |
-
-<div align="right"><a href="#">▲ Back to Top</a></div>
+| **Payment Intent Audit** | Snapdragon 8 Gen 3 NPU | **1.84 ms** | 4.2 MB | **0.00 KB (Air-Gapped)** |
+| **SMS Header & URL Interceptor** | On-Device Heuristic Core | **0.92 ms** | 2.1 MB | **0.00 KB (Air-Gapped)** |
+| **OCR Document Parser** | ML Kit Vision / LiteRT | **8.20 ms** | 14.2 MB | **0.00 KB (Air-Gapped)** |
+| **Commerce Price Evaluator** | Qualcomm Tensor Core | **2.15 ms** | 3.8 MB | **0.00 KB (Air-Gapped)** |
+| **Voice Clone Spectral Audit** | DSP Acoustic Engine | **5.60 ms** | 11.8 MB | **0.00 KB (Air-Gapped)** |
+| **Truth Claim Deconstruction** | Local Inference Engine | **4.30 ms** | 6.5 MB | **0.00 KB (Air-Gapped)** |
 
 ---
 
-<a name="-04-system-architecture"></a>
-## 🏗️ 04. System Architecture & Zero-Cloud Enclave
+## 🏗️ System Architecture & Data Flow
 
 ```mermaid
 graph TD
     subgraph System Layer [Android OS & Everyday Apps]
-        UserApp[Banking / Shopping / Messaging]
+        UserApp[Banking / Shopping / Messaging Apps]
         Clipboard[System Clipboard / QR Scanner]
         NotifService[Android Notification Stream]
     end
@@ -153,6 +123,7 @@ graph TD
         CommerceEngine[Commerce & Deal Guard]
         MediaEngine[Voice & Deepfake Inspector]
         PolicyEngine[Bounded Agent Policy Guard]
+        PanicEngine[Panic Shield Lockdown Engine]
     end
 
     subgraph Hardware Enclave [iQOO Hardware Security Enclave & NPU]
@@ -173,6 +144,7 @@ graph TD
     PaymentEngine -->|Audits On-Device| NPU
     NotifGuard -->|Extracts Rogue APKs| NPU
     MediaEngine -->|Spectral Phase Audit| NPU
+    PanicEngine -->|Emergency Wipe| ZeroLog
 ```
 
 ### 🔒 4-Tier Agent Safety Guardrail
@@ -184,12 +156,9 @@ graph TD
 | 🟠 **Tier 3: High** | Unmasked PAN/Aadhaar injection | Biometric Gate | Requires Fingerprint/Face match |
 | 🔴 **Tier 4: Prohibited** | **OTP, UPI PIN, Passwords, Fund Transfers** | **HARD BLOCKED** | **Immutable Application Block (Never Allowed)** |
 
-<div align="right"><a href="#">▲ Back to Top</a></div>
-
 ---
 
-<a name="-05-3-minute-pitch"></a>
-## 🎙️ 05. 3-Minute Hackathon Demo Script
+## 🎙️ 3-Minute Hackathon Demo Script for Judges
 
 ```markdown
 ⏱️ 0:00 - 0:30 | THE PROBLEM
@@ -216,13 +185,11 @@ synthetic voice clones from harmonic phase glitches."
 Zero cloud network calls. All processing stays 100% on your iQOO smartphone. Trust before action."
 ```
 
-<div align="right"><a href="#">▲ Back to Top</a></div>
-
 ---
 
-## 🚀 Quickstart & Setup
+## 🚀 Getting Started
 
-### Option 1: Live Interactive Web Simulator (Instant)
+### Option 1: Live Interactive Web Simulator (Fastest)
 
 ```bash
 # Clone repository
@@ -232,18 +199,18 @@ cd VECTOR
 # Launch local server
 python -m http.server 8080 --directory web_companion
 ```
-👉 Open **[http://localhost:8080](http://localhost:8080)** in your browser.
+👉 Open **[http://localhost:8080](http://localhost:8080)** in Chrome/Edge.
 
 ---
 
-### Option 2: Build Native Android APK (Android Studio)
+### Option 2: Build Native Android App (Android Studio)
 
 ```bash
 # Build Debug APK with Gradle 8.4
 ./gradlew assembleDebug
 ```
-1. Open the project in **Android Studio**.
-2. Connect your **iQOO / Android 14** device.
+1. Open the project folder in **Android Studio**.
+2. Connect your **iQOO / Android 14** smartphone.
 3. Click **Run (`Shift + F10`)**.
 
 ---
