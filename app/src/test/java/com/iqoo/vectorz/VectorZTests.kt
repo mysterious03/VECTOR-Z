@@ -457,6 +457,63 @@ class VectorZTests {
         assertEquals(com.iqoo.vectorz.service.overlay.AppCategory.MESSAGING_CHAT, whatsappContext.category)
         assertEquals("SMS_TROJAN_SCAN", whatsappContext.recommendedBubbleAction)
     }
+
+    @Test
+    fun `test Decentralized Identity DID and W3C Verifiable Credential Selective Disclosure`() {
+        val didEngine = com.iqoo.vectorz.core.crypto.DidCredentialEngine()
+
+        // 1. Generate Hardware-bound DID
+        val didDoc = didEngine.generateHardwareDid("vectorz_user_did")
+        assertTrue(didDoc.didUri.startsWith("did:key:"))
+        assertTrue(didDoc.publicKeyHex.isNotEmpty())
+
+        // 2. Issue DigiLocker Driving License VC
+        val claims = mapOf(
+            "fullName" to "AARAV VIKRAM SHARMA",
+            "licenseNumber" to "KA04-20150089124",
+            "vehicleClass" to "LMV",
+            "expiryDate" to "2035-08-15",
+            "bloodGroup" to "O+"
+        )
+        val vc = didEngine.issueVerifiableCredential(
+            subjectDid = didDoc.didUri,
+            credentialType = "DigiLockerDrivingLicenseCredential",
+            claims = claims
+        )
+        assertEquals("DigiLockerDrivingLicenseCredential", vc.credentialType)
+        assertFalse(vc.isRevoked)
+
+        // 3. Selectively disclose ONLY Vehicle Class (hide raw license number and blood group)
+        val presentation = didEngine.createSelectiveDisclosurePresentation(
+            credential = vc,
+            disclosedKeys = setOf("vehicleClass", "fullName"),
+            recipientDid = "com.merchant.car_rental"
+        )
+        assertEquals(2, presentation.disclosedClaims.size)
+        assertEquals("LMV", presentation.disclosedClaims["vehicleClass"])
+        assertNull(presentation.disclosedClaims["licenseNumber"])
+        assertEquals(3, presentation.hiddenClaimsCount)
+        assertTrue(presentation.issuerSignatureValid)
+    }
+
+    @Test
+    fun `test Off-Grid Emergency Mesh SOS Beacon serializes encrypted BLE payload`() {
+        val meshEngine = com.iqoo.vectorz.service.mesh.OffGridSosBeacon()
+
+        val sosPacket = meshEngine.generateEncryptedSosPacket(
+            emergencyType = "HOSTAGE_COERCION_SOS",
+            victimDeviceId = "IQOO_12_SECURE_ENCLAVE",
+            isDecoyArmed = true
+        )
+        assertTrue(sosPacket.packetId.startsWith("MESH_PKT_"))
+        assertTrue(sosPacket.encryptedPayloadHex.startsWith("AES_GCM_"))
+        assertTrue(sosPacket.isDecoyArmed)
+
+        val status = meshEngine.verifyMeshHopRelay(sosPacket)
+        assertTrue(status.isBroadcasting)
+        assertEquals(5, status.activeMeshHops)
+        assertEquals("BLE_ADVERTISING_OFF_GRID_MESH_V1", status.protocol)
+    }
 }
 
 

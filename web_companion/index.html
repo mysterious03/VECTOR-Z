@@ -141,6 +141,13 @@
                             <small>Zero-knowledge age tokens & bubble context</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(16)">
+                        <span class="step-num">16</span>
+                        <div class="step-meta">
+                            <strong>DID Credentials & Off-Grid Mesh (P13)</strong>
+                            <small>W3C selective disclosure & BLE SOS relay</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -362,6 +369,24 @@
                                     <span>⚙️</span>
                                 </div>
                                 <span class="os-app-label">Settings</span>
+                            </div>
+
+                            <!-- App 13: DigiLocker DID Wallet (P13) -->
+                            <div class="os-app-item" onclick="openScreen('did')">
+                                <div class="os-app-icon icon-did" style="background: linear-gradient(135deg, #00B0FF, #651FFF);">
+                                    <span>🪪</span>
+                                    <span class="os-badge-new">DID</span>
+                                </div>
+                                <span class="os-app-label">DigiLocker</span>
+                            </div>
+
+                            <!-- App 14: Off-Grid SOS Mesh (P13) -->
+                            <div class="os-app-item" onclick="openScreen('mesh')">
+                                <div class="os-app-icon icon-mesh" style="background: linear-gradient(135deg, #FF1744, #D50000);">
+                                    <span>📡</span>
+                                    <span class="os-badge-special">MESH</span>
+                                </div>
+                                <span class="os-app-label">Off-Grid SOS</span>
                             </div>
                         </div>
 
@@ -1118,6 +1143,78 @@
                                 <button class="primary-btn" onclick="generateZkpProofToken()" style="width:auto; padding:6px 12px;">PROVE</button>
                             </div>
                             <div id="zkpTokenResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: DIGILOCKER DID CREDENTIAL WALLET (P13) -->
+                    <div class="app-screen" id="screenDid">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>DIGILOCKER DID WALLET</h3>
+                                <small>W3C Verifiable Credentials • SD-JWT</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🪪 <strong>Decentralized ID (DID):</strong> Present driving credentials to rental apps revealing only <strong>Vehicle Class (LMV)</strong> while hiding your raw license number and home address.
+                        </div>
+
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #651fff; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <strong style="color:#b388ff; font-size:12px;">DID: did:key:z6MkuT94a8c1f0e2</strong>
+                                <span style="background:rgba(101,31,255,0.2); color:#b388ff; font-size:9px; font-weight:bold; padding:2px 6px; border-radius:4px;">STRONGBOX P-256</span>
+                            </div>
+
+                            <div class="section-label mt-2" style="color:#aaa;">SELECTIVE DISCLOSURE TOGGLE:</div>
+                            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; margin-top:4px;">
+                                <label style="display:flex; align-items:center; gap:8px;">
+                                    <input type="checkbox" id="sdDiscloseClass" checked>
+                                    <span>Disclose <strong>Vehicle Class (LMV)</strong></span>
+                                </label>
+                                <label style="display:flex; align-items:center; gap:8px;">
+                                    <input type="checkbox" id="sdDiscloseName" checked>
+                                    <span>Disclose <strong>Full Legal Name</strong></span>
+                                </label>
+                                <label style="display:flex; align-items:center; gap:8px;">
+                                    <input type="checkbox" id="sdDiscloseNumber">
+                                    <span style="color:#888;">Disclose Raw License Number (Hidden by default)</span>
+                                </label>
+                            </div>
+
+                            <div class="btn-row mt-3">
+                                <button class="primary-btn" onclick="generateDidPresentation()" style="background:linear-gradient(135deg, #651fff, #7c4dff);">GENERATE SD-JWT PRESENTATION</button>
+                            </div>
+                            <div id="didPresentationResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: OFF-GRID EMERGENCY SOS MESH (P13) -->
+                    <div class="app-screen" id="screenMesh">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>OFF-GRID EMERGENCY SOS</h3>
+                                <small>BLE & Wi-Fi Direct Mesh Relay</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            📡 <strong>Anti-Extortion Mesh Relay:</strong> Broadcasts encrypted distress packets across peer smartphones when cellular networks are jammed, down, or unavailable.
+                        </div>
+
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #ff1744; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <strong style="color:#ff5252; font-size:12px;">EMERGENCY BEACON: COERCION SOS</strong>
+                                <span id="meshHopBadge" style="background:rgba(255,23,68,0.2); color:#ff5252; font-size:9px; font-weight:bold; padding:2px 6px; border-radius:4px;">STANDBY</span>
+                            </div>
+
+                            <div class="btn-row mt-3">
+                                <button class="btn-call-audit" onclick="broadcastMeshSosBeacon()" style="width:100%; padding:10px; border-radius:6px;">🚨 BROADCAST ENCRYPTED BLE BEACON</button>
+                            </div>
+                            <div id="meshSosResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
                         </div>
                     </div>
 

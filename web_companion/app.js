@@ -497,6 +497,9 @@ function jumpToStep(step) {
     } else if (step === 15) {
         openScreen("zkp");
         generateZkpProofToken();
+    } else if (step === 16) {
+        openScreen("did");
+        generateDidPresentation();
     }
 }
 
@@ -1123,6 +1126,72 @@ function generateZkpProofToken() {
     }
 }
 
+// 21. DECENTRALIZED IDENTITY (DID) & W3C SELECTIVE DISCLOSURE (PHASE 13)
+function generateDidPresentation() {
+    const discloseClass = document.getElementById("sdDiscloseClass")?.checked ?? true;
+    const discloseName = document.getElementById("sdDiscloseName")?.checked ?? true;
+    const discloseNumber = document.getElementById("sdDiscloseNumber")?.checked ?? false;
+    const box = document.getElementById("didPresentationResultBox");
+    if (!box) return;
+    box.style.display = "block";
 
+    const vpId = "VP_" + Math.floor(100000 + Math.random() * 900000);
+    const disclosed = [];
+    const hidden = [];
 
+    if (discloseClass) disclosed.push("<strong>Vehicle Class: LMV (Valid)</strong>");
+    else hidden.push("Vehicle Class");
 
+    if (discloseName) disclosed.push("<strong>Name: AARAV VIKRAM SHARMA</strong>");
+    else hidden.push("Full Name");
+
+    if (discloseNumber) disclosed.push("<strong>License: KA04-20150089124</strong>");
+    else hidden.push("License Number (Masked)");
+
+    hidden.push("Home Address", "Blood Group");
+
+    box.style.background = "rgba(101, 31, 255, 0.15)";
+    box.style.border = "1px solid #651fff";
+    box.style.color = "#d1c4e9";
+    box.innerHTML = `
+        <strong style="color:#b388ff;">✅ SD-JWT PRESENTATION GENERATED (${vpId})</strong><br>
+        • Issuer: <strong>did:gov:in:digilocker (Attested)</strong><br>
+        • Subject DID: <code>did:key:z6MkuT94a8c1f0e2</code><br>
+        • Disclosed Claims: ${disclosed.join(" • ")}<br>
+        • Hidden Claims (${hidden.length}): <span style="color:#00e676;">${hidden.join(", ")}</span><br>
+        • Signature: <span style="color:#00e5ff;">ECDSA_P256_STRONGBOX_VALID</span><br>
+        • Verifier: <strong>com.merchant.car_rental (Verified)</strong>
+    `;
+
+    triggerHeadsUp("🪪 DID PRESENTATION VERIFIED", "Vehicle Class LMV disclosed. Raw license & address sealed.");
+    addAuditEntry("DID_WALLET", "com.merchant.car_rental", `Issued SD-JWT Presentation (${vpId})`, "SAFE", "VP_VERIFIED");
+}
+
+// 22. OFF-GRID EMERGENCY SOS MESH RELAY (PHASE 13)
+function broadcastMeshSosBeacon() {
+    const box = document.getElementById("meshSosResultBox");
+    const badge = document.getElementById("meshHopBadge");
+    if (!box) return;
+    box.style.display = "block";
+
+    if (badge) {
+        badge.innerText = "BROADCASTING (5 HOPS)";
+        badge.style.background = "rgba(255, 23, 68, 0.4)";
+    }
+
+    const pktId = "MESH_PKT_" + Math.floor(100000 + Math.random() * 900000);
+    box.style.background = "rgba(255, 23, 68, 0.15)";
+    box.style.border = "1px solid #ff1744";
+    box.style.color = "#ff8a80";
+    box.innerHTML = `
+        <strong style="color:#ff1744;">🚨 EMERGENCY SOS MESH PACKET BROADCASTED</strong><br>
+        • Packet ID: <strong>${pktId}</strong><br>
+        • Channel: <strong>BLE Advertising (0xFEAA) & Wi-Fi Direct Mesh</strong><br>
+        • Cellular Dependency: <strong>0% (100% Off-Grid Mesh Relay)</strong><br>
+        • Encryption: <strong>AES-GCM (Hardware Timestamped)</strong><br>
+        • Relay Status: <span style="color:#00e676;">Dispatched across 5 peer hops (-42 dBm)</span>
+    `;
+
+    triggerHeadsUp("🚨 OFF-GRID SOS RELAYED", "Emergency distress packet broadcasting over peer BLE mesh.");
+    addAuditEntry("SOS_MESH", "BLE Mesh Network", `Broadcasted Coercion SOS Packet (${pktId})`, "HIGH_RISK", "RELAY_ACTIVE");
+}
