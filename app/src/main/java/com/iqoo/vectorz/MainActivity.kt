@@ -23,8 +23,14 @@ import com.iqoo.vectorz.feature.agent.AgentScreen
 import com.iqoo.vectorz.feature.commerce.CommerceGuardScreen
 import com.iqoo.vectorz.feature.dashboard.HomeScreen
 import com.iqoo.vectorz.feature.dashboard.PrivacyDashboardScreen
+import com.iqoo.vectorz.feature.dialer.PhoneDialerScreen
+import com.iqoo.vectorz.feature.did.DigiLockerDidScreen
+import com.iqoo.vectorz.feature.launcher.OriginOSLauncherScreen
+import com.iqoo.vectorz.feature.mesh.OffGridSosScreen
+import com.iqoo.vectorz.feature.messaging.WhatsAppChatScreen
 import com.iqoo.vectorz.feature.ocr.OcrScannerScreen
 import com.iqoo.vectorz.feature.payment.PaymentGuardScreen
+import com.iqoo.vectorz.feature.payment.PhonePePaymentScreen
 import com.iqoo.vectorz.feature.simulator.KycFormSimulatorScreen
 import com.iqoo.vectorz.feature.truth.TruthAuditScreen
 import com.iqoo.vectorz.feature.vault.VaultScreen
@@ -259,6 +265,68 @@ class MainActivity : ComponentActivity() {
                                         DemoDataSeeder(app.vaultRepository).seedDemoDataIfEmpty()
                                     }
                                 },
+                                onBack = { navController.popBackStack() }
+                            )
+                        }
+
+                        composable("originos") {
+                            OriginOSLauncherScreen(
+                                onLaunchApp = { appId ->
+                                    when (appId) {
+                                        "phonepe" -> navController.navigate("phonepe")
+                                        "whatsapp" -> navController.navigate("whatsapp")
+                                        "dialer" -> navController.navigate("dialer")
+                                        "digilocker", "did" -> navController.navigate("digilocker")
+                                        "sos", "mesh" -> navController.navigate("sos")
+                                        "vault" -> navController.navigate("vault")
+                                        "agent" -> navController.navigate("agent")
+                                        "amazon", "commerce" -> navController.navigate("commerce")
+                                        "ocr" -> navController.navigate("ocr")
+                                        "simulator" -> navController.navigate("simulator")
+                                        "privacy", "settings" -> navController.navigate("privacy")
+                                        else -> navController.navigate("home")
+                                    }
+                                }
+                            )
+                        }
+
+                        composable("phonepe") {
+                            PhonePePaymentScreen(
+                                onBack = { navController.popBackStack() },
+                                onAuthorizeTransaction = { txn ->
+                                    coroutineScope.launch {
+                                        app.auditRepository.recordAudit(
+                                            category = "PAYMENT_GUARD",
+                                            appPackage = "com.phonepe.app",
+                                            actionSummary = "Processed UPI payment to ${txn.payeeName}",
+                                            riskLevel = if (txn.securityDecision == com.iqoo.vectorz.domain.model.UpiSecurityDecision.ALLOW) "SAFE" else "HIGH_RISK",
+                                            resultStatus = txn.securityDecision.name
+                                        )
+                                    }
+                                }
+                            )
+                        }
+
+                        composable("whatsapp") {
+                            WhatsAppChatScreen(
+                                onBack = { navController.popBackStack() }
+                            )
+                        }
+
+                        composable("dialer") {
+                            PhoneDialerScreen(
+                                onBack = { navController.popBackStack() }
+                            )
+                        }
+
+                        composable("digilocker") {
+                            DigiLockerDidScreen(
+                                onBack = { navController.popBackStack() }
+                            )
+                        }
+
+                        composable("sos") {
+                            OffGridSosScreen(
                                 onBack = { navController.popBackStack() }
                             )
                         }

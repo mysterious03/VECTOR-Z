@@ -210,4 +210,34 @@ While the core on-device philosophy and foundational architecture are solid, the
 
 ---
 
-*Audit completed on: 8 September 2026. Ready for user instruction to proceed to Phase 1.*
+## 5. Commercial Smartphone OS Architecture (Clean Architecture Mapping)
+
+```
+app/src/main/java/com/iqoo/vectorz/
+├── domain/                                  <-- Pure Domain Logic & Business Rules
+│   ├── model/
+│   │   ├── PhoneAppState.kt                 (OS & App lifecycle models)
+│   │   ├── UpiTransactionModel.kt           (Real UPI 2.0 / NPCI payment intents)
+│   │   ├── ChatMessageModel.kt              (SMS/WhatsApp messages & trojan detection)
+│   │   ├── DialerCallModel.kt               (Telephony call sessions & DTMF frequencies)
+│   │   ├── DidCredentialModel.kt            (W3C Verifiable Credentials & SD-JWT)
+│   │   └── SosMeshRelayModel.kt             (BLE mesh multi-hop packets)
+│   └── usecase/
+│       ├── InterceptPaymentUseCase.kt       (NPU intent inversion conflict gate)
+│       ├── AuditChatMessageUseCase.kt       (DLT header & malicious APK analyzer)
+│       ├── VerifyCallerDeepfakeUseCase.kt   (Acoustic spectral voice analyzer)
+│       ├── IssueDidCredentialUseCase.kt     (StrongBox-backed W3C DID issuer)
+│       └── BroadcastSosMeshUseCase.kt       (Air-gapped emergency mesh broadcaster)
+├── feature/                                 <-- Jetpack Compose System UI & Native Apps
+│   ├── launcher/OriginOSLauncherScreen.kt   (Vivo/iQOO OriginOS 6 phone launcher)
+│   ├── payment/PhonePePaymentScreen.kt      (6-dot UPI PIN bottom sheet & payee switcher)
+│   ├── messaging/WhatsAppChatScreen.kt      (Interactive WhatsApp live stream & trojan shield)
+│   ├── dialer/PhoneDialerScreen.kt          (12-key DTMF tone keypad & live in-call HUD)
+│   ├── did/DigiLockerDidScreen.kt           (DigiLocker W3C DID selective disclosure)
+│   └── mesh/OffGridSosScreen.kt             (Off-Grid BLE mesh radar & emergency broadcast)
+└── MainActivity.kt                          (Android Navigation graph connecting all OEM apps)
+```
+
+---
+
+*Audit & Architecture updated on: 9 September 2026. Commercial Phone Model fully synchronized.*

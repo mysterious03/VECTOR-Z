@@ -514,6 +514,58 @@ class VectorZTests {
         assertEquals(5, status.activeMeshHops)
         assertEquals("BLE_ADVERTISING_OFF_GRID_MESH_V1", status.protocol)
     }
+
+    @Test
+    fun `test Domain InterceptPaymentUseCase flags Intent Inversion`() {
+        val useCase = com.iqoo.vectorz.domain.usecase.InterceptPaymentUseCase(trustEngine)
+        val txn = useCase.execute(
+            upiUri = "upi://pay?pa=refund-desk@fakebank&pn=Refund+Desk&am=25000",
+            screenContext = "Scan to receive refund",
+            claimedUserIntent = com.iqoo.vectorz.domain.model.PaymentActionIntent.CREDIT_RECEIVE
+        )
+        assertEquals(com.iqoo.vectorz.domain.model.UpiSecurityDecision.INTENT_INVERSION_BLOCKED, txn.securityDecision)
+        assertEquals(25000.0, txn.amountInr, 0.01)
+    }
+
+    @Test
+    fun `test Domain AuditChatMessageUseCase identifies DLT spoof and trojan APK`() {
+        val useCase = com.iqoo.vectorz.domain.usecase.AuditChatMessageUseCase()
+        val chatMsg = useCase.execute(
+            sender = "+91 98765 43210",
+            displayName = "Electricity Helpdesk",
+            body = "Power DISCONNECTED tonight. Download update app.",
+            attachmentName = "power-pay-refund.apk"
+        )
+        assertEquals(com.iqoo.vectorz.domain.model.DltHeaderStatus.SPOOFED_DLT_SENDER, chatMsg.dltHeaderStatus)
+        assertEquals(com.iqoo.vectorz.domain.model.MessageSafetyVerdict.MALICIOUS_TROJAN_APK, chatMsg.safetyVerdict)
+        assertNotNull(chatMsg.suspiciousAttachment)
+        assertEquals("Trojan-Banker.AndroidOS.SmsSniffer.a", chatMsg.suspiciousAttachment?.trojanSignature)
+    }
+
+    @Test
+    fun `test Domain IssueDidCredentialUseCase generates selective disclosure`() {
+        val didEngine = com.iqoo.vectorz.core.crypto.DidCredentialEngine()
+        val useCase = com.iqoo.vectorz.domain.usecase.IssueDidCredentialUseCase(didEngine)
+        val cred = useCase.issueIdentityCredential(
+            holderDid = "did:jwk:holder123",
+            credentialType = "IndianDrivingLicense",
+            claims = mapOf(
+                "fullName" to "AARAV SHARMA",
+                "isOver18" to "true",
+                "vehicleClass" to "LMV",
+                "licenseNumber" to "DL042026001928"
+            )
+        )
+        val presentation = useCase.createSelectiveDisclosure(
+            credential = cred,
+            disclosedKeys = setOf("isOver18", "vehicleClass"),
+            verifierAudience = "com.merchant.rental"
+        )
+        assertEquals(2, presentation.disclosedClaims.size)
+        assertTrue(presentation.zkProofValid)
+        assertEquals("true", presentation.disclosedClaims["isOver18"])
+        assertNull(presentation.disclosedClaims["licenseNumber"])
+    }
 }
 
 
