@@ -136,5 +136,44 @@ class VectorZTests {
         // Suspicious app should be blocked completely
         assertFalse(matrix.isFieldAllowedForApp("com.unverified.loanapp", "phone"))
     }
+
+    @Test
+    fun `test NPU Hardware Benchmark reports sub-5ms latency and zero cloud calls`() {
+        val benchmark = com.iqoo.vectorz.ai.benchmark.NpuBenchmarkEngine()
+        val metrics = benchmark.benchmarkOperation("PAYMENT_INTENT_AUDIT")
+        assertTrue(metrics.latencyMs < 5.0)
+        assertEquals(0, metrics.cloudCallsCount)
+        assertEquals("100% ON-DEVICE", metrics.privacyScore)
+    }
+
+    @Test
+    fun `test Test Vector Library covers all 15 Indian threat archetypes`() {
+        val vectors = com.iqoo.vectorz.feature.simulator.TestVectorLibrary.vectors
+        assertEquals(15, vectors.size)
+        assertTrue(vectors.any { it.title.contains("FedEx") })
+        assertTrue(vectors.any { it.title.contains("Electricity") })
+        assertTrue(vectors.any { it.title.contains("Swiggy") && it.expectedThreatLevel == "CLEAN" })
+    }
+
+    @Test
+    fun `test Screen Trust Analyzer shields banking apps during remote screen share`() {
+        val analyzer = com.iqoo.vectorz.service.ambient.ScreenTrustAnalyzer()
+        
+        val riskScreen = analyzer.evaluateScreenState(
+            currentForegroundApp = "com.demo.banking",
+            runningBackgroundApps = listOf("com.anydesk.anydeskandroid"),
+            isDisplayCapturing = true
+        )
+        assertTrue(riskScreen.requiresScreenShield)
+        assertTrue(riskScreen.isRemoteAccessToolRunning)
+
+        val safeScreen = analyzer.evaluateScreenState(
+            currentForegroundApp = "com.google.android.calculator",
+            runningBackgroundApps = emptyList(),
+            isDisplayCapturing = false
+        )
+        assertFalse(safeScreen.requiresScreenShield)
+    }
 }
+
 

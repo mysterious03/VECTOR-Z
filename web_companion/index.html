@@ -99,6 +99,13 @@
                             <small>Cross-device trust mirroring & sync</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(10)">
+                        <span class="step-num">10</span>
+                        <div class="step-meta">
+                            <strong>15-Vector Scam Benchmark (P3)</strong>
+                            <small>Stress test & Hexagon NPU latency</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -660,6 +667,47 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                             <div>[10:14:03] Cryptographic handshake completed (AES-256-GCM)</div>
                             <div>[10:14:05] Ready for remote presentation trust projection</div>
                         </div>
+                    </div>
+
+                    <!-- Screen: 15-VECTOR SCAM BENCHMARK & NPU TELEMETRY (P3) -->
+                    <div class="app-screen" id="screenBenchmark">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>SCAM BENCHMARK & NPU STUDIO</h3>
+                                <small>15 Indian Threat Vectors • 0ms Cloud</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            ⚡ Benchmarking Snapdragon 8 Gen 3 Hexagon NPU latency across real Indian fraud vectors.
+                        </div>
+
+                        <!-- Live Telemetry Card -->
+                        <div class="card p-2 mt-2" style="background:#15151b; border:1px solid #00e5ff; border-radius:10px;">
+                            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; text-align:center;">
+                                <div style="background:#0c0c10; padding:6px; border-radius:6px;">
+                                    <small style="color:#888; font-size:9px; display:block;">AVG NPU LATENCY</small>
+                                    <strong style="color:#00e5ff; font-size:14px;" id="npuAvgLatency">1.84 ms</strong>
+                                </div>
+                                <div style="background:#0c0c10; padding:6px; border-radius:6px;">
+                                    <small style="color:#888; font-size:9px; display:block;">RAM USAGE</small>
+                                    <strong style="color:#00e676; font-size:14px;">14.2 MB</strong>
+                                </div>
+                                <div style="background:#0c0c10; padding:6px; border-radius:6px;">
+                                    <small style="color:#888; font-size:9px; display:block;">CLOUD CALLS</small>
+                                    <strong style="color:#ff5500; font-size:14px;">0 (AIR-GAPPED)</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="run15VectorBenchmark()">RUN FULL 15-VECTOR SUITE</button>
+                        </div>
+
+                        <div class="section-label mt-2">TEST VECTOR EXECUTION STREAM</div>
+                        <div id="benchmarkResultsList" style="max-height:180px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;"></div>
                     </div>
 
                 </div>

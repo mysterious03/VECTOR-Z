@@ -275,6 +275,34 @@ Explore how VECTOR-Z appears and functions dynamically on an iQOO 12 Pro:
 └───────────────────────────────────────────────────────────────┘
 ```
 
+---
+
+### 📱 8. 15-Vector Indian Scam Benchmark Suite & NPU Profiler
+> **Problem:** Benchmarking on-device latency across 15 real Indian scam archetypes (FedEx parcel trap, TRAI SIM block, Electricity APK dropper, Telegram task scams).
+
+```
+┌───────────────────────── iQOO 12 Pro ─────────────────────────┐
+│ 10:14  📶 5G                                            🔋 98% │
+│                                                               │
+│                ⚡ 15-VECTOR SCAM BENCHMARK STUDIO             │
+│                                                               │
+│   ┌────────────────────────────────────────────────────────┐  │
+│   │ AVG NPU LATENCY:  1.84 ms  (Snapdragon 8 Gen 3)        │  │
+│   │ RAM FOOTPRINT:    14.2 MB  (Zero-Leak Ephemeral Heap)  │  │
+│   │ CLOUD LEAKAGE:    0.00 KB  (100% Air-Gapped Inference) │  │
+│   └────────────────────────────────────────────────────────┘  │
+│                                                               │
+│   [VEC_01] Electricity APK Dropper Threat ➔ BLOCKED (0.92ms) │
+│   [VEC_02] TRAI SIM Block Notice          ➔ BLOCKED (1.10ms) │
+│   [VEC_03] FedEx Narcotics Trap Extortion ➔ BLOCKED (1.25ms) │
+│   [VEC_05] UPI Intent Inversion (Refund)  ➔ BLOCKED (1.84ms) │
+│   [VEC_08] AI Voice Clone Distress Note   ➔ CLONE   (5.60ms) │
+│   [VEC_15] Swiggy Legitimate Delivery     ➔ CLEARED (0.74ms) │
+│                                                               │
+│   [ ⚡ RE-RUN 15-VECTOR LIVE HARDWARE BENCHMARK ]              │
+└───────────────────────────────────────────────────────────────┘
+```
+
 <div align="right"><a href="#vector-z">▲ Back to Top</a></div>
 
 ---

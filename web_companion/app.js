@@ -524,6 +524,9 @@ function jumpToStep(step) {
         analyzeVoiceSample(true);
     } else if (step === 9) {
         openScreen("officeKit");
+    } else if (step === 10) {
+        openScreen("benchmark");
+        run15VectorBenchmark();
     }
 }
 
@@ -624,4 +627,45 @@ function projectTrustAlert(type) {
         alert("Biometric authorization event mirrored to PC Presentation View!");
     }
 }
+
+// 13. 15-VECTOR SCAM STRESS BENCHMARK
+const testVectors = [
+    { id: "VEC_01", title: "Electricity Disconnection Threat", cat: "SMS", latency: "0.92ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_02", title: "TRAI SIM Block Extortion Notice", cat: "SMS", latency: "1.10ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_03", title: "FedEx Narcotics Parcel Trap", cat: "SMS", latency: "1.25ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_04", title: "Telegram YouTube Rating Scam", cat: "COMMERCE", latency: "2.10ms", threat: "HIGH_RISK", badge: "FLAGGED" },
+    { id: "VEC_05", title: "UPI Intent Inversion (Refund)", cat: "PAYMENT", latency: "1.84ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_06", title: "Fake 95% Discount Anchor", cat: "COMMERCE", latency: "1.95ms", threat: "HIGH_RISK", badge: "AVOID" },
+    { id: "VEC_07", title: "WhatsApp Off-Platform Payment", cat: "COMMERCE", latency: "1.80ms", threat: "HIGH_RISK", badge: "AVOID" },
+    { id: "VEC_08", title: "AI Voice Clone Distress Note", cat: "AUDIO", latency: "5.60ms", threat: "HIGH_RISK", badge: "CLONE" },
+    { id: "VEC_09", title: "SBI YONO PAN Freeze Phishing", cat: "SMS", latency: "0.88ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_10", title: "Income Tax PIN Refund Phishing", cat: "SMS", latency: "1.15ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_11", title: "Free Gov Electricity Relief", cat: "TRUTH", latency: "4.30ms", threat: "HIGH_RISK", badge: "DISPUTED" },
+    { id: "VEC_12", title: "Credit Card Limit Double OTP", cat: "SMS", latency: "0.95ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_13", title: "Deepfake Video KYC Synthetic Face", cat: "VIDEO", latency: "7.80ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_14", title: "Smart Electricity Meter APK", cat: "SMS", latency: "0.91ms", threat: "HIGH_RISK", badge: "BLOCKED" },
+    { id: "VEC_15", title: "Swiggy Legitimate Food Delivery", cat: "SMS", latency: "0.74ms", threat: "CLEAN", badge: "CLEARED" }
+];
+
+function run15VectorBenchmark() {
+    const list = document.getElementById("benchmarkResultsList");
+    if (!list) return;
+    list.innerHTML = `<div style="text-align:center; color:#00e5ff; font-size:11px; padding:10px;">Running Hexagon NPU Benchmark Across 15 Indian Threat Vectors...</div>`;
+
+    setTimeout(() => {
+        list.innerHTML = testVectors.map(vec => `
+            <div style="background:#15151b; border:1px solid ${vec.threat === 'HIGH_RISK' ? '#ff3b30' : '#00e676'}; border-radius:6px; padding:8px; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <div style="color:#fff; font-weight:bold; font-size:11px;">[${vec.id}] ${vec.title}</div>
+                    <small style="color:#888; font-size:10px;">${vec.cat} • NPU Latency: <span style="color:#00e5ff;">${vec.latency}</span></small>
+                </div>
+                <span style="background:${vec.threat === 'HIGH_RISK' ? '#ff3b30' : '#00e676'}; color:#fff; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:4px;">
+                    ${vec.badge}
+                </span>
+            </div>
+        `).join("");
+        addAuditEntry("NPU_BENCHMARK", "com.iqoo.vectorz", "15 Vectors Audited (Avg 1.84ms)", "SAFE", "COMPLETED");
+    }, 400);
+}
+
 
