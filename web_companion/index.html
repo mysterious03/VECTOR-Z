@@ -106,6 +106,13 @@
                             <small>Stress test & Hexagon NPU latency</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(11)">
+                        <span class="step-num">11</span>
+                        <div class="step-meta">
+                            <strong>Monster Gaming & Duress (P5)</strong>
+                            <small>120 FPS Shield & Decoy Vault SOS</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -708,6 +715,50 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
 
                         <div class="section-label mt-2">TEST VECTOR EXECUTION STREAM</div>
                         <div id="benchmarkResultsList" style="max-height:180px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;"></div>
+                    </div>
+
+                    <!-- Screen: MONSTER GAMING & DURESS DECOY (P5) -->
+                    <div class="app-screen" id="screenMonster">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>MONSTER GAMING & DURESS</h3>
+                                <small>120 FPS Shield • Anti-Coercion Decoy</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🎮 <strong>iQOO Monster Mode:</strong> Sub-1ms real-time esports phishing intercept without causing 120 FPS gaming drops.
+                        </div>
+
+                        <!-- Gaming Card -->
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #ff5500; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <strong style="color:#ff5500; font-size:13px;">⚡ MONSTER TOUCH TOURNAMENT SHIELD</strong>
+                                    <div style="color:#888; font-size:11px;">120 FPS Priority NPU Thread Active</div>
+                                </div>
+                                <span style="background:rgba(255,85,0,0.2); color:#ff5500; font-size:10px; font-weight:bold; padding:3px 8px; border-radius:12px;">ACTIVE</span>
+                            </div>
+                            <div class="btn-row mt-2">
+                                <button class="secondary-btn" onclick="simulateGamingScam()">TEST TOURNAMENT PHISHING</button>
+                            </div>
+                            <div id="gamingAlertCard" style="display:none; margin-top:8px; background:rgba(255,59,48,0.15); border-left:3px solid #ff3b30; padding:8px; font-size:11px; color:#ff3b30; font-weight:bold;">
+                                🚨 BLOCKED: Fake BGMI 5000 UC skin deposit trap. 0 frame drops recorded.
+                            </div>
+                        </div>
+
+                        <!-- Duress Decoy PIN Card -->
+                        <div class="section-label mt-3">COERCION DEFENSE & DURESS PIN</div>
+                        <div class="card p-3" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
+                            <small style="color:#aaa; font-size:11px; display:block;">Enter <strong>9999</strong> (Duress) or <strong>1234</strong> (Master PIN):</small>
+                            <div style="display:flex; gap:8px; margin-top:8px;">
+                                <input type="password" id="simPinInput" placeholder="Enter 4-Digit PIN" maxlength="4" style="background:#0c0c10; color:#fff; border:1px solid #444; border-radius:6px; padding:6px 12px; font-size:13px; width:140px; text-align:center;">
+                                <button class="primary-btn" onclick="testDuressPin()" style="flex:1;">UNLOCK VAULT</button>
+                            </div>
+                            <div id="duressResultBox" style="display:none; margin-top:10px; padding:8px; border-radius:6px; font-size:11px;"></div>
+                        </div>
                     </div>
 
                 </div>

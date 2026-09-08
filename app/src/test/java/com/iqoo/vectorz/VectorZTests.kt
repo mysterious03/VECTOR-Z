@@ -218,7 +218,44 @@ class VectorZTests {
         assertTrue(legitBankSms.isOfficialDltHeader)
         assertFalse(legitBankSms.isBankingImpersonation)
     }
+
+    @Test
+    fun `test Monster Gaming Trust Engine intercepts esports phishing overlay`() {
+        val gamingEngine = com.iqoo.vectorz.ai.gaming.MonsterTrustEngine()
+        val alert = gamingEngine.auditInGameOverlay("Click to claim 5000 UC and free BGMI skins on unverified site.")
+        assertEquals("GAMING_TOURNAMENT_TRAP", alert.threatType)
+        assertTrue(alert.riskScore >= 0.90f)
+
+        val cleanGaming = gamingEngine.auditInGameOverlay("Match starting in 30 seconds. Good luck!")
+        assertEquals("AUTHENTIC", cleanGaming.threatType)
+    }
+
+    @Test
+    fun `test Duress PIN loads synthetic decoy profile and triggers silent SOS`() {
+        val duressEngine = com.iqoo.vectorz.core.security.DuressVaultEngine()
+        
+        // Coercion scenario: user inputs 9999
+        val decoyResult = duressEngine.authenticateWithPin("9999")
+        assertTrue(decoyResult.isDecoyMode)
+        assertTrue(decoyResult.isSilentSosDispatched)
+        assertEquals("ABCDE9876K", decoyResult.maskedPan)
+
+        // Normal scenario: user inputs 1234
+        val realResult = duressEngine.authenticateWithPin("1234")
+        assertFalse(realResult.isDecoyMode)
+        assertFalse(realResult.isSilentSosDispatched)
+        assertEquals("ABCDE1234F", realResult.maskedPan)
+    }
+
+    @Test
+    fun `test Mesh Trust Sync validates peer-to-peer differential packet`() {
+        val meshEngine = com.iqoo.vectorz.service.mesh.MeshTrustSyncEngine()
+        val packet = meshEngine.generateSyncPacket(listOf("hash_vpa_101", "hash_apk_202"))
+        assertTrue(meshEngine.verifyIncomingMeshPacket(packet))
+        assertEquals(2, packet.vectorCount)
+    }
 }
+
 
 
 

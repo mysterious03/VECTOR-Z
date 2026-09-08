@@ -48,6 +48,8 @@ Every month, millions of Indian smartphone users fall prey to **UPI QR refund tr
 | **4** | **AI Voice Clone Distress Calls** | AI-generated audio clips mimicking family members in emergency distress demanding instant money transfers. | **Multi-Modal NPU Inspector** analyzes acoustic phase continuity and room reverberation to flag synthetic deepfake voice clones. |
 | **5** | **Fake 90% Commerce Markdowns** | Low-quality goods listed at fake inflated prices (₹19,999 claimed ➔ sold for ₹999) with non-returnable clauses. | **Commerce Guard** calculates price sanity against historical benchmarks and highlights hidden final-sale traps. |
 | **6** | **Emergency Physical Coercion** | Physical theft or coercion where an attacker demands device unlock and banking access. | **Panic Shield** allows 1-tap emergency lockdown that incinerates ephemeral memory heaps and freezes Keystore keys for 15 minutes. |
+| **7** | **Esports & Gaming Phishing** | Fake BGMI tournament overlays, diamond deposit traps, and Steam account hijacking links during gaming. | **iQOO Monster Trust Engine** prioritizes NPU execution threads for sub-1ms in-game threat auditing locked at 120 FPS. |
+| **8** | **Hostage / Duress Vault Coercion** | User forced at gunpoint/threat to unlock their Identity Vault PIN. | **Duress Decoy Engine** loads synthetic dummy credentials (Rohit Kumar) while stealthily dispatching an encrypted SOS beacon. |
 
 ---
 

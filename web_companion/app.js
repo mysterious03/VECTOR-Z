@@ -527,6 +527,8 @@ function jumpToStep(step) {
     } else if (step === 10) {
         openScreen("benchmark");
         run15VectorBenchmark();
+    } else if (step === 11) {
+        openScreen("monster");
     }
 }
 
@@ -667,5 +669,48 @@ function run15VectorBenchmark() {
         addAuditEntry("NPU_BENCHMARK", "com.iqoo.vectorz", "15 Vectors Audited (Avg 1.84ms)", "SAFE", "COMPLETED");
     }, 400);
 }
+
+// 14. MONSTER GAMING SHIELD & DURESS PIN
+function simulateGamingScam() {
+    const card = document.getElementById("gamingAlertCard");
+    card.style.display = "block";
+    addAuditEntry("MONSTER_GAMING", "com.dts.freefireth", "Blocked Fake BGMI 5000 UC Overlay Trap", "HIGH_RISK", "BLOCKED");
+}
+
+function testDuressPin() {
+    const pin = document.getElementById("simPinInput").value;
+    const box = document.getElementById("duressResultBox");
+    box.style.display = "block";
+
+    if (pin === "9999") {
+        box.style.background = "rgba(255, 145, 0, 0.15)";
+        box.style.border = "1px solid #ff9100";
+        box.style.color = "#ffb74d";
+        box.innerHTML = `
+            <strong>🚨 DURESS DECOY ACTIVATED</strong><br>
+            • Profile: <strong>ROHIT KUMAR (SYNTHETIC DECOY)</strong><br>
+            • Masked PAN: <strong>ABCDE9876K</strong><br>
+            • Masked Aadhaar: <strong>•••• •••• 1122</strong><br>
+            <span style="color:#ff1744; font-weight:bold;">⚡ SILENT SOS BEACON DISPATCHED TO TRUSTED CONTACT.</span>
+        `;
+        addAuditEntry("DURESS_ALARM", "com.iqoo.vectorz", "Silent SOS + Decoy Profile Served", "HIGH_RISK", "SOS_SENT");
+    } else if (pin === "1234") {
+        box.style.background = "rgba(0, 230, 118, 0.15)";
+        box.style.border = "1px solid #00e676";
+        box.style.color = "#00e676";
+        box.innerHTML = `
+            <strong>✅ AUTHENTIC VAULT UNLOCKED</strong><br>
+            • Profile: <strong>AARAV VIKRAM SHARMA</strong><br>
+            • Hardware Keystore AES-256 decrypted in memory.
+        `;
+        addAuditEntry("VAULT_AUTH", "com.iqoo.vectorz", "Master PIN Verified", "SAFE", "AUTHENTICATED");
+    } else {
+        box.style.background = "rgba(255, 23, 68, 0.15)";
+        box.style.border = "1px solid #ff1744";
+        box.style.color = "#ff5252";
+        box.innerHTML = `<strong>❌ INVALID PIN</strong>`;
+    }
+}
+
 
 
