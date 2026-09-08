@@ -54,6 +54,8 @@ Every month, millions of Indian smartphone users fall prey to **UPI QR refund tr
 | **10** | **Password Phishing On Portals** | Weak passwords and SMS OTPs intercepted on government and broker portals. | **FIDO2 Passkey Vault Engine** generates hardware-bound asymmetric ECDSA P-256 credentials in Android Keystore. |
 | **11** | **Frida & Dynamic Hooking** | Malware injecting Frida hooks to intercept decrypted Keystore master keys. | **Anti-Tamper & Environment Integrity Engine** detects debugger attachment & dynamic hooks, terminating sensitive memory heaps. |
 | **12** | **Software Emulated Keystore** | Vulnerabilities in software-only cryptographic implementations. | **StrongBox Key Attestation Engine** verifies cryptographic keys reside inside tamper-resistant hardware security modules. |
+| **13** | **Active Fraudster Harassment** | Scammers continuing to spam and trick victims during live interactions. | **Autonomous Deception Honeypot** engages fraudsters with synthetic transaction telemetry, wasting scammer time & harvesting mule account routes. |
+| **14** | **Complex Cybercrime Filing** | Cumbersome reporting on government portals causing victims to abandon complaints. | **I4C / 1930 Forensic Exporter** auto-packages cryptographically signed incident dossiers for 1-tap submission to `cybercrime.gov.in`. |
 
 ---
 

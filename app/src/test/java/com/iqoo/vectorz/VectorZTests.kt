@@ -307,7 +307,33 @@ class VectorZTests {
         )
         assertTrue(cleanReport.isEnvironmentSecure)
     }
+
+    @Test
+    fun `test Autonomous Honeypot Agent generates safe deception response`() {
+        val honeypot = com.iqoo.vectorz.feature.honeypot.HoneypotAgent()
+        val engagement = honeypot.generateDeceptionResponse(
+            scamInstruction = "Send UPI PIN to receive ₹25,000 lottery",
+            scamVpa = "refund-desk@fakebank"
+        )
+        assertEquals("INTEL_EXTRACTED", engagement.status)
+        assertTrue(engagement.syntheticResponseGenerated.contains("UTR"))
+        assertTrue(engagement.extractedIntelMarkers.isNotEmpty())
+    }
+
+    @Test
+    fun `test I4C Report Exporter generates cryptographically signed cybercrime dossier`() {
+        val exporter = com.iqoo.vectorz.feature.report.I4CReportExporter()
+        val dossier = exporter.generateDossier(
+            suspectEntity = "refund-desk@fakebank",
+            threatDescription = "Attempted UPI Intent Inversion Refund Fraud",
+            apkSha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        )
+        assertNotNull(dossier.reportId)
+        assertTrue(dossier.digitalSignature.startsWith("SHA256_ECDSA_HARDWARE_SIG_"))
+        assertEquals("refund-desk@fakebank", dossier.suspectVpaOrPhone)
+    }
 }
+
 
 
 

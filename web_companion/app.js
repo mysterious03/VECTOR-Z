@@ -529,6 +529,8 @@ function jumpToStep(step) {
         run15VectorBenchmark();
     } else if (step === 11) {
         openScreen("monster");
+    } else if (step === 12) {
+        openScreen("honeypot");
     }
 }
 
@@ -711,6 +713,34 @@ function testDuressPin() {
         box.innerHTML = `<strong>❌ INVALID PIN</strong>`;
     }
 }
+
+// 15. AUTONOMOUS HONEYPOT & 1930 EXPORTER
+function deployHoneypotResponse() {
+    const box = document.getElementById("honeypotLogBox");
+    box.style.display = "block";
+    const dummyUtr = "UTR" + Math.floor(100000000000 + Math.random() * 900000000000);
+    box.innerHTML = `
+        <span style="color:#00e5ff;">[BOT_REPLY_SENT]:</span> "Entered UPI PIN as instructed. Bank says 'Processing - UTR: ${dummyUtr}'. Confirmation showing on your terminal?"<br>
+        <span style="color:#10b981;">[EXTRACTED_INTEL]:</span> Mule Bank Route YESB0000124 • Scammer Node Fingerprint: MUM_4001<br>
+        <span style="color:#ffb74d;">[TIME_WASTED]:</span> 240s of scammer attention consumed. Zero real user data exposed.
+    `;
+    addAuditEntry("HONEYPOT", "refund-desk@fakebank", "Wasted Scammer Time (240s)", "HIGH_RISK", "INTEL_SAVED");
+}
+
+function export1930Dossier() {
+    const box = document.getElementById("dossierExportBox");
+    box.style.display = "block";
+    const id = "I4C_" + Math.floor(100000 + Math.random() * 900000);
+    box.innerHTML = `
+        <strong>📋 DOSSIER ${id} COMPILED</strong><br>
+        • Target: <strong>refund-desk@fakebank</strong><br>
+        • Evidence: <strong>UPI Intent Inversion Payload + APK Hash</strong><br>
+        • Hardware Signature: <span style="color:#00e5ff;">ECDSA_P256_STRONGBOX_OK</span><br>
+        • Direct Dispatch: <strong>cybercrime.gov.in / Helpline 1930 API Ready</strong>
+    `;
+    addAuditEntry("I4C_REPORT", "cybercrime.gov.in", "Generated 1930 Dossier " + id, "SAFE", "EXPORTED");
+}
+
 
 
 
