@@ -134,6 +134,13 @@
                             <small>Deepfake face jitter & MITM proxy audit</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(15)">
+                        <span class="step-num">15</span>
+                        <div class="step-meta">
+                            <strong>ZKP Identity & App Watcher (P12)</strong>
+                            <small>Zero-knowledge age tokens & bubble context</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -203,19 +210,19 @@
                                 <button class="tray-close" onclick="toggleBubbleExpand()">✕</button>
                             </div>
                             <div class="tray-actions-6">
-                                <button class="tray-action-btn" onclick="openScreen('simulator'); toggleBubbleExpand();">
+                                <button class="tray-action-btn" onclick="openScreen('simulator'); triggerSimAutofill('PAN_NUMBER'); toggleBubbleExpand();">
                                     <span class="act-icon">⚡</span>
                                     <span>Fill</span>
                                 </button>
-                                <button class="tray-action-btn" onclick="openScreen('payment'); toggleBubbleExpand();">
+                                <button class="tray-action-btn" onclick="openScreen('payment'); runPaymentGuard(); toggleBubbleExpand();">
                                     <span class="act-icon">💳</span>
                                     <span>Check</span>
                                 </button>
-                                <button class="tray-action-btn" onclick="openScreen('truth'); toggleBubbleExpand();">
+                                <button class="tray-action-btn" onclick="openScreen('truth'); runTruthAudit(); toggleBubbleExpand();">
                                     <span class="act-icon">🔍</span>
                                     <span>Audit</span>
                                 </button>
-                                <button class="tray-action-btn" onclick="openScreen('commerce'); toggleBubbleExpand();">
+                                <button class="tray-action-btn" onclick="openScreen('commerce'); runCommerceGuard(); toggleBubbleExpand();">
                                     <span class="act-icon">🛒</span>
                                     <span>Commerce</span>
                                 </button>
@@ -225,7 +232,7 @@
                                 </button>
                                 <button class="tray-action-btn" onclick="openScreen('agent'); toggleBubbleExpand();">
                                     <span class="act-icon">🤖</span>
-                                    <span>Automate</span>
+                                    <span>Agent</span>
                                 </button>
                             </div>
                         </div>
@@ -1034,6 +1041,34 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                             <input type="text" id="agentPromptInput" placeholder="Ask Vector-Z Agent or type command..." onkeydown="handleAgentInputKey(event)">
                             <button class="agent-mic-btn" onclick="triggerVoicePrompt()" title="Voice Input">🎙️</button>
                             <button class="agent-send-btn" onclick="sendUserAgentPrompt()" title="Send">▶</button>
+                        </div>
+                    </div>
+
+                    <!-- Screen: ZERO-KNOWLEDGE PROOF (ZKP) IDENTITY TOKENS (P12) -->
+                    <div class="app-screen" id="screenZkp">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>ZERO-KNOWLEDGE IDENTITY</h3>
+                                <small>ZKP Age & KYC Blinded Proofs</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🔐 <strong>ZKP Engine:</strong> Prove you are over 18 or government-verified without revealing your real Aadhaar number or Date of Birth!
+                        </div>
+
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #00e5ff; border-radius:10px;">
+                            <label style="font-size:11px; color:#888; display:block; margin-bottom:4px;">SELECT ZERO-KNOWLEDGE PROOF CLAIM:</label>
+                            <div style="display:flex; gap:6px;">
+                                <select id="zkpClaimSelect" style="flex:1; background:#0c0c10; color:#fff; border:1px solid #444; border-radius:6px; padding:6px; font-size:12px;">
+                                    <option value="AGE_GTE_18">Age Verification (Age ≥ 18) [Birth Year: 1996]</option>
+                                    <option value="GOVT_KYC">Government KYC Token (Blinded PAN + Aadhaar)</option>
+                                </select>
+                                <button class="primary-btn" onclick="generateZkpProofToken()" style="width:auto; padding:6px 12px;">PROVE</button>
+                            </div>
+                            <div id="zkpTokenResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
                         </div>
                     </div>
 

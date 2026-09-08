@@ -425,6 +425,38 @@ class VectorZTests {
         assertTrue(secureReport.isNetworkSecure)
         assertEquals("SECURE_CONNECTION", secureReport.threatLevel)
     }
+
+    @Test
+    fun `test Zero-Knowledge Proof Identity Token generates valid blinded age proof`() {
+        val zkpEngine = com.iqoo.vectorz.core.crypto.ZkpIdentityTokenEngine()
+        
+        // User born in 1996 (Age 30 in 2026) -> Adult proof
+        val adultProof = zkpEngine.generateAgeVerificationProof(birthYear = 1996, currentYear = 2026)
+        assertTrue(adultProof.isClaimSatisfied)
+        assertEquals("AGE_VERIFICATION_GTE_18", adultProof.claimType)
+        assertTrue(adultProof.cryptographicProof.contains("VALID_AGE"))
+
+        // User born in 2012 (Age 14 in 2026) -> Minor proof
+        val minorProof = zkpEngine.generateAgeVerificationProof(birthYear = 2012, currentYear = 2026)
+        assertFalse(minorProof.isClaimSatisfied)
+    }
+
+    @Test
+    fun `test Contextual App Watcher adapts floating bubble actions based on foreground app`() {
+        val watcher = com.iqoo.vectorz.service.overlay.ContextualAppWatcher()
+        
+        val phonePeContext = watcher.resolveAppContext("com.phonepe.app")
+        assertEquals(com.iqoo.vectorz.service.overlay.AppCategory.FINTECH_PAYMENT, phonePeContext.category)
+        assertEquals("PAYMENT_INTENT_CHECK", phonePeContext.recommendedBubbleAction)
+
+        val amazonContext = watcher.resolveAppContext("in.amazon.mShop.android.shopping")
+        assertEquals(com.iqoo.vectorz.service.overlay.AppCategory.COMMERCE_SHOPPING, amazonContext.category)
+        assertEquals("COMMERCE_PRICE_AUDIT", amazonContext.recommendedBubbleAction)
+
+        val whatsappContext = watcher.resolveAppContext("com.whatsapp")
+        assertEquals(com.iqoo.vectorz.service.overlay.AppCategory.MESSAGING_CHAT, whatsappContext.category)
+        assertEquals("SMS_TROJAN_SCAN", whatsappContext.recommendedBubbleAction)
+    }
 }
 
 

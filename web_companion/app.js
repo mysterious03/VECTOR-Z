@@ -537,6 +537,9 @@ function jumpToStep(step) {
     } else if (step === 14) {
         openScreen("video");
         runVideoDeepfakeAudit(true);
+    } else if (step === 15) {
+        openScreen("zkp");
+        generateZkpProofToken();
     }
 }
 
@@ -1126,6 +1129,43 @@ function processAgentPrompt(userText) {
 function escapeHtml(text) {
     return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
+
+// 20. ZERO-KNOWLEDGE PROOF (ZKP) IDENTITY ENGINE (PHASE 12)
+function generateZkpProofToken() {
+    const claim = document.getElementById("zkpClaimSelect").value;
+    const box = document.getElementById("zkpTokenResultBox");
+    if (!box) return;
+    box.style.display = "block";
+
+    const tokenId = "ZKP_" + Math.floor(100000 + Math.random() * 900000);
+    if (claim === "AGE_GTE_18") {
+        box.style.background = "rgba(0, 230, 118, 0.15)";
+        box.style.border = "1px solid #00e676";
+        box.style.color = "#00e676";
+        box.innerHTML = `
+            <strong>✅ ZKP TOKEN GENERATED (${tokenId})</strong><br>
+            • Claim: <strong>AGE_VERIFICATION (Age ≥ 18 Verified)</strong><br>
+            • Blinded Commitment: <code>0x8f19a024bc98e100f...</code><br>
+            • Raw Date of Birth: <strong>NEVER EXPOSED (Air-Gapped)</strong><br>
+            • Cryptographic Proof: <strong>ECDSA_P256_STRONGBOX_VALID</strong><br>
+            • Destination App: <strong>com.merchant.gaming (Accepted)</strong>
+        `;
+        addAuditEntry("ZKP_IDENTITY", "com.merchant.gaming", `Issued Blinded ZKP Age Proof (${tokenId})`, "SAFE", "PROOF_ISSUED");
+    } else {
+        box.style.background = "rgba(0, 230, 118, 0.15)";
+        box.style.border = "1px solid #00e676";
+        box.style.color = "#00e676";
+        box.innerHTML = `
+            <strong>✅ ZKP KYC STATUS TOKEN (${tokenId})</strong><br>
+            • Claim: <strong>GOVERNMENT_KYC_VERIFIED</strong><br>
+            • Blinded Commitment: <code>0x3c99f881aa12e09...</code><br>
+            • 12-Digit Aadhaar / 10-Digit PAN: <strong>ZERO RAW DIGITS LEAKED</strong><br>
+            • Relying Party: <strong>com.phonepe.app (Authorized)</strong>
+        `;
+        addAuditEntry("ZKP_IDENTITY", "com.phonepe.app", `Issued Blinded ZKP KYC Proof (${tokenId})`, "SAFE", "PROOF_ISSUED");
+    }
+}
+
 
 
 
