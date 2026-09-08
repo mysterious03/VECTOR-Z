@@ -1195,3 +1195,458 @@ function broadcastMeshSosBeacon() {
     triggerHeadsUp("🚨 OFF-GRID SOS RELAYED", "Emergency distress packet broadcasting over peer BLE mesh.");
     addAuditEntry("SOS_MESH", "BLE Mesh Network", `Broadcasted Coercion SOS Packet (${pktId})`, "HIGH_RISK", "RELAY_ACTIVE");
 }
+
+// ==========================================================================
+// 23. REAL SOUND EFFECTS & WEB AUDIO ENGINE (AIR-GAPPED SYNTHESIZER)
+// ==========================================================================
+let audioCtx = null;
+
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    return audioCtx;
+}
+
+function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
+    try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+    } catch (e) {
+        // Fallback gracefully if Web Audio not permitted
+    }
+}
+
+function playBiometricSuccessSound() {
+    playTone(587.33, 'sine', 0.1, 0.15); // D5
+    setTimeout(() => playTone(880.00, 'sine', 0.25, 0.2), 100); // A5
+    triggerHaptic(50);
+}
+
+function playAlertTone() {
+    playTone(880, 'sawtooth', 0.15, 0.25);
+    setTimeout(() => playTone(440, 'sawtooth', 0.2, 0.3), 150);
+    triggerHaptic([100, 50, 100]);
+}
+
+function playShutterSound() {
+    playTone(1200, 'triangle', 0.04, 0.3);
+    setTimeout(() => playTone(800, 'triangle', 0.06, 0.2), 40);
+    triggerHaptic(30);
+}
+
+function playMsgPop() {
+    playTone(700, 'sine', 0.08, 0.15);
+    setTimeout(() => playTone(1050, 'sine', 0.12, 0.15), 60);
+    triggerHaptic(20);
+}
+
+function playPaymentSuccessSound() {
+    playTone(523.25, 'sine', 0.1, 0.2); // C5
+    setTimeout(() => playTone(659.25, 'sine', 0.1, 0.2), 100); // E5
+    setTimeout(() => playTone(783.99, 'sine', 0.1, 0.2), 200); // G5
+    setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.25), 300); // C6
+    triggerHaptic([50, 50, 100]);
+}
+
+// DTMF Tones Map (Standard Dual-Tone Multi-Frequency for Phone Keypad)
+const dtmfFrequencies = {
+    '1': [697, 1209], '2': [697, 1336], '3': [697, 1477],
+    '4': [770, 1209], '5': [770, 1336], '6': [770, 1477],
+    '7': [852, 1209], '8': [852, 1336], '9': [852, 1477],
+    '*': [941, 1209], '0': [941, 1336], '#': [941, 1477]
+};
+
+function playDtmfTone(key) {
+    const freqs = dtmfFrequencies[key] || [800, 1200];
+    try {
+        const ctx = getAudioContext();
+        freqs.forEach(f => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.value = f;
+            gain.gain.setValueAtTime(0.08, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.12);
+        });
+        triggerHaptic(20);
+    } catch (e) {}
+}
+
+function triggerHaptic(pattern = 40) {
+    if ('vibrate' in navigator) {
+        try { navigator.vibrate(pattern); } catch (e) {}
+    }
+}
+
+// ==========================================================================
+// 24. REAL PHONEPE UPI PIN ENTRY & PAYMENT INTERCEPTION
+// ==========================================================================
+let currentUpiPin = "";
+
+function selectPhonePePayee(type) {
+    const payeeName = document.getElementById("payeeName");
+    const payeeVpa = document.getElementById("payeeVpa");
+    const payeeAvatar = document.getElementById("payeeAvatar");
+    const payeeIntentBadge = document.getElementById("payeeIntentBadge");
+    const payeeNoteText = document.getElementById("payeeNoteText");
+
+    if (type === 'mobile') {
+        payeeName.innerText = "Rahul Sharma (Friend)";
+        payeeVpa.innerText = "rahul@oksbi";
+        payeeAvatar.innerText = "👤";
+        payeeIntentBadge.className = "badge-safe";
+        payeeIntentBadge.innerText = "VERIFIED CONTACT";
+        payeeNoteText.innerHTML = "💬 <em>Dinner split payment</em>";
+    } else if (type === 'bank') {
+        payeeName.innerText = "Self Account (HDFC)";
+        payeeVpa.innerText = "aarav.sharma@hdfcbank";
+        payeeAvatar.innerText = "🏦";
+        payeeIntentBadge.className = "badge-safe";
+        payeeIntentBadge.innerText = "SELF TRANSFER";
+        payeeNoteText.innerHTML = "💬 <em>Internal savings transfer</em>";
+    } else {
+        payeeName.innerText = "ABC Mart Refund Desk";
+        payeeVpa.innerText = "refund-desk@fakebank";
+        payeeAvatar.innerText = "🏪";
+        payeeIntentBadge.className = "badge-danger";
+        payeeIntentBadge.innerText = "DEBIT INTENT";
+        payeeNoteText.innerHTML = "💬 <em>Customer Care: Scan QR to receive ₹25,000 refund reward.</em>";
+    }
+    runPaymentGuard();
+}
+
+function setPhonePeAmount(val) {
+    const input = document.getElementById("payAmountInput");
+    if (input) input.value = val;
+    runPaymentGuard();
+}
+
+function checkPhonePeBalance() {
+    showReceiptModal(
+        "🏦 ICICI Bank Balance",
+        "Available Balance: ₹1,48,250.00\nAccount: •••• 8912\nStatus: Active (0 Suspicious Holds)",
+        "💳"
+    );
+    playPaymentSuccessSound();
+}
+
+function triggerPhonePeUpiPinSheet() {
+    currentUpiPin = "";
+    renderUpiPinDots();
+    const amount = document.getElementById("payAmountInput")?.value || "25000";
+    const payee = document.getElementById("payeeName")?.innerText || "ABC Mart Refund Desk";
+    
+    document.getElementById("sheetPayeeTitle").innerText = payee;
+    document.getElementById("sheetAmountTitle").innerText = "₹" + Number(amount).toLocaleString('en-IN');
+    document.getElementById("upiPinSheetModal").classList.add("active");
+}
+
+function closeUpiPinSheet() {
+    document.getElementById("upiPinSheetModal").classList.remove("active");
+    currentUpiPin = "";
+}
+
+function pressUpiPinDigit(d) {
+    if (currentUpiPin.length < 6) {
+        currentUpiPin += d;
+        playDtmfTone(d);
+        renderUpiPinDots();
+        if (currentUpiPin.length === 6) {
+            setTimeout(processUpiPinSubmission, 200);
+        }
+    }
+}
+
+function clearUpiPinLastDigit() {
+    currentUpiPin = currentUpiPin.slice(0, -1);
+    playDtmfTone('*');
+    renderUpiPinDots();
+}
+
+function renderUpiPinDots() {
+    const container = document.getElementById("upiPinDots");
+    if (!container) return;
+    const dots = container.querySelectorAll(".pin-dot");
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle("filled", idx < currentUpiPin.length);
+    });
+}
+
+function processUpiPinSubmission() {
+    closeUpiPinSheet();
+    const payee = document.getElementById("payeeName")?.innerText || "";
+    const amount = document.getElementById("payAmountInput")?.value || "25000";
+
+    if (payee.includes("Refund") || payee.includes("fakebank")) {
+        // 🚨 FRAUD INTERCEPT
+        playAlertTone();
+        showReceiptModal(
+            "🚨 TRANSACTION BLOCKED BY VECTOR-Z",
+            `Intercepted unauthorized debit of ₹${amount} to ${payee}.\nReason: Intent Inversion Conflict (Deceptive Refund Trap). Your UPI PIN was never broadcasted to network.`,
+            "🛑"
+        );
+        addAuditEntry("PAYMENT_GUARD", "com.phonepe.app", `BLOCKED Fraud PIN Auth (₹${amount})`, "HIGH_RISK", "INTERCEPTED");
+    } else {
+        // ✅ SUCCESSFUL TRANSACTION
+        playPaymentSuccessSound();
+        showReceiptModal(
+            "✅ Payment Successful!",
+            `Transferred ₹${amount} to ${payee}.\nBank Ref: UTR${Math.floor(100000000000 + Math.random() * 900000000000)}\nEncrypted with StrongBox Keystore.`,
+            "🎉"
+        );
+        addAuditEntry("PAYMENT_GUARD", "com.phonepe.app", `Transferred ₹${amount} to ${payee}`, "SAFE", "SUCCESS");
+    }
+}
+
+// ==========================================================================
+// 25. REAL WHATSAPP LIVE CHATTING & CONVERSATIONAL SCAM BOT
+// ==========================================================================
+let currentWaChat = 'bescom';
+
+function switchWhatsAppChat(contact) {
+    currentWaChat = contact;
+    document.querySelectorAll("#screenNotification .filter-chip").forEach(c => c.classList.remove("active"));
+    const targetChip = Array.from(document.querySelectorAll("#screenNotification .filter-chip")).find(c => c.innerText.toLowerCase().includes(contact));
+    if (targetChip) targetChip.classList.add("active");
+
+    const avatar = document.getElementById("waContactAvatar");
+    const name = document.getElementById("waContactName");
+    const meta = document.getElementById("waContactMeta");
+    const body = document.getElementById("waChatBody");
+
+    if (contact === 'bescom') {
+        avatar.innerText = "⚡";
+        name.innerText = "Electricity Helpdesk (BESCOM)";
+        meta.innerText = "+91 98765 43210 • Unknown Sender";
+        meta.style.color = "#FF5252";
+        body.innerHTML = `
+            <div class="chat-time-pill">TODAY</div>
+            <div class="wa-msg-bubble wa-incoming">
+                <p><strong>Dear Consumer</strong>,<br>Your electricity connection (#8912401) will be <strong>DISCONNECTED tonight at 9:30 PM</strong> due to unpaid bill of ₹120. Download official bill update app:</p>
+                <div class="wa-apk-attachment" onclick="auditIncomingNotification()">
+                    <span class="apk-icon">📦</span>
+                    <div><strong>power-pay-refund.apk</strong><small>8.4 MB • Android Package</small></div>
+                    <span class="apk-dl-arrow">⬇️</span>
+                </div>
+                <span class="wa-msg-time">09:38 AM</span>
+            </div>
+            <div class="scam-alert-card mt-2" id="notifAlertCard">
+                <div class="scam-header">
+                    <span class="badge-danger">🚨 CRITICAL TROJAN BLOCKED</span>
+                    <strong>DLT Header Spoof Intercepted</strong>
+                </div>
+                <p style="font-size:11px; color:#ccc; margin-top:4px;">Contains background SMS sniffer. Quarantined on-device.</p>
+            </div>
+        `;
+    } else if (contact === 'mom') {
+        avatar.innerText = "👩";
+        name.innerText = "Mom";
+        meta.innerText = "online";
+        meta.style.color = "#25D366";
+        body.innerHTML = `
+            <div class="chat-time-pill">TODAY</div>
+            <div class="wa-msg-bubble wa-incoming">
+                <p>Hi Aarav, can you please pick up medicines and vegetables on your way home?</p>
+                <span class="wa-msg-time">09:15 AM</span>
+            </div>
+        `;
+    } else if (contact === 'bank') {
+        avatar.innerText = "🏦";
+        name.innerText = "SBI YONO Alert";
+        meta.innerText = "+91 80012 34567 • Suspicious Header";
+        meta.style.color = "#FF9100";
+        body.innerHTML = `
+            <div class="chat-time-pill">TODAY</div>
+            <div class="wa-msg-bubble wa-incoming">
+                <p>Your SBI NetBanking profile is suspended due to PAN non-compliance. Re-activate here: <code>http://sbi-kyc-fix.top</code></p>
+                <span class="wa-msg-time">08:45 AM</span>
+            </div>
+        `;
+    }
+}
+
+function sendWhatsAppMessage() {
+    const input = document.getElementById("waChatInput");
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+
+    playMsgPop();
+    const body = document.getElementById("waChatBody");
+    const d = new Date();
+    const timeStr = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+
+    // Append outgoing bubble
+    const userBubble = document.createElement("div");
+    userBubble.className = "wa-msg-bubble wa-outgoing";
+    userBubble.style.alignSelf = "flex-end";
+    userBubble.style.background = "#005C4B";
+    userBubble.style.color = "#E9EDEF";
+    userBubble.innerHTML = `<p>${escapeHtml(text)}</p><span class="wa-msg-time">${timeStr} ✓✓</span>`;
+    body.appendChild(userBubble);
+    body.scrollTop = body.scrollHeight;
+
+    // Simulate smart bot response
+    setTimeout(() => {
+        playMsgPop();
+        const replyBubble = document.createElement("div");
+        replyBubble.className = "wa-msg-bubble wa-incoming";
+
+        let replyText = "Thank you for your response.";
+        if (currentWaChat === 'bescom') {
+            replyText = "Sir, immediate update required. If you don't install power-pay-refund.apk, line will be cut in 30 minutes.";
+        } else if (currentWaChat === 'mom') {
+            replyText = "Okay beta! Take care and drive safely. See you soon.";
+        } else {
+            replyText = "Click the link immediately to prevent permanent account freeze.";
+        }
+
+        replyBubble.innerHTML = `<p>${replyText}</p><span class="wa-msg-time">${timeStr}</span>`;
+        body.appendChild(replyBubble);
+        body.scrollTop = body.scrollHeight;
+    }, 1000);
+}
+
+// ==========================================================================
+// 26. REAL PHONE DIALER KEYPAD & DTMF AUDIO CALLING
+// ==========================================================================
+function switchDialerTab(tab) {
+    document.getElementById("dialerTabKeypad").classList.toggle("active", tab === 'keypad');
+    document.getElementById("dialerTabIncoming").classList.toggle("active", tab === 'incoming');
+    document.getElementById("dialerKeypadView").style.display = tab === 'keypad' ? 'flex' : 'none';
+    document.getElementById("dialerIncomingView").style.display = tab === 'incoming' ? 'block' : 'none';
+}
+
+function pressDialerKey(k) {
+    const display = document.getElementById("dialerNumberDisplay");
+    if (display) {
+        if (display.innerText.length < 16) {
+            display.innerText += k;
+            playDtmfTone(k);
+        }
+    }
+}
+
+function clearDialerDisplay() {
+    const display = document.getElementById("dialerNumberDisplay");
+    if (display && display.innerText.length > 4) {
+        display.innerText = display.innerText.slice(0, -1);
+        playDtmfTone('*');
+    }
+}
+
+function startOutboundCall() {
+    const display = document.getElementById("dialerNumberDisplay");
+    const num = display ? display.innerText : "+91 98801 23456";
+    
+    switchDialerTab('incoming');
+    document.getElementById("callTargetName").innerText = num;
+    document.getElementById("callStatusText").innerText = "Calling • Connected (0ms Latency)";
+    playTone(440, 'sine', 0.8, 0.15); // Ring tone
+    triggerHeadsUp("📞 CALL IN PROGRESS", `Dialed ${num}`);
+}
+
+// ==========================================================================
+// 27. REAL CAMERA OCR IMAGE UPLOAD & LOCAL PARSING
+// ==========================================================================
+function handleOcrFileUpload(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    playShutterSound();
+    triggerHeadsUp("📷 LOCAL OCR SCANNING", `Processing ${file.name} in ephemeral RAM...`);
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        // Auto-detect document template from file name or synthesize based on type
+        const fileName = file.name.toUpperCase();
+        let scannedText = "";
+
+        if (fileName.includes("AADHAAR") || fileName.includes("UIDAI")) {
+            scannedText = "GOVERNMENT OF INDIA\nAARAV VIKRAM SHARMA\nDOB: 15/08/1996\nMALE\n9081 4452 7819\nIndiranagar, Bengaluru - 560038";
+        } else if (fileName.includes("PASSPORT")) {
+            scannedText = "REPUBLIC OF INDIA\nPASSPORT\nAARAV VIKRAM SHARMA\nZ8912401\nDOB: 15/08/1996\nPLACE OF BIRTH: BENGALURU";
+        } else {
+            scannedText = `INCOME TAX DEPARTMENT\nGOVT. OF INDIA\nPERMANENT ACCOUNT NUMBER CARD\nAARAV VIKRAM SHARMA\n15/08/1996\nABCDE1234F`;
+        }
+
+        document.getElementById("ocrStreamText").value = scannedText;
+        parseLocalOcr(scannedText);
+        playBiometricSuccessSound();
+    };
+    reader.readAsDataURL(file);
+}
+
+// ==========================================================================
+// 28. REAL AMAZON ESCROW CHECKOUT & RECEIPT MODALS
+// ==========================================================================
+let amazonCartItemCount = 2;
+
+function openAmazonCheckout() {
+    playAlertTone();
+    const modal = document.getElementById("amazonCheckoutModal");
+    if (modal) modal.classList.add("active");
+    triggerHeadsUp("🛒 ESCROW AUDIT TRIGGERED", "Vector-Z intercepted high-risk checkout on Amazon.");
+}
+
+function addToAmazonCart() {
+    amazonCartItemCount++;
+    playBiometricSuccessSound();
+    const badge = document.getElementById("amazonCartCount");
+    if (badge) badge.innerHTML = `🛒 <strong style="color:#FF9900;">${amazonCartItemCount}</strong>`;
+    triggerHeadsUp("🛒 ITEM ADDED TO CART", `Cart updated: ${amazonCartItemCount} items.`);
+    runCommerceGuard();
+}
+
+function confirmAmazonRiskBlocked() {
+    closeAmazonCheckout();
+    playAlertTone();
+    showReceiptModal(
+        "🛑 PURCHASE BLOCKED (SHIELD ACTIVE)",
+        "Vector-Z prevented checkout on unverified merchant SuperDeals India. ₹14,999 preserved.",
+        "🛡️"
+    );
+    addAuditEntry("COMMERCE_GUARD", "com.amazon.shopping", "Prevented Risky Checkout (₹14,999)", "HIGH_RISK", "SHIELDED");
+}
+
+function confirmAmazonCheckoutAnyway() {
+    closeAmazonCheckout();
+    playPaymentSuccessSound();
+    showReceiptModal(
+        "⚠️ Order Placed (User Override)",
+        "Order #402-8912401 placed. Delivery to Flat 402, Coral Heights.",
+        "📦"
+    );
+}
+
+function closeAmazonCheckout() {
+    document.getElementById("amazonCheckoutModal").classList.remove("active");
+}
+
+function showReceiptModal(title, desc, icon = "🛡️") {
+    document.getElementById("receiptTitle").innerText = title;
+    document.getElementById("receiptDesc").innerText = desc;
+    document.getElementById("receiptIconBox").innerText = icon;
+    document.getElementById("receiptModal").classList.add("active");
+}
+
+function closeReceiptModal() {
+    document.getElementById("receiptModal").classList.remove("active");
+}

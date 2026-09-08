@@ -2362,3 +2362,161 @@ input:checked + .slider:before {
     margin-bottom: 8px;
     font-size: 0.70rem;
 }
+
+/* ==========================================================================
+   BOTTOM SHEET MODALS (UPI PIN, CHECKOUT, RECEIPTS) & DTMF KEYPAD
+   ========================================================================== */
+
+.bottom-sheet-modal {
+    position: absolute;
+    inset: 0;
+    z-index: 160;
+    display: none;
+    align-items: flex-end;
+    animation: fadeIn 0.2s ease;
+}
+
+.bottom-sheet-modal.active {
+    display: flex;
+}
+
+.sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+}
+
+.sheet-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: #14141E;
+    border-top: 1.5px solid #36364A;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 14px 18px 20px 18px;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.9);
+    animation: slideUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #444455;
+    border-radius: 2px;
+    margin: 0 auto 12px auto;
+}
+
+.sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.upi-pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.pin-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid #555566;
+    background: transparent;
+    transition: all 0.15s ease;
+}
+
+.pin-dot.filled {
+    background: var(--cyan-primary);
+    border-color: var(--cyan-primary);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+.sheet-numeric-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.sheet-numeric-pad button {
+    background: #1C1C28;
+    border: 1px solid #2B2B3C;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.sheet-numeric-pad button:active {
+    background: #2D2D40;
+    transform: scale(0.95);
+}
+
+/* DTMF Dialer Keypad Buttons */
+.dtmf-key-btn {
+    background: #14141E;
+    border: 1px solid #292938;
+    border-radius: 12px;
+    padding: 10px 0;
+    color: #FFFFFF;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.dtmf-key-btn small {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    color: #777788;
+    letter-spacing: 1px;
+}
+
+.dtmf-key-btn:hover {
+    background: #1E1E2C;
+    border-color: var(--cyan-primary);
+}
+
+.dtmf-key-btn:active {
+    background: var(--cyan-primary);
+    color: #000;
+    transform: scale(0.95);
+}
+
+/* Live Waveform Animations */
+.wave-bar {
+    animation: wavePulse 0.8s infinite alternate ease-in-out;
+}
+
+.w1 { animation-delay: 0.1s; }
+.w2 { animation-delay: 0.3s; }
+.w3 { animation-delay: 0.5s; }
+.w4 { animation-delay: 0.2s; }
+.w5 { animation-delay: 0.4s; }
+.w6 { animation-delay: 0.6s; }
+.w7 { animation-delay: 0.15s; }
+
+@keyframes wavePulse {
+    from { transform: scaleY(0.4); }
+    to { transform: scaleY(1.3); }
+}

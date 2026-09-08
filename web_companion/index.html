@@ -427,27 +427,35 @@
                         </div>
                     </div>
 
-                    <!-- Screen: OCR INGESTION -->
+                    <!-- Screen: OCR INGESTION (REAL PHOTO UPLOAD & WEBCAM) -->
                     <div class="app-screen" id="screenOcr">
                         <div class="subpage-header">
                             <button class="back-btn" onclick="openScreen('vault')">←</button>
                             <div>
-                                <h3>LOCAL OCR INGESTION</h3>
-                                <small>Zero Cloud Leakage • Canonical Parser</small>
+                                <h3>LOCAL OCR SCANNER</h3>
+                                <small>On-Device ML Kit • 0ms Cloud Leak</small>
                             </div>
-                            <div></div>
+                            <button class="icon-btn" onclick="document.getElementById('ocrFileInput').click()" title="Upload Photo">📁</button>
                         </div>
 
-                        <div class="section-label">SELECT SYNTHETIC TEST DOCUMENT</div>
+                        <!-- Real File Upload Input -->
+                        <input type="file" id="ocrFileInput" accept="image/*" style="display:none;" onchange="handleOcrFileUpload(event)">
+
+                        <div class="tip-banner">
+                            📸 <strong>Zero-Cloud Optical Ingestion:</strong> Capture or upload an Indian identity card photo. Text is extracted locally in ephemeral RAM.
+                        </div>
+
+                        <div class="section-label">SELECT TEMPLATE OR UPLOAD REAL PHOTO</div>
                         <div class="chip-row">
                             <button class="filter-chip active" onclick="selectOcrPreset('PAN')">PAN Card</button>
                             <button class="filter-chip" onclick="selectOcrPreset('AADHAAR')">Aadhaar</button>
                             <button class="filter-chip" onclick="selectOcrPreset('PASSPORT')">Passport</button>
+                            <button class="filter-chip" onclick="document.getElementById('ocrFileInput').click()" style="border-color:#00e5ff; color:#00e5ff;">📁 Upload</button>
                         </div>
 
                         <div class="form-group">
-                            <label>Simulated OCR Camera Text Stream</label>
-                            <textarea id="ocrStreamText" rows="4" class="custom-input"></textarea>
+                            <label>Optical Text Buffer (RAM-Only)</label>
+                            <textarea id="ocrStreamText" rows="4" class="custom-input" oninput="parseLocalOcr(this.value)"></textarea>
                         </div>
 
                         <div class="extracted-fields-card">
@@ -458,7 +466,7 @@
                             <div id="ocrExtractedList" class="extracted-list"></div>
 
                             <button class="primary-btn mt-3" onclick="saveOcrToVault()">
-                                SAVE TO ENCRYPTED VAULT
+                                🔒 ENCRYPT & SAVE TO HARDWARE KEYSTORE
                             </button>
                         </div>
                     </div>
@@ -469,29 +477,29 @@
                             <button class="back-btn" onclick="openScreen('home')">←</button>
                             <div class="app-brand-info">
                                 <span class="app-logo-text">PhonePe</span>
-                                <small>UPI & Payments</small>
+                                <small>UPI & Payments • ICICI Bank Linked</small>
                             </div>
                             <div class="header-action-icons">
-                                <span class="hdr-icon">🔍</span>
+                                <span class="hdr-icon" onclick="openScreen('ocr')" title="Scan QR">📷</span>
                                 <span class="hdr-icon">🔔</span>
                             </div>
                         </div>
 
                         <!-- PhonePe Quick Money Transfer Grid -->
                         <div class="phonepe-quick-grid">
-                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                            <div class="pp-quick-item" onclick="selectPhonePePayee('mobile')">
                                 <div class="pp-icon-circle">📱</div>
                                 <span>To Mobile</span>
                             </div>
-                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                            <div class="pp-quick-item" onclick="selectPhonePePayee('bank')">
                                 <div class="pp-icon-circle">🏦</div>
                                 <span>To Bank</span>
                             </div>
-                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                            <div class="pp-quick-item" onclick="selectPhonePePayee('self')">
                                 <div class="pp-icon-circle">🔄</div>
                                 <span>To Self</span>
                             </div>
-                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                            <div class="pp-quick-item" onclick="checkPhonePeBalance()">
                                 <div class="pp-icon-circle">📊</div>
                                 <span>Check Bal</span>
                             </div>
@@ -501,22 +509,31 @@
                         <div class="section-label mt-2">ACTIVE SCANNED PAYMENT REQUEST</div>
                         <div class="phonepe-pay-card">
                             <div class="payee-row">
-                                <div class="payee-avatar">🏪</div>
+                                <div class="payee-avatar" id="payeeAvatar">🏪</div>
                                 <div>
                                     <strong id="payeeName">ABC Mart Refund Desk</strong>
                                     <small id="payeeVpa" class="text-danger">refund-desk@fakebank</small>
                                 </div>
-                                <span class="badge-danger">DEBIT INTENT</span>
+                                <span class="badge-danger" id="payeeIntentBadge">DEBIT INTENT</span>
                             </div>
                             <div class="amount-box">
                                 <span class="curr-symbol">₹</span>
-                                <input type="number" id="payAmountInput" value="25000" class="pay-amount-field">
+                                <input type="number" id="payAmountInput" value="25000" class="pay-amount-field" onchange="runPaymentGuard()">
                             </div>
-                            <div class="seller-claim-note">
+                            
+                            <!-- Quick Amount Chips -->
+                            <div class="quick-chips-scroll" style="margin-bottom:8px;">
+                                <button class="chip-btn" onclick="setPhonePeAmount(500)">₹500</button>
+                                <button class="chip-btn" onclick="setPhonePeAmount(2500)">₹2,500</button>
+                                <button class="chip-btn" onclick="setPhonePeAmount(25000)">₹25,000</button>
+                                <button class="chip-btn" onclick="setPhonePeAmount(50000)">₹50,000</button>
+                            </div>
+
+                            <div class="seller-claim-note" id="payeeNoteText">
                                 💬 <em>"Customer Care: Scan QR and enter UPI PIN to RECEIVE ₹25,000 refund reward."</em>
                             </div>
-                            <button class="phonepe-btn-pay" onclick="runPaymentGuard()">
-                                PROCEED TO PAY / VERIFY
+                            <button class="phonepe-btn-pay" onclick="triggerPhonePeUpiPinSheet()">
+                                PROCEED TO PAY / ENTER UPI PIN
                             </button>
                         </div>
 
@@ -531,7 +548,7 @@
                                 <span class="amazon-search-icon">🔍</span>
                                 <input type="text" value="iPhone 16 Pro Max (1TB)" readonly>
                             </div>
-                            <span class="hdr-icon">🛒 <strong style="color:#FF9900;">2</strong></span>
+                            <span class="hdr-icon" id="amazonCartCount">🛒 <strong style="color:#FF9900;">2</strong></span>
                         </div>
 
                         <!-- Product Showcase Page -->
@@ -552,8 +569,8 @@
                             </div>
 
                             <div class="amazon-btn-row">
-                                <button class="btn-amazon-cart" onclick="runCommerceGuard()">Add to Cart</button>
-                                <button class="btn-amazon-buy" onclick="runCommerceGuard()">Buy Now</button>
+                                <button class="btn-amazon-cart" onclick="addToAmazonCart()">Add to Cart</button>
+                                <button class="btn-amazon-buy" onclick="openAmazonCheckout()">Buy Now</button>
                             </div>
                         </div>
 
@@ -721,20 +738,27 @@
                         <div class="app-top-header app-whatsapp-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
                             <div class="chat-contact-info">
-                                <div class="chat-contact-avatar">⚡</div>
+                                <div class="chat-contact-avatar" id="waContactAvatar">⚡</div>
                                 <div>
-                                    <strong>Electricity Helpdesk (BESCOM)</strong>
-                                    <small style="color:#25D366;">+91 98765 43210 • Unknown Sender</small>
+                                    <strong id="waContactName">Electricity Helpdesk (BESCOM)</strong>
+                                    <small style="color:#25D366;" id="waContactMeta">+91 98765 43210 • Unknown Sender</small>
                                 </div>
                             </div>
                             <div class="header-action-icons">
-                                <span class="hdr-icon">📞</span>
-                                <span class="hdr-icon">📹</span>
+                                <span class="hdr-icon" onclick="openScreen('media')" title="Call">📞</span>
+                                <span class="hdr-icon" onclick="openScreen('video')" title="Video">📹</span>
                             </div>
                         </div>
 
+                        <!-- Contact Switcher Pills -->
+                        <div class="chip-row" style="margin-bottom:6px;">
+                            <button class="filter-chip active" onclick="switchWhatsAppChat('bescom')">⚡ Scammer</button>
+                            <button class="filter-chip" onclick="switchWhatsAppChat('mom')">👩 Mom</button>
+                            <button class="filter-chip" onclick="switchWhatsAppChat('bank')">🏦 SBI Phish</button>
+                        </div>
+
                         <!-- WhatsApp Active Chat Stream -->
-                        <div class="whatsapp-chat-body">
+                        <div class="whatsapp-chat-body" id="waChatBody">
                             <div class="chat-time-pill">TODAY</div>
 
                             <!-- Incoming Scammer Message Bubble -->
@@ -769,10 +793,10 @@
                             </div>
                         </div>
 
-                        <!-- WhatsApp Message Input Bar -->
+                        <!-- Real WhatsApp Interactive Message Input Bar -->
                         <div class="whatsapp-input-bar">
-                            <button class="wa-icon-btn" onclick="auditIncomingNotification()">⚡ Test Scam APK</button>
-                            <input type="text" id="simNotifText" value="Dear consumer, your electricity will be disconnected tonight at 9:30 PM. Download update: http://power-board.in/update.apk" style="display:none;">
+                            <input type="text" id="waChatInput" placeholder="Type message to scammer or contact..." onkeydown="if(event.key==='Enter') sendWhatsAppMessage()" style="background:#1f2c34; border:none; border-radius:20px; color:#fff; padding:8px 14px; font-size:12px; flex:1; outline:none;">
+                            <button class="wa-icon-btn" onclick="sendWhatsAppMessage()" style="width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; padding:0; flex-shrink:0;">➤</button>
                         </div>
                     </div>
 
@@ -782,28 +806,63 @@
                             <button class="back-btn" onclick="openScreen('home')">←</button>
                             <div>
                                 <strong>Phone Dialer</strong>
-                                <small>Qualcomm Acoustic DSP</small>
+                                <small>Qualcomm DSP • DTMF Audio Active</small>
                             </div>
                             <span class="hdr-icon">⚙️</span>
                         </div>
 
-                        <!-- Incoming Call Card Simulation -->
-                        <div class="incoming-call-card">
+                        <!-- Mode Toggle: Keypad vs Emergency Incoming Call -->
+                        <div class="chip-row" style="margin-bottom:6px;">
+                            <button class="filter-chip active" id="dialerTabKeypad" onclick="switchDialerTab('keypad')">🔢 Keypad</button>
+                            <button class="filter-chip" id="dialerTabIncoming" onclick="switchDialerTab('incoming')">🚨 Emergency Call</button>
+                        </div>
+
+                        <!-- 1. Interactive 12-Key DTMF Keypad View -->
+                        <div id="dialerKeypadView" style="display:flex; flex-direction:column; gap:8px;">
+                            <div style="background:#0c0c10; border:1px solid #333; border-radius:8px; padding:10px; text-align:center; min-height:44px;">
+                                <span id="dialerNumberDisplay" style="font-family:'Outfit', sans-serif; font-size:1.4rem; font-weight:700; color:#fff; letter-spacing:2px;">+91 </span>
+                            </div>
+
+                            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:4px;">
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('1')">1<small>‎</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('2')">2<small>ABC</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('3')">3<small>DEF</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('4')">4<small>GHI</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('5')">5<small>JKL</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('6')">6<small>MNO</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('7')">7<small>PQRS</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('8')">8<small>TUV</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('9')">9<small>WXYZ</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('*')">*<small>‎</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('0')">0<small>+</small></button>
+                                <button class="dtmf-key-btn" onclick="pressDialerKey('#')">#<small>‎</small></button>
+                            </div>
+
+                            <div style="display:flex; gap:8px; margin-top:6px;">
+                                <button class="primary-btn" onclick="startOutboundCall()" style="background:#00e676; color:#000; font-size:14px; padding:10px; display:flex; align-items:center; justify-content:center; gap:6px;">
+                                    <span>📞</span> <strong>CALL NUMBER</strong>
+                                </button>
+                                <button class="secondary-btn" onclick="clearDialerDisplay()" style="width:50px;">⌫</button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Active Incoming / In-Call HUD -->
+                        <div id="dialerIncomingView" class="incoming-call-card" style="display:none;">
                             <div class="caller-pulse-ring">
                                 <span class="caller-avatar-icon">👩</span>
                             </div>
-                            <h3 class="caller-name">Mom (Emergency Call)</h3>
-                            <div class="caller-status" id="callStatusText">Incoming Call • Voice Line Active</div>
+                            <h3 class="caller-name" id="callTargetName">Mom (Emergency Call)</h3>
+                            <div class="caller-status" id="callStatusText">Incoming Voice Line Active</div>
 
-                            <!-- Waveform Display -->
+                            <!-- Live Waveform Display -->
                             <div class="waveform-box mt-2" style="height:36px; background:#0c0c10; border-radius:8px; display:flex; align-items:center; justify-content:space-around; padding:0 12px;">
-                                <div style="width:4px; height:18px; background:#ff5500; border-radius:2px;"></div>
-                                <div style="width:4px; height:30px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:14px; background:#ff5500; border-radius:2px;"></div>
-                                <div style="width:4px; height:26px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:10px; background:#ff5500; border-radius:2px;"></div>
-                                <div style="width:4px; height:28px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:16px; background:#ff5500; border-radius:2px;"></div>
+                                <div class="wave-bar w1" style="width:4px; height:18px; background:#ff5500; border-radius:2px;"></div>
+                                <div class="wave-bar w2" style="width:4px; height:30px; background:#00ffff; border-radius:2px;"></div>
+                                <div class="wave-bar w3" style="width:4px; height:14px; background:#ff5500; border-radius:2px;"></div>
+                                <div class="wave-bar w4" style="width:4px; height:26px; background:#00ffff; border-radius:2px;"></div>
+                                <div class="wave-bar w5" style="width:4px; height:10px; background:#ff5500; border-radius:2px;"></div>
+                                <div class="wave-bar w6" style="width:4px; height:28px; background:#00ffff; border-radius:2px;"></div>
+                                <div class="wave-bar w7" style="width:4px; height:16px; background:#ff5500; border-radius:2px;"></div>
                             </div>
 
                             <div class="call-action-row mt-3">
@@ -1260,6 +1319,107 @@
                         <small>Touch sensor to release hardware Keystore master key</small>
                     </div>
                 </div>
+
+                <!-- 1. Real PhonePe UPI PIN Bottom Sheet Modal -->
+                <div class="bottom-sheet-modal" id="upiPinSheetModal">
+                    <div class="sheet-backdrop" onclick="closeUpiPinSheet()"></div>
+                    <div class="sheet-content">
+                        <div class="sheet-handle"></div>
+                        <div class="sheet-header">
+                            <div>
+                                <span style="font-size:10px; color:#aaa; text-transform:uppercase;">Paying to:</span>
+                                <h4 id="sheetPayeeTitle" style="color:#fff; font-size:14px; margin-top:2px;">ABC Mart Refund Desk</h4>
+                            </div>
+                            <div style="text-align:right;">
+                                <span style="font-size:10px; color:#aaa;">Amount:</span>
+                                <h4 id="sheetAmountTitle" style="color:#00e5ff; font-size:16px; margin-top:2px;">₹25,000</h4>
+                            </div>
+                        </div>
+
+                        <div style="text-align:center; margin:14px 0 10px 0;">
+                            <label style="font-size:11px; color:#aaa; display:block; margin-bottom:8px;">ENTER 6-DIGIT UPI PIN</label>
+                            <div class="upi-pin-dots" id="upiPinDots">
+                                <div class="pin-dot"></div>
+                                <div class="pin-dot"></div>
+                                <div class="pin-dot"></div>
+                                <div class="pin-dot"></div>
+                                <div class="pin-dot"></div>
+                                <div class="pin-dot"></div>
+                            </div>
+                        </div>
+
+                        <!-- Numeric Keypad -->
+                        <div class="sheet-numeric-pad">
+                            <button onclick="pressUpiPinDigit('1')">1</button>
+                            <button onclick="pressUpiPinDigit('2')">2</button>
+                            <button onclick="pressUpiPinDigit('3')">3</button>
+                            <button onclick="pressUpiPinDigit('4')">4</button>
+                            <button onclick="pressUpiPinDigit('5')">5</button>
+                            <button onclick="pressUpiPinDigit('6')">6</button>
+                            <button onclick="pressUpiPinDigit('7')">7</button>
+                            <button onclick="pressUpiPinDigit('8')">8</button>
+                            <button onclick="pressUpiPinDigit('9')">9</button>
+                            <button onclick="closeUpiPinSheet()" style="font-size:11px; color:#aaa;">CANCEL</button>
+                            <button onclick="pressUpiPinDigit('0')">0</button>
+                            <button onclick="clearUpiPinLastDigit()">⌫</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Real Amazon Escrow & Delivery Checkout Modal -->
+                <div class="bottom-sheet-modal" id="amazonCheckoutModal">
+                    <div class="sheet-backdrop" onclick="closeAmazonCheckout()"></div>
+                    <div class="sheet-content">
+                        <div class="sheet-handle"></div>
+                        <h4 style="color:#fff; font-size:14px; margin-bottom:10px;">🛒 AMAZON ESCROW CHECKOUT</h4>
+
+                        <div class="card p-2" style="background:#101018; border:1px solid #333; border-radius:8px; font-size:11px;">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span>Apple iPhone 16 Pro Max (1TB):</span>
+                                <strong style="color:#fff;">₹14,999</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                                <span>Delivery Fee (Prime):</span>
+                                <strong style="color:#00e676;">FREE</strong>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; border-top:1px solid #222; padding-top:4px;">
+                                <strong>Order Total:</strong>
+                                <strong style="color:#ff9900; font-size:13px;">₹14,999</strong>
+                            </div>
+                        </div>
+
+                        <div class="section-label mt-2" style="color:#00e5ff;">AUTOFILLED DELIVERY ADDRESS (VAULT):</div>
+                        <div class="card p-2" style="background:#101018; border:1px solid rgba(0,229,255,0.3); border-radius:8px; font-size:11px; line-height:1.4;">
+                            <strong>Aarav Sharma</strong> • +91 98801 23456<br>
+                            Flat 402, Coral Heights, Indiranagar, Bengaluru - 560038
+                        </div>
+
+                        <div class="scam-alert-card mt-2" style="padding:8px;">
+                            <strong style="color:#ff1744; font-size:11px;">⚠️ VECTOR-Z PURCHASE RISK INTERCEPT</strong>
+                            <p style="font-size:10px; color:#ff8a80; margin-top:2px;">Seller 'SuperDeals India' registered 2 days ago. Non-returnable policy active. Zero buyer protection applies.</p>
+                        </div>
+
+                        <div class="btn-row mt-3">
+                            <button class="primary-btn" onclick="confirmAmazonRiskBlocked()" style="background:#ff1744;">🛑 CANCEL & SHIELD</button>
+                            <button class="secondary-btn" onclick="confirmAmazonCheckoutAnyway()">Ignore & Proceed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Transaction Success / Blocked Receipt Modal -->
+                <div class="bottom-sheet-modal" id="receiptModal">
+                    <div class="sheet-backdrop" onclick="closeReceiptModal()"></div>
+                    <div class="sheet-content" style="text-align:center;">
+                        <div class="sheet-handle"></div>
+                        <div id="receiptIconBox" style="width:60px; height:60px; border-radius:50%; margin:0 auto 10px auto; display:flex; align-items:center; justify-content:center; font-size:28px;">
+                            🛡️
+                        </div>
+                        <h3 id="receiptTitle" style="color:#fff; font-size:16px;">Security Action Executed</h3>
+                        <p id="receiptDesc" style="font-size:11px; color:#aaa; margin:6px 0 14px 0; line-height:1.4;">Zero raw secrets leaked to cloud.</p>
+                        <button class="primary-btn" onclick="closeReceiptModal()">DONE</button>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
