@@ -332,7 +332,26 @@ class VectorZTests {
         assertTrue(dossier.digitalSignature.startsWith("SHA256_ECDSA_HARDWARE_SIG_"))
         assertEquals("refund-desk@fakebank", dossier.suspectVpaOrPhone)
     }
+
+    @Test
+    fun `test Heads-Up Trust Banner generates critical payment trap alert`() {
+        val bannerEngine = com.iqoo.vectorz.service.overlay.HeadsUpTrustBanner()
+        val banner = bannerEngine.createPaymentTrapBanner("refund-desk@fakebank", "₹25,000")
+        assertEquals("CRITICAL_RED", banner.severity)
+        assertTrue(banner.title.contains("UPI PAYMENT SCAM"))
+        assertTrue(banner.message.contains("NEVER enter UPI PIN"))
+    }
+
+    @Test
+    fun `test Ambient Glance Engine returns lockscreen AOD trust health`() {
+        val aodEngine = com.iqoo.vectorz.feature.aod.AmbientGlanceEngine()
+        val glance = aodEngine.getLockScreenGlance()
+        assertTrue(glance.biometricGateArmed)
+        assertEquals("HARDWARE_SEALED_AES256", glance.keystoreStatus)
+        assertEquals("ACTIVE_DEFENSE", glance.threatLevel)
+    }
 }
+
 
 
 

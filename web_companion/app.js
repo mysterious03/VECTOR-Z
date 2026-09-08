@@ -741,6 +741,38 @@ function export1930Dossier() {
     addAuditEntry("I4C_REPORT", "cybercrime.gov.in", "Generated 1930 Dossier " + id, "SAFE", "EXPORTED");
 }
 
+// 16. HEADS-UP NOTIFICATIONS & BIOMETRIC PROMPTS
+let bioSuccessCallback = null;
 
+function triggerHeadsUp(title, desc) {
+    const banner = document.getElementById("headsUpBanner");
+    const titleEl = document.getElementById("headsUpTitle");
+    const descEl = document.getElementById("headsUpDesc");
+    if (!banner) return;
+    titleEl.innerText = title;
+    descEl.innerText = desc;
+    banner.classList.add("active");
+    setTimeout(() => {
+        banner.classList.remove("active");
+    }, 6000);
+}
 
+function dismissHeadsUp() {
+    const banner = document.getElementById("headsUpBanner");
+    if (banner) banner.classList.remove("active");
+}
 
+function showBioPrompt(callback) {
+    bioSuccessCallback = callback;
+    const overlay = document.getElementById("bioPromptOverlay");
+    if (overlay) overlay.classList.add("active");
+}
+
+function handleBioScanSuccess() {
+    const overlay = document.getElementById("bioPromptOverlay");
+    if (overlay) overlay.classList.remove("active");
+    if (bioSuccessCallback) {
+        bioSuccessCallback();
+        bioSuccessCallback = null;
+    }
+}

@@ -141,9 +141,24 @@
 
         <!-- Center: Interactive iQOO Phone Frame -->
         <main class="phone-viewport">
+            <!-- Physical Hardware Side Buttons -->
+            <div class="hw-button hw-volume-up"></div>
+            <div class="hw-button hw-volume-down"></div>
+            <div class="hw-button hw-power-btn"></div>
+
             <div class="phone-chassis">
                 <div class="speaker-grill"></div>
                 <div class="punch-hole-camera"></div>
+
+                <!-- Sliding Android 14 Heads-Up Notification Banner -->
+                <div class="heads-up-banner" id="headsUpBanner">
+                    <div class="heads-up-icon">🚨</div>
+                    <div class="heads-up-body">
+                        <strong id="headsUpTitle">Payment Fraud Intercepted</strong>
+                        <p id="headsUpDesc">Deceptive refund QR trap blocked.</p>
+                    </div>
+                    <button class="heads-up-dismiss" onclick="dismissHeadsUp()">✕</button>
+                </div>
 
                 <!-- Status Bar -->
                 <div class="phone-status-bar">
@@ -831,6 +846,23 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                         <span>Privacy</span>
                     </button>
                 </nav>
+
+                <!-- Android 14 Flagship Gesture Navigation Bar -->
+                <div class="android-gesture-bar">
+                    <div class="gesture-pill"></div>
+                </div>
+
+                <!-- In-Display Ultrasonic Optical Fingerprint Modal -->
+                <div class="bio-prompt-overlay" id="bioPromptOverlay" onclick="handleBioScanSuccess()">
+                    <div class="bio-prompt-card">
+                        <div class="bio-scanner-ring">
+                            <span class="bio-fingerprint-icon">👆</span>
+                            <div class="bio-pulse-wave"></div>
+                        </div>
+                        <strong>Biometric Authentication Required</strong>
+                        <small>Touch sensor to release hardware Keystore master key</small>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
