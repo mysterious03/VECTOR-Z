@@ -1540,4 +1540,825 @@ input:checked + .slider:before {
     transform: scale(1.1);
 }
 
+/* ==========================================================================
+   AUTHENTIC CONSUMER APP STYLES: PHONEPE, AMAZON, WHATSAPP, DIALER
+   ========================================================================== */
 
+/* Universal App Top Headers */
+.app-top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+}
+
+.header-action-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.hdr-icon {
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.hdr-icon:hover {
+    transform: scale(1.1);
+}
+
+/* 1. PhonePe App Header & Components */
+.app-phonepe-header {
+    background: linear-gradient(135deg, #5f259f 0%, #3d1466 100%);
+    border: 1px solid rgba(156, 39, 176, 0.4);
+    box-shadow: 0 4px 16px rgba(95, 37, 159, 0.35);
+}
+
+.app-brand-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: 0.02em;
+}
+
+.app-brand-info small {
+    font-size: 0.62rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.phonepe-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.pp-quick-item {
+    background: #14141E;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.pp-quick-item:hover {
+    background: #1E1A2C;
+    border-color: #9C27B0;
+    transform: translateY(-2px);
+}
+
+.pp-icon-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(95, 37, 159, 0.3) 0%, rgba(156, 39, 176, 0.2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    border: 1px solid rgba(156, 39, 176, 0.3);
+}
+
+.pp-quick-item span {
+    font-size: 0.64rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.phonepe-pay-card {
+    background: linear-gradient(145deg, #13131A 0%, #171722 100%);
+    border: 1px solid rgba(255, 23, 68, 0.4);
+    border-radius: var(--radius-lg);
+    padding: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.payee-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payee-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #20202E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border: 1px solid var(--border-subtle);
+}
+
+.payee-row strong {
+    display: block;
+    font-size: 0.82rem;
+    color: #FFFFFF;
+}
+
+.payee-row small {
+    display: block;
+    font-size: 0.68rem;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.amount-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 16px 0 10px 0;
+    padding: 10px;
+    background: #0B0B0F;
+    border-radius: var(--radius-md);
+    border: 1px solid #2B2B38;
+}
+
+.curr-symbol {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--cyan-primary);
+}
+
+.pay-amount-field {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    width: 140px;
+    text-align: center;
+    outline: none;
+}
+
+.seller-claim-note {
+    background: rgba(255, 214, 0, 0.08);
+    border-left: 3px solid #FFD600;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    color: #FFE57F;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.phonepe-btn-pay {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #5f259f 0%, #7b1fa2 100%);
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(95, 37, 159, 0.4);
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.phonepe-btn-pay:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+/* 2. Amazon Shopping App Header & Components */
+.app-amazon-header {
+    background: #232F3E;
+    border: 1px solid #37475A;
+    gap: 8px;
+    padding: 8px 10px;
+}
+
+.amazon-search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+.amazon-search-icon {
+    font-size: 0.80rem;
+    color: #555;
+}
+
+.amazon-search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.72rem;
+    color: #111;
+    background: transparent;
+    font-weight: 500;
+}
+
+.amazon-product-card {
+    background: #14141C;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px;
+}
+
+.product-badge-deal {
+    display: inline-block;
+    background: #CC0C39;
+    color: #FFFFFF;
+    font-size: 0.60rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.product-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+
+.product-rating {
+    font-size: 0.68rem;
+    color: #FFA41C;
+    margin-bottom: 10px;
+}
+
+.amazon-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.deal-pct {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #CC0C39;
+}
+
+.deal-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+.mrp-price {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.seller-fine-print {
+    background: #0B0B0F;
+    border: 1px dashed rgba(255, 23, 68, 0.4);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.amazon-btn-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-amazon-cart, .btn-amazon-buy {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: var(--radius-full);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.btn-amazon-cart {
+    background: #FFD814;
+    color: #0F1111;
+}
+
+.btn-amazon-buy {
+    background: #FFA41C;
+    color: #0F1111;
+}
+
+.btn-amazon-cart:hover, .btn-amazon-buy:hover {
+    transform: translateY(-1px);
+}
+
+/* 3. WhatsApp Chat App Header & Components */
+.app-whatsapp-header {
+    background: linear-gradient(135deg, #075E54 0%, #128C7E 100%);
+    border: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.chat-contact-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-contact-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #FF5500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.chat-contact-info strong {
+    display: block;
+    font-size: 0.78rem;
+    color: #FFFFFF;
+}
+
+.chat-contact-info small {
+    display: block;
+    font-size: 0.62rem;
+}
+
+.whatsapp-chat-body {
+    min-height: 340px;
+    background: #0B0E14 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" opacity="0.03"><path d="M0 0h40v40H0z" fill="none"/><path d="M10 10h20v20H10z" fill="white"/></svg>');
+    border-radius: var(--radius-md);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 8px;
+}
+
+.chat-time-pill {
+    align-self: center;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.wa-msg-bubble {
+    max-width: 88%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    position: relative;
+}
+
+.wa-incoming {
+    align-self: flex-start;
+    background: #1F2C34;
+    color: #E9EDEF;
+    border-top-left-radius: 2px;
+}
+
+.wa-apk-attachment {
+    background: #111B21;
+    border: 1px solid #2A3942;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.wa-apk-attachment:hover {
+    background: #182229;
+}
+
+.apk-icon {
+    font-size: 1.3rem;
+}
+
+.wa-apk-attachment strong {
+    display: block;
+    font-size: 0.72rem;
+    color: #FFFFFF;
+}
+
+.wa-apk-attachment small {
+    display: block;
+    font-size: 0.60rem;
+    color: var(--text-muted);
+}
+
+.apk-dl-arrow {
+    margin-left: auto;
+    font-size: 0.9rem;
+}
+
+.wa-msg-time {
+    display: block;
+    text-align: right;
+    font-size: 0.56rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 4px;
+}
+
+.scam-alert-card {
+    background: linear-gradient(135deg, rgba(255, 23, 68, 0.15) 0%, rgba(20, 20, 28, 0.95) 100%);
+    border: 1px solid #FF1744;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.scam-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.whatsapp-input-bar {
+    display: flex;
+    gap: 6px;
+    padding: 4px 0;
+}
+
+.wa-icon-btn {
+    width: 100%;
+    background: #128C7E;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.wa-icon-btn:hover {
+    opacity: 0.9;
+}
+
+/* 4. Dialer / Phone Call App */
+.app-dialer-header {
+    background: #15151F;
+    border: 1px solid var(--border-subtle);
+}
+
+.incoming-call-card {
+    background: linear-gradient(180deg, #13131D 0%, #0A0A10 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 18px 12px;
+    text-align: center;
+}
+
+.caller-pulse-ring {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF1744 0%, #FF5252 100%);
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+    animation: pulse 1.5s infinite;
+}
+
+.caller-avatar-icon {
+    font-size: 2.2rem;
+}
+
+.caller-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+.caller-status {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.call-action-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-call-audit, .btn-call-clean {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.btn-call-audit {
+    background: #FF1744;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(255, 23, 68, 0.4);
+}
+
+.btn-call-clean {
+    background: #00E676;
+    color: #000000;
+}
+
+.btn-call-audit:hover, .btn-call-clean:hover {
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   VAULT, AUTOFILL MODAL, PRIVACY DASHBOARD & OCR STYLES
+   ========================================================================== */
+
+/* Vault Document Cards */
+.doc-card {
+    background: #14141E;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.doc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.doc-badge {
+    display: inline-block;
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    color: var(--cyan-primary);
+    font-size: 0.58rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+}
+
+.field-pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0B0B0F;
+    border: 1px solid #1E1E28;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-top: 5px;
+    font-size: 0.72rem;
+}
+
+.field-label {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+}
+
+.field-val {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.policy-tag {
+    font-size: 0.58rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+}
+
+/* Privacy Banner */
+.privacy-banner {
+    background: rgba(0, 229, 255, 0.06);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    font-size: 0.70rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+/* Interactive Autofill Suggestion Popup Modal */
+.autofill-suggestion-modal {
+    position: absolute;
+    top: 60px;
+    left: 12px;
+    right: 12px;
+    z-index: 130;
+    display: none;
+    animation: slideDown 0.25s ease;
+}
+
+.autofill-suggestion-modal.active {
+    display: block;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.suggestion-card {
+    background: linear-gradient(135deg, #181826 0%, #101018 100%);
+    border: 1.5px solid var(--cyan-primary);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 255, 0.25);
+}
+
+.suggestion-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.suggestion-header strong {
+    display: block;
+    font-size: 0.80rem;
+    color: #FFFFFF;
+}
+
+.suggestion-header small {
+    display: block;
+    font-size: 0.64rem;
+    color: var(--cyan-primary);
+}
+
+.suggestion-value {
+    background: #0B0B0F;
+    border: 1px solid #2B2B3C;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #00E676;
+    margin: 8px 0;
+    text-align: center;
+}
+
+.suggestion-btn-row {
+    display: flex;
+    gap: 8px;
+}
+
+.cancel-fill-btn, .confirm-fill-btn {
+    flex: 1;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 0.70rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+
+.cancel-fill-btn {
+    background: #252535;
+    color: var(--text-secondary);
+}
+
+.confirm-fill-btn {
+    background: var(--cyan-primary);
+    color: #000000;
+}
+
+/* Settings Cards & Controls */
+.settings-card {
+    background: #14141E;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings-row strong {
+    display: block;
+    font-size: 0.76rem;
+    color: #FFFFFF;
+}
+
+.settings-row small {
+    display: block;
+    font-size: 0.64rem;
+    color: var(--text-muted);
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    margin: 10px 0;
+}
+
+/* Badges */
+.badge-danger {
+    background: rgba(255, 23, 68, 0.15);
+    border: 1px solid #FF1744;
+    color: #FF5252;
+    font-size: 0.60rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.badge-safe {
+    background: rgba(0, 230, 118, 0.15);
+    border: 1px solid #00E676;
+    color: #00E676;
+    font-size: 0.60rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* OCR Preset Chips */
+.chip-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.filter-chip {
+    flex: 1;
+    background: #14141E;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.70rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.filter-chip.active, .filter-chip:hover {
+    background: rgba(0, 229, 255, 0.12);
+    border-color: var(--cyan-primary);
+    color: var(--cyan-primary);
+}
+
+.extracted-fields-card {
+    background: #101018;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.fields-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.70rem;
+}
