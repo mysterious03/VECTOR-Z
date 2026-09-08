@@ -516,5 +516,112 @@ function jumpToStep(step) {
         runTruthAudit();
     } else if (step === 6) {
         openScreen("privacy");
+    } else if (step === 7) {
+        openScreen("notification");
+        auditIncomingNotification();
+    } else if (step === 8) {
+        openScreen("media");
+        analyzeVoiceSample(true);
+    } else if (step === 9) {
+        openScreen("officeKit");
     }
 }
+
+// 10. NOTIFICATION SCAM INTERCEPTOR
+function auditIncomingNotification() {
+    const text = document.getElementById("simNotifText").value;
+    const card = document.getElementById("notifAlertCard");
+    const badge = document.getElementById("notifAlertBadge");
+    const title = document.getElementById("notifAlertTitle");
+    const desc = document.getElementById("notifAlertDesc");
+    const apkBlock = document.getElementById("notifApkBlock");
+
+    card.style.display = "block";
+
+    if (text.toLowerCase().includes("electricity") || text.toLowerCase().includes("power")) {
+        badge.className = "badge-danger";
+        badge.innerText = "CRITICAL 98%";
+        title.innerText = "🚨 Electricity Disconnection Threat Intercepted";
+        desc.innerText = "Scam alert: Fake utility disconnection notice designed to trigger panic payment or APK installation.";
+        apkBlock.style.display = "block";
+        apkBlock.innerText = "BLOCKED APK: http://power-board.in/update.apk (Trojan Dropper)";
+        addAuditEntry("NOTIF_GUARD", "com.google.android.apps.messaging", "Blocked Electricity Fraud APK", "HIGH_RISK", "INTERCEPTED");
+    } else if (text.toLowerCase().includes("pan") || text.toLowerCase().includes("suspended")) {
+        badge.className = "badge-danger";
+        badge.innerText = "HIGH RISK 92%";
+        title.innerText = "🚨 Bank Account / PAN Freeze Phishing";
+        desc.innerText = "Impersonation trap: Banks and UIDAI never send urgent SMS links demanding KYC updates.";
+        apkBlock.style.display = "none";
+        addAuditEntry("NOTIF_GUARD", "com.google.android.apps.messaging", "Blocked Bank Phishing SMS", "HIGH_RISK", "INTERCEPTED");
+    } else {
+        badge.className = "badge-safe";
+        badge.innerText = "SAFE 5%";
+        badge.style.background = "#00e676";
+        title.innerText = "✅ Clean Notification";
+        desc.innerText = "No financial panic keywords or unverified APK payloads detected.";
+        apkBlock.style.display = "none";
+    }
+}
+
+function loadSampleNotif(type) {
+    const field = document.getElementById("simNotifText");
+    if (type === 'pan') {
+        field.value = "Your SBI YONO account has been suspended due to PAN expiry. Click to verify: http://sbi-kyc-fix.top";
+    } else if (type === 'clean') {
+        field.value = "Hi Aarav, can you pick up the groceries and meeting files on your way home?";
+    }
+    auditIncomingNotification();
+}
+
+// 11. MULTI-MODAL VOICE & DEEPFAKE INSPECTOR
+function analyzeVoiceSample(isClone) {
+    const card = document.getElementById("mediaResultCard");
+    const title = document.getElementById("mediaRiskTitle");
+    const badge = document.getElementById("mediaScoreBadge");
+    const list = document.getElementById("mediaAnomalyList");
+
+    card.style.display = "block";
+
+    if (isClone) {
+        card.style.borderColor = "#ff3b30";
+        title.style.color = "#ff3b30";
+        title.innerText = "🚨 DEEPFAKE VOICE CLONE DETECTED";
+        badge.style.background = "#ff3b30";
+        badge.innerText = "94% Synthetic Score";
+        list.innerHTML = `
+            • <strong>Spectral Discontinuity:</strong> Unnatural phase shift detected in high-frequency vocal harmonics.<br>
+            • <strong>Zero Acoustic Decay:</strong> Synthesized audio lacks ambient room reverberation (Studio TTS Artifact).<br>
+            • <strong>Urgency Cue Flagged:</strong> High-pressure distress phrases detected: "hospital emergency", "transfer now".<br>
+            • <strong>Recommendation:</strong> Do NOT transfer funds. Call contact directly via standard cellular line.
+        `;
+        addAuditEntry("MEDIA_INSPECT", "com.whatsapp", "Flagged WhatsApp Voice Clone", "HIGH_RISK", "BLOCKED");
+    } else {
+        card.style.borderColor = "#00e676";
+        title.style.color = "#00e676";
+        title.innerText = "✅ AUTHENTIC HUMAN VOICE STREAM";
+        badge.style.background = "#00e676";
+        badge.innerText = "9% Synthetic Score";
+        list.innerHTML = `
+            • <strong>Natural Harmonic Modulation:</strong> Continuous vocal tract resonance consistent with authentic human speech.<br>
+            • <strong>Ambient Acoustics:</strong> Consistent 18ms ambient room acoustic decay verified.<br>
+            • <strong>Status:</strong> Clear. No synthetic markers identified.
+        `;
+        addAuditEntry("MEDIA_INSPECT", "com.whatsapp", "Verified Human Voice Sample", "SAFE", "CLEARED");
+    }
+}
+
+// 12. OFFICE KIT CROSS-DEVICE BRIDGE
+function projectTrustAlert(type) {
+    const log = document.getElementById("officeKitEventLog");
+    const d = new Date();
+    const timeStr = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+
+    if (type === 'PAYMENT_BLOCKED') {
+        log.innerHTML = `<div>[${timeStr}] ⚡ <strong>PROJECTED TO iQOO BOOK:</strong> Blocked ₹25,000 QR Refund Trap Overlay</div>` + log.innerHTML;
+        alert("Alert projected to paired PC screen via TLS AES-256 Enclave!");
+    } else if (type === 'AUTOFILL_AUTH') {
+        log.innerHTML = `<div>[${timeStr}] 🔐 <strong>PROJECTED TO iQOO BOOK:</strong> Biometric authorization challenge confirmed for Aadhaar injection</div>` + log.innerHTML;
+        alert("Biometric authorization event mirrored to PC Presentation View!");
+    }
+}
+

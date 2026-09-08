@@ -77,6 +77,16 @@
                 android:value="Floating trust-layer bubble overlay for fast autofill, payment verification, and truth auditing" />
         </service>
 
+        <!-- Notification Scam Interceptor Service -->
+        <service
+            android:name=".service.notification.NotificationGuardService"
+            android:exported="true"
+            android:label="Vector-Z Notification Scam Guard"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

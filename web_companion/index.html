@@ -74,8 +74,29 @@
                     <button class="step-btn" onclick="jumpToStep(6)">
                         <span class="step-num">6</span>
                         <div class="step-meta">
-                            <strong>Bounded Agent & Privacy (P2)</strong>
+                            <strong>Bounded Agent (P2)</strong>
                             <small>Hard safety block & audit ledger</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(7)">
+                        <span class="step-num">7</span>
+                        <div class="step-meta">
+                            <strong>Notification Scam Guard (P2)</strong>
+                            <small>SMS & WhatsApp rogue APK intercept</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(8)">
+                        <span class="step-num">8</span>
+                        <div class="step-meta">
+                            <strong>Voice & Deepfake Inspector (P2)</strong>
+                            <small>Multi-modal synthetic audio audit</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(9)">
+                        <span class="step-num">9</span>
+                        <div class="step-meta">
+                            <strong>iQOO Office Kit Bridge (P2)</strong>
+                            <small>Cross-device trust mirroring & sync</small>
                         </div>
                     </button>
                 </div>
@@ -520,6 +541,125 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
 
                         <div class="section-label mt-3">RECENT SENSITIVE ACTION LEDGER (ZERO RAW SECRETS)</div>
                         <div class="audit-ledger-list" id="auditLedgerList"></div>
+                    </div>
+
+                    <!-- Screen: NOTIFICATION SCAM INTERCEPTOR (P2) -->
+                    <div class="app-screen" id="screenNotification">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>NOTIFICATION SCAM GUARD</h3>
+                                <small>On-Device SMS & WhatsApp Trap Defense</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🚨 Intercepts electricity cut threats, fake bank freeze notices, and rogue APK dropper links in real time.
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label>Test Incoming Notification Body</label>
+                            <textarea id="simNotifText" rows="3" class="w-100" style="background:#15151b; color:#fff; border:1px solid #333; border-radius:8px; padding:10px; font-size:12px;">Dear consumer, your electricity will be disconnected tonight at 9:30 PM. Download update: http://power-board.in/update.apk</textarea>
+                        </div>
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="auditIncomingNotification()">INTERCEPT & AUDIT</button>
+                            <button class="secondary-btn" onclick="loadSampleNotif('pan')">PAN Freeze</button>
+                            <button class="secondary-btn" onclick="loadSampleNotif('clean')">Clean SMS</button>
+                        </div>
+
+                        <div class="scam-alert-card mt-3" id="notifAlertCard" style="display:none;">
+                            <div class="scam-header">
+                                <span class="badge-danger" id="notifAlertBadge">HIGH RISK</span>
+                                <strong id="notifAlertTitle">Electricity Scam Intercepted</strong>
+                            </div>
+                            <p id="notifAlertDesc" class="mt-2" style="font-size:12px; color:#ccc; line-height: 1.5;"></p>
+                            <div id="notifApkBlock" class="mt-2" style="background:rgba(255,59,48,0.15); border-left:3px solid #ff3b30; padding:6px 10px; font-size:11px; color:#ff3b30; font-weight:bold;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: MULTI-MODAL VOICE & DEEPFAKE INSPECTOR (P2) -->
+                    <div class="app-screen" id="screenMedia">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>VOICE & MEDIA INSPECTOR</h3>
+                                <small>Hexagon NPU Synthetic Audio Audit</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🎙️ Analyzes incoming voice notes and video calls for AI voice cloning, harmonic glitches, and urgency pressure scam cues.
+                        </div>
+
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <strong style="color:#fff; font-size:13px;">Incoming WhatsApp Voice Note</strong>
+                                    <div style="color:#888; font-size:11px;">"Urgent hospital emergency, transfer ₹50k now"</div>
+                                </div>
+                                <span style="font-size:20px;">🔊</span>
+                            </div>
+                            <div class="waveform-box mt-2" style="height:32px; background:#0c0c10; border-radius:6px; display:flex; align-items:center; justify-content:space-around; padding:0 10px;">
+                                <div style="width:4px; height:18px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:28px; background:#00ffff; border-radius:2px;"></div>
+                                <div style="width:4px; height:12px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:24px; background:#00ffff; border-radius:2px;"></div>
+                                <div style="width:4px; height:8px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:26px; background:#00ffff; border-radius:2px;"></div>
+                                <div style="width:4px; height:15px; background:#ff5500; border-radius:2px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="analyzeVoiceSample(true)">SCAN VOICE NOTE (CLONE)</button>
+                            <button class="secondary-btn" onclick="analyzeVoiceSample(false)">AUTHENTIC VOICE</button>
+                        </div>
+
+                        <div class="media-result-card mt-3" id="mediaResultCard" style="display:none; background:#15151b; border:1px solid #ff3b30; border-radius:10px; padding:12px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <strong id="mediaRiskTitle" style="color:#ff3b30; font-size:13px;">🚨 DEEPFAKE VOICE CLONE DETECTED</strong>
+                                <span class="score-badge" id="mediaScoreBadge" style="background:#ff3b30; color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold;">94% Synthetic</span>
+                            </div>
+                            <div id="mediaAnomalyList" class="mt-2" style="font-size:11px; color:#bbb; line-height:1.6;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: iQOO OFFICE KIT BRIDGE (P2) -->
+                    <div class="app-screen" id="screenOfficeKit">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>iQOO OFFICE KIT BRIDGE</h3>
+                                <small>Cross-Device Trust Mirroring</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <strong style="color:#fff; font-size:13px;">Paired: iQOO Book Ultra (Win11)</strong>
+                                    <div style="color:#00ffff; font-size:11px;">TLS AES-256 Enclave • 6ms Latency</div>
+                                </div>
+                                <span style="background:rgba(0,255,255,0.15); color:#00ffff; font-size:10px; font-weight:bold; padding:3px 8px; border-radius:12px;">MIRRORING ACTIVE</span>
+                            </div>
+                        </div>
+
+                        <div class="section-label mt-3">BROADCAST AUDIT EVENT TO PC SCREEN</div>
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="projectTrustAlert('PAYMENT_BLOCKED')">PROJECT QR TRAP BLOCK</button>
+                            <button class="secondary-btn" onclick="projectTrustAlert('AUTOFILL_AUTH')">PROJECT BIO AUTH</button>
+                        </div>
+
+                        <div class="section-label mt-3">OFFICE KIT LIVE EVENT LOG</div>
+                        <div id="officeKitEventLog" style="background:#101015; border:1px solid #222; border-radius:8px; padding:10px; font-size:11px; color:#888; font-family:'JetBrains Mono', monospace; min-height:80px;">
+                            <div>[10:14:02] Connected to iQOO Book Ultra via WiFi Direct</div>
+                            <div>[10:14:03] Cryptographic handshake completed (AES-256-GCM)</div>
+                            <div>[10:14:05] Ready for remote presentation trust projection</div>
+                        </div>
                     </div>
 
                 </div>

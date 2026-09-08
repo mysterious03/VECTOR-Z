@@ -82,4 +82,59 @@ class VectorZTests {
         assertTrue(allowedPassport is PolicyDecision.Allowed)
         assertTrue((allowedPassport as PolicyDecision.Allowed).requiresBiometric)
     }
+
+    @Test
+    fun `test Notification Guard intercepts electricity and rogue APK scams`() {
+        val notifEngine = com.iqoo.vectorz.service.notification.NotificationGuardEngine()
+        
+        val elecScam = notifEngine.inspectNotification(
+            "com.google.android.apps.messaging",
+            "POWER BOARD",
+            "Dear consumer, your electricity will be disconnected tonight at 9:30 PM. Download update: http://power-board.in/update.apk"
+        )
+        assertEquals(com.iqoo.vectorz.service.notification.ScamCategory.ELECTRICITY_DISCONNECTION_SCAM, elecScam.threatCategory)
+        assertTrue(elecScam.riskScore >= 0.90f)
+        assertNotNull(elecScam.blockedApkUrl)
+
+        val cleanNotif = notifEngine.inspectNotification(
+            "com.whatsapp",
+            "Mom",
+            "Hi, please pick up groceries on your way back."
+        )
+        assertEquals(com.iqoo.vectorz.service.notification.ScamCategory.CLEAN_NOTIFICATION, cleanNotif.threatCategory)
+    }
+
+    @Test
+    fun `test Multi-Modal Inspector flags synthetic voice clones and visual deepfakes`() {
+        val mediaEngine = com.iqoo.vectorz.ai.multimodal.MediaInspectorEngine()
+
+        val voiceResult = mediaEngine.analyzeVoiceSample(
+            audioDurationMs = 5000,
+            hasHarmonicDistortion = true,
+            ambientReverbRatio = 0.02f,
+            detectedKeywords = listOf("urgent transfer", "hospital emergency")
+        )
+        assertEquals(com.iqoo.vectorz.ai.multimodal.MediaRiskLevel.DEEPFAKE_ALERT, voiceResult.riskLevel)
+        assertTrue(voiceResult.syntheticLikelihood >= 0.70f)
+
+        val deepfakeImage = mediaEngine.analyzeVisualMedia(
+            facialBoundaryBlurScore = 0.85f,
+            eyeBlinkIrregularity = true,
+            lightingInconsistency = true
+        )
+        assertEquals(com.iqoo.vectorz.ai.multimodal.MediaRiskLevel.DEEPFAKE_ALERT, deepfakeImage.riskLevel)
+    }
+
+    @Test
+    fun `test Granular App Permission Matrix restricts unauthorized field access`() {
+        val matrix = com.iqoo.vectorz.core.policy.AppPermissionMatrix()
+        
+        // Amazon Shopping should have access to address, but NOT PAN
+        assertTrue(matrix.isFieldAllowedForApp("in.amazon.mShop.android.shopping", "address"))
+        assertFalse(matrix.isFieldAllowedForApp("in.amazon.mShop.android.shopping", "pan_number"))
+        
+        // Suspicious app should be blocked completely
+        assertFalse(matrix.isFieldAllowedForApp("com.unverified.loanapp", "phone"))
+    }
 }
+

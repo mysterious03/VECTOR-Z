@@ -96,6 +96,18 @@ Every day across India's hyper-digital ecosystem:
   * 🔴 **Tier 4 (Prohibited)**: Hardcoded application block — the agent can **NEVER** handle OTPs, UPI PINs, passwords, or initiate autonomous financial transfers.
 * **Zero-Leakage Privacy Ledger**: Logs metadata events only (`timestamp`, `appPackage`, `status`). **Zero identity or financial payloads are ever persisted**.
 
+### 8. 🚨 Real-Time Notification Scam Interceptor (P2)
+* **SMS & Messaging Protection**: Intercepts electricity disconnection panic alerts, fake PAN/bank suspension notices, and rogue APK dropper links before user interaction.
+* **Automated URL Sanitization**: Identifies unverified `.apk` download URLs and warns the user with actionable security recommendations.
+
+### 9. 🎙️ Multi-Modal Synthetic Voice & Deepfake Inspector (P2)
+* **On-Device Voice Clone Detection**: Inspects incoming audio clips for spectral discontinuity, lack of natural room reverberation, and high-pressure urgency scam markers.
+* **Visual Deepfake Heuristics**: Analyzes facial mesh boundary blurring, corneal reflections, and lighting vectors.
+
+### 10. 🖥️ iQOO Office Kit Cross-Device Bridge (P2)
+* **Dual-Screen Trust Mirror**: Wirelessly projects real-time security alerts and audit streams to paired PC/Mac displays via encrypted TLS AES-256 session.
+* **Presentation Remote Controls**: Synchronizes live test vectors for seamless hackathon demonstrations.
+
 ---
 
 ## 📱 Tech Stack & Architecture
