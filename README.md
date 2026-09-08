@@ -52,6 +52,8 @@ Every month, millions of Indian smartphone users fall prey to **UPI QR refund tr
 | **8** | **Hostage / Duress Vault Coercion** | User forced at gunpoint/threat to unlock their Identity Vault PIN. | **Duress Decoy Engine** loads synthetic dummy credentials (Rohit Kumar) while stealthily dispatching an encrypted SOS beacon. |
 | **9** | **Background App Snooping** | Rogue cleaner apps reading clipboard data & keyboard logging during banking sessions. | **Zero-Trust App Sandbox Auditor** detects clipboard polling & accessibility keystroke capture in real-time. |
 | **10** | **Password Phishing On Portals** | Weak passwords and SMS OTPs intercepted on government and broker portals. | **FIDO2 Passkey Vault Engine** generates hardware-bound asymmetric ECDSA P-256 credentials in Android Keystore. |
+| **11** | **Frida & Dynamic Hooking** | Malware injecting Frida hooks to intercept decrypted Keystore master keys. | **Anti-Tamper & Environment Integrity Engine** detects debugger attachment & dynamic hooks, terminating sensitive memory heaps. |
+| **12** | **Software Emulated Keystore** | Vulnerabilities in software-only cryptographic implementations. | **StrongBox Key Attestation Engine** verifies cryptographic keys reside inside tamper-resistant hardware security modules. |
 
 ---
 

@@ -277,7 +277,38 @@ class VectorZTests {
         assertEquals("epfo.gov.in", newCred.relyingParty)
         assertEquals(newCred, passkeyVault.getPasskey("epfo.gov.in"))
     }
+
+    @Test
+    fun `test StrongBox Key Attestation verifies hardware enclave level`() {
+        val attestation = com.iqoo.vectorz.core.security.KeyAttestationEngine()
+        val result = attestation.verifyKeySecurity("master_vault_key")
+        assertTrue(result.isStrongBoxBacked)
+        assertTrue(result.isKeymasterHardwareEnclave)
+        assertEquals("STRONGBOX_TAMPER_RESISTANT_HARDWARE", result.securityLevel)
+    }
+
+    @Test
+    fun `test Anti-Tamper Engine detects debugger and Frida instrumentation`() {
+        val antiTamper = com.iqoo.vectorz.core.security.AntiTamperEngine()
+        
+        // Simulating Frida injection
+        val tamperedReport = antiTamper.performIntegrityCheck(
+            isDebuggerConnected = true,
+            activePort27042Listening = true
+        )
+        assertFalse(tamperedReport.isEnvironmentSecure)
+        assertTrue(tamperedReport.isFridaDetected)
+        assertTrue(tamperedReport.isDebuggerAttached)
+
+        // Normal execution
+        val cleanReport = antiTamper.performIntegrityCheck(
+            isDebuggerConnected = false,
+            activePort27042Listening = false
+        )
+        assertTrue(cleanReport.isEnvironmentSecure)
+    }
 }
+
 
 
 
