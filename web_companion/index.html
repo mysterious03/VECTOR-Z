@@ -438,54 +438,104 @@
                         </div>
                     </div>
 
-                    <!-- Screen: PAYMENT GUARD -->
+                    <!-- Screen: REAL PHONEPE APP SIMULATOR -->
                     <div class="app-screen" id="screenPayment">
-                        <div class="subpage-header">
+                        <div class="app-top-header app-phonepe-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
-                            <div>
-                                <h3>PAYMENT INTENT GUARD</h3>
-                                <small>Pre-Transaction Intent Verification</small>
+                            <div class="app-brand-info">
+                                <span class="app-logo-text">PhonePe</span>
+                                <small>UPI & Payments</small>
                             </div>
-                            <div></div>
+                            <div class="header-action-icons">
+                                <span class="hdr-icon">🔍</span>
+                                <span class="hdr-icon">🔔</span>
+                            </div>
                         </div>
 
-                        <div class="section-label">SCANNED QR / UPI INTENT URI</div>
-                        <input type="text" id="qrIntentInput" class="custom-input" value="upi://pay?pa=refund-helpdesk99@fakeupi&pn=ABC+MART+REFUND&am=2500&tn=Instant+Cashback+Verification">
+                        <!-- PhonePe Quick Money Transfer Grid -->
+                        <div class="phonepe-quick-grid">
+                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                                <div class="pp-icon-circle">📱</div>
+                                <span>To Mobile</span>
+                            </div>
+                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                                <div class="pp-icon-circle">🏦</div>
+                                <span>To Bank</span>
+                            </div>
+                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                                <div class="pp-icon-circle">🔄</div>
+                                <span>To Self</span>
+                            </div>
+                            <div class="pp-quick-item" onclick="runPaymentGuard()">
+                                <div class="pp-icon-circle">📊</div>
+                                <span>Check Bal</span>
+                            </div>
+                        </div>
 
-                        <div class="section-label mt-2">SURROUNDING MESSAGE / CLAIM</div>
-                        <input type="text" id="qrContextInput" class="custom-input" value="Customer service said: Scan this QR to RECEIVE your ₹2,500 refund.">
+                        <!-- Active Payment / QR Scan Challenge -->
+                        <div class="section-label mt-2">ACTIVE SCANNED PAYMENT REQUEST</div>
+                        <div class="phonepe-pay-card">
+                            <div class="payee-row">
+                                <div class="payee-avatar">🏪</div>
+                                <div>
+                                    <strong id="payeeName">ABC Mart Refund Desk</strong>
+                                    <small id="payeeVpa" class="text-danger">refund-desk@fakebank</small>
+                                </div>
+                                <span class="badge-danger">DEBIT INTENT</span>
+                            </div>
+                            <div class="amount-box">
+                                <span class="curr-symbol">₹</span>
+                                <input type="number" id="payAmountInput" value="25000" class="pay-amount-field">
+                            </div>
+                            <div class="seller-claim-note">
+                                💬 <em>"Customer Care: Scan QR and enter UPI PIN to RECEIVE ₹25,000 refund reward."</em>
+                            </div>
+                            <button class="phonepe-btn-pay" onclick="runPaymentGuard()">
+                                PROCEED TO PAY / VERIFY
+                            </button>
+                        </div>
 
-                        <button class="primary-btn mt-3" onclick="runPaymentGuard()">INSPECT PAYMENT INTENT</button>
-
-                        <div id="paymentGuardResult" class="payment-result-box"></div>
+                        <div id="paymentGuardResult" class="payment-result-box" style="display:none;"></div>
                     </div>
 
-                    <!-- Screen: COMMERCE GUARD (P1) -->
+                    <!-- Screen: REAL AMAZON SHOPPING APP SIMULATOR -->
                     <div class="app-screen" id="screenCommerce">
-                        <div class="subpage-header">
+                        <div class="app-top-header app-amazon-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
-                            <div>
-                                <h3>COMMERCE GUARD</h3>
-                                <small>Price Reality • Return Policy • Seller Reputation</small>
+                            <div class="amazon-search-bar">
+                                <span class="amazon-search-icon">🔍</span>
+                                <input type="text" value="iPhone 16 Pro Max (1TB)" readonly>
                             </div>
-                            <div></div>
+                            <span class="hdr-icon">🛒 <strong style="color:#FF9900;">2</strong></span>
                         </div>
 
-                        <div class="section-label">PRODUCT / CART CONTEXT TEXT</div>
-                        <textarea id="commerceInputText" rows="3" class="custom-input">Mega Brand Earbuds Pro
-Special Price: ₹999 (90% OFF from ₹9,999)
-Seller: QuickRetail Traders (WhatsApp Pay for extra 10% off)
-Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
+                        <!-- Product Showcase Page -->
+                        <div class="amazon-product-card">
+                            <div class="product-badge-deal">LIMITED FLASH DEAL • 90% OFF</div>
+                            <div class="product-title">Apple iPhone 16 Pro Max (1 TB) - Natural Titanium</div>
+                            <div class="product-rating">⭐⭐⭐⭐☆ (2,491 ratings) • Amazon Verified</div>
+                            
+                            <div class="amazon-price-row">
+                                <span class="deal-pct">-90%</span>
+                                <span class="deal-price">₹14,999</span>
+                                <span class="mrp-price">M.R.P: ₹1,59,999</span>
+                            </div>
 
-                        <div class="btn-row mt-2">
-                            <button class="primary-btn" onclick="runCommerceGuard()">AUDIT PURCHASE RISK</button>
-                            <button class="secondary-btn" onclick="loadCommerceSafePreset()">Safe Preset</button>
+                            <div class="seller-fine-print">
+                                • Seller: <strong>SuperDeals India (Registered 2 days ago)</strong><br>
+                                • Policy: <span style="color:#FF1744; font-weight:bold;">⚠️ NON-RETURNABLE / STRICTLY NO REFUNDS</span>
+                            </div>
+
+                            <div class="amazon-btn-row">
+                                <button class="btn-amazon-cart" onclick="runCommerceGuard()">Add to Cart</button>
+                                <button class="btn-amazon-buy" onclick="runCommerceGuard()">Buy Now</button>
+                            </div>
                         </div>
 
-                        <div id="commerceResultContainer" class="commerce-result-box"></div>
+                        <div id="commerceResultContainer" class="commerce-result-box" style="display:none;"></div>
                     </div>
 
-                    <!-- Screen: TRUTH & MEDIA AUDIT (P1) -->
+                    <!-- Screen: TRUTH & CLAIM DECONSTRUCTION -->
                     <div class="app-screen" id="screenTruth">
                         <div class="subpage-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
@@ -505,28 +555,6 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                         </div>
 
                         <div id="truthResultContainer" class="truth-result-box"></div>
-                    </div>
-
-                    <!-- Screen: BOUNDED AGENT -->
-                    <div class="app-screen" id="screenAgent">
-                        <div class="subpage-header">
-                            <button class="back-btn" onclick="openScreen('home')">←</button>
-                            <div>
-                                <h3>BOUNDED AGENT</h3>
-                                <small>Policy-Gated Phone Automation</small>
-                            </div>
-                            <div></div>
-                        </div>
-
-                        <div class="section-label">COMMAND INTENT</div>
-                        <input type="text" id="agentCommandInput" class="custom-input" value="Fill the passport number in the current field.">
-
-                        <div class="btn-row mt-2">
-                            <button class="primary-btn" onclick="runAgentPlan()">GENERATE PLAN</button>
-                            <button class="danger-outline-btn" onclick="testAgentSafetyBlock()">Test Safety Block</button>
-                        </div>
-
-                        <div id="agentPlanContainer" class="agent-plan-box"></div>
                     </div>
 
                     <!-- Screen: KYC FORM SIMULATOR -->
@@ -663,82 +691,103 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                         <div class="audit-ledger-list" id="auditLedgerList"></div>
                     </div>
 
-                    <!-- Screen: NOTIFICATION SCAM INTERCEPTOR (P2) -->
+                    <!-- Screen: REAL WHATSAPP CHAT APP SIMULATOR -->
                     <div class="app-screen" id="screenNotification">
-                        <div class="subpage-header">
+                        <div class="app-top-header app-whatsapp-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
-                            <div>
-                                <h3>NOTIFICATION SCAM GUARD</h3>
-                                <small>On-Device SMS & WhatsApp Trap Defense</small>
+                            <div class="chat-contact-info">
+                                <div class="chat-contact-avatar">⚡</div>
+                                <div>
+                                    <strong>Electricity Helpdesk (BESCOM)</strong>
+                                    <small style="color:#25D366;">+91 98765 43210 • Unknown Sender</small>
+                                </div>
                             </div>
-                            <div></div>
-                        </div>
-
-                        <div class="tip-banner">
-                            🚨 Intercepts electricity cut threats, fake bank freeze notices, and rogue APK dropper links in real time.
-                        </div>
-
-                        <div class="form-group mt-2">
-                            <label>Test Incoming Notification Body</label>
-                            <textarea id="simNotifText" rows="3" class="w-100" style="background:#15151b; color:#fff; border:1px solid #333; border-radius:8px; padding:10px; font-size:12px;">Dear consumer, your electricity will be disconnected tonight at 9:30 PM. Download update: http://power-board.in/update.apk</textarea>
-                        </div>
-
-                        <div class="btn-row mt-2">
-                            <button class="primary-btn" onclick="auditIncomingNotification()">INTERCEPT & AUDIT</button>
-                            <button class="secondary-btn" onclick="loadSampleNotif('pan')">PAN Freeze</button>
-                            <button class="secondary-btn" onclick="loadSampleNotif('clean')">Clean SMS</button>
-                        </div>
-
-                        <div class="scam-alert-card mt-3" id="notifAlertCard" style="display:none;">
-                            <div class="scam-header">
-                                <span class="badge-danger" id="notifAlertBadge">HIGH RISK</span>
-                                <strong id="notifAlertTitle">Electricity Scam Intercepted</strong>
+                            <div class="header-action-icons">
+                                <span class="hdr-icon">📞</span>
+                                <span class="hdr-icon">📹</span>
                             </div>
-                            <p id="notifAlertDesc" class="mt-2" style="font-size:12px; color:#ccc; line-height: 1.5;"></p>
-                            <div id="notifApkBlock" class="mt-2" style="background:rgba(255,59,48,0.15); border-left:3px solid #ff3b30; padding:6px 10px; font-size:11px; color:#ff3b30; font-weight:bold;"></div>
+                        </div>
+
+                        <!-- WhatsApp Active Chat Stream -->
+                        <div class="whatsapp-chat-body">
+                            <div class="chat-time-pill">TODAY</div>
+
+                            <!-- Incoming Scammer Message Bubble -->
+                            <div class="wa-msg-bubble wa-incoming">
+                                <p>
+                                    <strong>Dear Consumer</strong>,<br>
+                                    Your electricity connection (#8912401) will be <strong>DISCONNECTED tonight at 9:30 PM</strong> due to unpaid bill of ₹120. Download and install our official bill update app to prevent disconnection:
+                                </p>
+                                <div class="wa-apk-attachment" onclick="auditIncomingNotification()">
+                                    <span class="apk-icon">📦</span>
+                                    <div>
+                                        <strong>power-pay-refund.apk</strong>
+                                        <small>8.4 MB • Android Package</small>
+                                    </div>
+                                    <span class="apk-dl-arrow">⬇️</span>
+                                </div>
+                                <span class="wa-msg-time">09:38 AM</span>
+                            </div>
+
+                            <!-- Vector-Z Inline Trojan Intercept Card -->
+                            <div class="scam-alert-card mt-2" id="notifAlertCard" style="display:block;">
+                                <div class="scam-header">
+                                    <span class="badge-danger" id="notifAlertBadge">🚨 CRITICAL TROJAN BLOCKED</span>
+                                    <strong id="notifAlertTitle">DLT Header Spoof Intercepted</strong>
+                                </div>
+                                <p id="notifAlertDesc" class="mt-1" style="font-size:11px; color:#ccc; line-height: 1.4;">
+                                    Sender is an unverified 10-digit mobile number impersonating utility authority. <strong>power-pay-refund.apk</strong> contains background SMS sniffer.
+                                </p>
+                                <div id="notifApkBlock" class="mt-1" style="background:rgba(255,59,48,0.15); border-left:3px solid #ff3b30; padding:4px 8px; font-size:10px; color:#ff3b30; font-weight:bold;">
+                                    🛑 DOWNLOAD QUARANTINED ON-DEVICE (0ms Cloud)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Message Input Bar -->
+                        <div class="whatsapp-input-bar">
+                            <button class="wa-icon-btn" onclick="auditIncomingNotification()">⚡ Test Scam APK</button>
+                            <input type="text" id="simNotifText" value="Dear consumer, your electricity will be disconnected tonight at 9:30 PM. Download update: http://power-board.in/update.apk" style="display:none;">
                         </div>
                     </div>
 
-                    <!-- Screen: MULTI-MODAL VOICE & DEEPFAKE INSPECTOR (P2) -->
+                    <!-- Screen: REAL PHONE DIALER & AI VOICE CALL SIMULATOR -->
                     <div class="app-screen" id="screenMedia">
-                        <div class="subpage-header">
+                        <div class="app-top-header app-dialer-header">
                             <button class="back-btn" onclick="openScreen('home')">←</button>
                             <div>
-                                <h3>VOICE & MEDIA INSPECTOR</h3>
-                                <small>Hexagon NPU Synthetic Audio Audit</small>
+                                <strong>Phone Dialer</strong>
+                                <small>Qualcomm Acoustic DSP</small>
                             </div>
-                            <div></div>
+                            <span class="hdr-icon">⚙️</span>
                         </div>
 
-                        <div class="tip-banner">
-                            🎙️ Analyzes incoming voice notes and video calls for AI voice cloning, harmonic glitches, and urgency pressure scam cues.
-                        </div>
-
-                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <div>
-                                    <strong style="color:#fff; font-size:13px;">Incoming WhatsApp Voice Note</strong>
-                                    <div style="color:#888; font-size:11px;">"Urgent hospital emergency, transfer ₹50k now"</div>
-                                </div>
-                                <span style="font-size:20px;">🔊</span>
+                        <!-- Incoming Call Card Simulation -->
+                        <div class="incoming-call-card">
+                            <div class="caller-pulse-ring">
+                                <span class="caller-avatar-icon">👩</span>
                             </div>
-                            <div class="waveform-box mt-2" style="height:32px; background:#0c0c10; border-radius:6px; display:flex; align-items:center; justify-content:space-around; padding:0 10px;">
+                            <h3 class="caller-name">Mom (Emergency Call)</h3>
+                            <div class="caller-status" id="callStatusText">Incoming Call • Voice Line Active</div>
+
+                            <!-- Waveform Display -->
+                            <div class="waveform-box mt-2" style="height:36px; background:#0c0c10; border-radius:8px; display:flex; align-items:center; justify-content:space-around; padding:0 12px;">
                                 <div style="width:4px; height:18px; background:#ff5500; border-radius:2px;"></div>
-                                <div style="width:4px; height:28px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:12px; background:#ff5500; border-radius:2px;"></div>
-                                <div style="width:4px; height:24px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:8px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:30px; background:#00ffff; border-radius:2px;"></div>
+                                <div style="width:4px; height:14px; background:#ff5500; border-radius:2px;"></div>
                                 <div style="width:4px; height:26px; background:#00ffff; border-radius:2px;"></div>
-                                <div style="width:4px; height:15px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:10px; background:#ff5500; border-radius:2px;"></div>
+                                <div style="width:4px; height:28px; background:#00ffff; border-radius:2px;"></div>
+                                <div style="width:4px; height:16px; background:#ff5500; border-radius:2px;"></div>
+                            </div>
+
+                            <div class="call-action-row mt-3">
+                                <button class="btn-call-audit" onclick="analyzeVoiceSample(true)">🚨 AUDIT VOICE (CLONE)</button>
+                                <button class="btn-call-clean" onclick="analyzeVoiceSample(false)">VERIFY REAL VOICE</button>
                             </div>
                         </div>
 
-                        <div class="btn-row mt-2">
-                            <button class="primary-btn" onclick="analyzeVoiceSample(true)">SCAN VOICE NOTE (CLONE)</button>
-                            <button class="secondary-btn" onclick="analyzeVoiceSample(false)">AUTHENTIC VOICE</button>
-                        </div>
-
-                        <div class="media-result-card mt-3" id="mediaResultCard" style="display:none; background:#15151b; border:1px solid #ff3b30; border-radius:10px; padding:12px;">
+                        <div class="media-result-card mt-2" id="mediaResultCard" style="display:none; background:#15151b; border:1px solid #ff3b30; border-radius:10px; padding:10px;">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
                                 <strong id="mediaRiskTitle" style="color:#ff3b30; font-size:13px;">🚨 DEEPFAKE VOICE CLONE DETECTED</strong>
                                 <span class="score-badge" id="mediaScoreBadge" style="background:#ff3b30; color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:bold;">94% Synthetic</span>
