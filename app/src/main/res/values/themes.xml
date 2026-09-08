@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.VectorZ" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/iqoo_black</item>
+        <item name="android:statusBarColor">@color/iqoo_black</item>
+        <item name="android:navigationBarColor">@color/iqoo_black</item>
+    </style>
+</resources>

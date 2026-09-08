@@ -1,0 +1,12 @@
+<resources>
+    <color name="iqoo_black">#090A0F</color>
+    <color name="iqoo_surface">#12141F</color>
+    <color name="iqoo_surface_variant">#1C2030</color>
+    <color name="iqoo_cyan">#00E5FF</color>
+    <color name="iqoo_blue">#3D5AFE</color>
+    <color name="iqoo_safety_green">#00E676</color>
+    <color name="iqoo_warning_amber">#FFD600</color>
+    <color name="iqoo_risk_red">#FF1744</color>
+    <color name="iqoo_text_primary">#F5F5F7</color>
+    <color name="iqoo_text_secondary">#9E9EA7</color>
+</resources>

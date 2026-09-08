@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VECTOR-Z — iQOO On-Device Trust Layer Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="desktop-layout">
+        <!-- Sidebar Pitch & Control Panel -->
+        <aside class="pitch-sidebar">
+            <div class="brand-badge">
+                <div class="npu-indicator"></div>
+                <span>iQOO HACKATHON 2026 • FINTECH + COMMERCE</span>
+            </div>
+            
+            <h1 class="brand-title">VECTOR-<span class="highlight">Z</span></h1>
+            <p class="brand-tagline">"Trust before action."</p>
+            
+            <div class="thesis-card">
+                <div class="thesis-header">
+                    <span class="icon">🛡️</span>
+                    <strong>CORE PRINCIPLE</strong>
+                </div>
+                <p>
+                    "We don't want AI to know everything about you.<br>
+                    <strong>We want AI to help you reveal less.</strong>"
+                </p>
+            </div>
+
+            <!-- Hero Demo Stepper Controls -->
+            <div class="hero-stepper-box">
+                <h3>🎬 3-MINUTE HERO DEMO FLOW</h3>
+                <div class="step-btn-group">
+                    <button class="step-btn active" onclick="jumpToStep(1)">
+                        <span class="step-num">1</span>
+                        <div class="step-meta">
+                            <strong>Payment Intent Guard (P0)</strong>
+                            <small>UPI QR intent & conflict detection</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(2)">
+                        <span class="step-num">2</span>
+                        <div class="step-meta">
+                            <strong>Encrypted Vault & OCR (P0)</strong>
+                            <small>Synthetic ID to Keystore</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(3)">
+                        <span class="step-num">3</span>
+                        <div class="step-meta">
+                            <strong>Contextual Autofill (P0)</strong>
+                            <small>Masked preview & Biometric gate</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(4)">
+                        <span class="step-num">4</span>
+                        <div class="step-meta">
+                            <strong>Commerce Guard (P1)</strong>
+                            <small>Price sanity & return risk card</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(5)">
+                        <span class="step-num">5</span>
+                        <div class="step-meta">
+                            <strong>Truth & Media Audit (P1)</strong>
+                            <small>Atomic claims & synthetic signals</small>
+                        </div>
+                    </button>
+                    <button class="step-btn" onclick="jumpToStep(6)">
+                        <span class="step-num">6</span>
+                        <div class="step-meta">
+                            <strong>Bounded Agent & Privacy (P2)</strong>
+                            <small>Hard safety block & audit ledger</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="telemetry-box">
+                <div class="telemetry-row">
+                    <span>Inference Runtime:</span>
+                    <strong class="cyan-text">LiteRT / QNN NPU (0ms cloud)</strong>
+                </div>
+                <div class="telemetry-row">
+                    <span>Crypto Storage:</span>
+                    <strong class="green-text">AES-256-GCM Keystore</strong>
+                </div>
+                <div class="telemetry-row">
+                    <span>Office Kit Bridge:</span>
+                    <strong class="green-text">Phone Control Plane Active</strong>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center: Interactive iQOO Phone Frame -->
+        <main class="phone-viewport">
+            <div class="phone-chassis">
+                <div class="speaker-grill"></div>
+                <div class="punch-hole-camera"></div>
+
+                <!-- Status Bar -->
+                <div class="phone-status-bar">
+                    <span class="time">09:41</span>
+                    <div class="status-icons">
+                        <span class="npu-badge">NPU</span>
+                        <span>5G</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+
+                <!-- App Screen Content -->
+                <div class="phone-screen" id="phoneScreen">
+                    
+                    <!-- Floating Draggable Vector-Z Bubble (6 Actions) -->
+                    <div class="floating-bubble-overlay" id="floatingBubble" title="Drag to move, click to expand">
+                        <div class="bubble-collapsed" id="bubbleCollapsed" onclick="toggleBubbleExpand()">
+                            <div class="bubble-shield-glow"></div>
+                            <span class="bubble-icon">🛡️</span>
+                            <span class="bubble-pulse"></span>
+                        </div>
+                        
+                        <div class="bubble-expanded-tray" id="bubbleExpanded">
+                            <div class="tray-header">
+                                <div class="tray-brand">
+                                    <span>🛡️ Vector-Z Quick Actions</span>
+                                </div>
+                                <button class="tray-close" onclick="toggleBubbleExpand()">✕</button>
+                            </div>
+                            <div class="tray-actions-6">
+                                <button class="tray-action-btn" onclick="openScreen('simulator'); toggleBubbleExpand();">
+                                    <span class="act-icon">⚡</span>
+                                    <span>Fill</span>
+                                </button>
+                                <button class="tray-action-btn" onclick="openScreen('payment'); toggleBubbleExpand();">
+                                    <span class="act-icon">💳</span>
+                                    <span>Check</span>
+                                </button>
+                                <button class="tray-action-btn" onclick="openScreen('truth'); toggleBubbleExpand();">
+                                    <span class="act-icon">🔍</span>
+                                    <span>Audit</span>
+                                </button>
+                                <button class="tray-action-btn" onclick="openScreen('commerce'); toggleBubbleExpand();">
+                                    <span class="act-icon">🛒</span>
+                                    <span>Commerce</span>
+                                </button>
+                                <button class="tray-action-btn" onclick="openScreen('vault'); toggleBubbleExpand();">
+                                    <span class="act-icon">🔒</span>
+                                    <span>Vault</span>
+                                </button>
+                                <button class="tray-action-btn" onclick="openScreen('agent'); toggleBubbleExpand();">
+                                    <span class="act-icon">🤖</span>
+                                    <span>Automate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: HOME DASHBOARD -->
+                    <div class="app-screen active" id="screenHome">
+                        <div class="screen-header">
+                            <div>
+                                <h2 class="screen-title">VECTOR-<span class="cyan-text">Z</span></h2>
+                                <p class="screen-sub">Trust before action.</p>
+                            </div>
+                            <button class="icon-btn" onclick="openScreen('privacy')">🛡️</button>
+                        </div>
+
+                        <!-- Protection Status Card -->
+                        <div class="hero-status-card">
+                            <div class="status-header">
+                                <div class="badge-active">
+                                    <span class="dot"></span> NPU HARDWARE ENCLAVE
+                                </div>
+                                <span class="zero-cloud">0% Cloud</span>
+                            </div>
+                            <h3>Phone-Native Trust Layer</h3>
+                            <p>Understands what is on screen, guards payments & commerce, and protects identity.</p>
+                            
+                            <div class="bubble-switch-row">
+                                <div class="bubble-info">
+                                    <span>🛡️ Vector-Z Trust Bubble</span>
+                                    <small>Docked at screen edge</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked id="bubbleToggleCheckbox" onchange="toggleBubbleVisibility(this.checked)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 6 Core Capabilities Grid -->
+                        <div class="section-label">CORE TRUST CAPABILITIES</div>
+                        <div class="capabilities-grid-6">
+                            <div class="cap-card" onclick="openScreen('vault')">
+                                <div class="cap-icon-box cyan-box">🔒</div>
+                                <h4>Identity Vault</h4>
+                                <p>Aadhaar, PAN, Passport</p>
+                            </div>
+                            <div class="cap-card" onclick="openScreen('payment')">
+                                <div class="cap-icon-box amber-box">💳</div>
+                                <h4>Payment Guard</h4>
+                                <p>UPI & QR Intent Check</p>
+                            </div>
+                            <div class="cap-card" onclick="openScreen('commerce')">
+                                <div class="cap-icon-box green-box">🛒</div>
+                                <h4>Commerce Guard</h4>
+                                <p>Price, Return & Fee Risk</p>
+                            </div>
+                            <div class="cap-card" onclick="openScreen('truth')">
+                                <div class="cap-icon-box red-box">🔍</div>
+                                <h4>Truth & Media</h4>
+                                <p>Claim & Synthetic Check</p>
+                            </div>
+                            <div class="cap-card" onclick="openScreen('agent')">
+                                <div class="cap-icon-box blue-box">🤖</div>
+                                <h4>Bounded Agent</h4>
+                                <p>Policy-Gated Actions</p>
+                            </div>
+                            <div class="cap-card" onclick="openScreen('privacy')">
+                                <div class="cap-icon-box purple-box">📊</div>
+                                <h4>Privacy Ledger</h4>
+                                <p>Logs & Policy Controls</p>
+                            </div>
+                        </div>
+
+                        <!-- Simulator Entry -->
+                        <div class="simulator-card" onclick="openScreen('simulator')">
+                            <div class="sim-left">
+                                <div class="play-icon">▶</div>
+                                <div>
+                                    <h4>Interactive KYC Simulator</h4>
+                                    <p>Test live Autofill & Biometric gate</p>
+                                </div>
+                            </div>
+                            <span class="arrow">›</span>
+                        </div>
+                    </div>
+
+                    <!-- Screen: VAULT -->
+                    <div class="app-screen" id="screenVault">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>IDENTITY VAULT</h3>
+                                <small>Hardware Keystore Encrypted</small>
+                            </div>
+                            <button class="icon-btn" onclick="openScreen('ocr')">➕</button>
+                        </div>
+
+                        <div class="privacy-banner">
+                            🔒 <strong>Data Minimization Active:</strong> Canonical identity fields are encrypted individually with AES-256-GCM. Biometric prompt required for high sensitivity attributes.
+                        </div>
+
+                        <div class="documents-list" id="vaultDocumentsList">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Screen: OCR INGESTION -->
+                    <div class="app-screen" id="screenOcr">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('vault')">←</button>
+                            <div>
+                                <h3>LOCAL OCR INGESTION</h3>
+                                <small>Zero Cloud Leakage • Canonical Parser</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">SELECT SYNTHETIC TEST DOCUMENT</div>
+                        <div class="chip-row">
+                            <button class="filter-chip active" onclick="selectOcrPreset('PAN')">PAN Card</button>
+                            <button class="filter-chip" onclick="selectOcrPreset('AADHAAR')">Aadhaar</button>
+                            <button class="filter-chip" onclick="selectOcrPreset('PASSPORT')">Passport</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Simulated OCR Camera Text Stream</label>
+                            <textarea id="ocrStreamText" rows="4" class="custom-input"></textarea>
+                        </div>
+
+                        <div class="extracted-fields-card">
+                            <div class="fields-card-header">
+                                <span class="cyan-text font-bold">CANONICAL FIELDS EXTRACTED</span>
+                                <span class="green-text font-bold" id="ocrConfidence">Confidence: 98%</span>
+                            </div>
+                            <div id="ocrExtractedList" class="extracted-list"></div>
+
+                            <button class="primary-btn mt-3" onclick="saveOcrToVault()">
+                                SAVE TO ENCRYPTED VAULT
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Screen: PAYMENT GUARD -->
+                    <div class="app-screen" id="screenPayment">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>PAYMENT INTENT GUARD</h3>
+                                <small>Pre-Transaction Intent Verification</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">SCANNED QR / UPI INTENT URI</div>
+                        <input type="text" id="qrIntentInput" class="custom-input" value="upi://pay?pa=refund-helpdesk99@fakeupi&pn=ABC+MART+REFUND&am=2500&tn=Instant+Cashback+Verification">
+
+                        <div class="section-label mt-2">SURROUNDING MESSAGE / CLAIM</div>
+                        <input type="text" id="qrContextInput" class="custom-input" value="Customer service said: Scan this QR to RECEIVE your ₹2,500 refund.">
+
+                        <button class="primary-btn mt-3" onclick="runPaymentGuard()">INSPECT PAYMENT INTENT</button>
+
+                        <div id="paymentGuardResult" class="payment-result-box"></div>
+                    </div>
+
+                    <!-- Screen: COMMERCE GUARD (P1) -->
+                    <div class="app-screen" id="screenCommerce">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>COMMERCE GUARD</h3>
+                                <small>Price Reality • Return Policy • Seller Reputation</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">PRODUCT / CART CONTEXT TEXT</div>
+                        <textarea id="commerceInputText" rows="3" class="custom-input">Mega Brand Earbuds Pro
+Special Price: ₹999 (90% OFF from ₹9,999)
+Seller: QuickRetail Traders (WhatsApp Pay for extra 10% off)
+Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="runCommerceGuard()">AUDIT PURCHASE RISK</button>
+                            <button class="secondary-btn" onclick="loadCommerceSafePreset()">Safe Preset</button>
+                        </div>
+
+                        <div id="commerceResultContainer" class="commerce-result-box"></div>
+                    </div>
+
+                    <!-- Screen: TRUTH & MEDIA AUDIT (P1) -->
+                    <div class="app-screen" id="screenTruth">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>TRUTH & MEDIA AUDIT</h3>
+                                <small>Atomic Claims • Evidence • Synthetic Signals</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">FORWARDED MESSAGE / CLAIM TEXT</div>
+                        <textarea id="truthInputText" rows="3" class="custom-input">URGENT: Government giving free electricity relief of ₹50,000. Claim your RBI lottery bonus immediately.</textarea>
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="runTruthAudit()">RUN TRUTH AUDIT</button>
+                            <button class="secondary-btn" onclick="loadTruthVerifiedPreset()">Verified Preset</button>
+                        </div>
+
+                        <div id="truthResultContainer" class="truth-result-box"></div>
+                    </div>
+
+                    <!-- Screen: BOUNDED AGENT -->
+                    <div class="app-screen" id="screenAgent">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>BOUNDED AGENT</h3>
+                                <small>Policy-Gated Phone Automation</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">COMMAND INTENT</div>
+                        <input type="text" id="agentCommandInput" class="custom-input" value="Fill the passport number in the current field.">
+
+                        <div class="btn-row mt-2">
+                            <button class="primary-btn" onclick="runAgentPlan()">GENERATE PLAN</button>
+                            <button class="danger-outline-btn" onclick="testAgentSafetyBlock()">Test Safety Block</button>
+                        </div>
+
+                        <div id="agentPlanContainer" class="agent-plan-box"></div>
+                    </div>
+
+                    <!-- Screen: KYC FORM SIMULATOR -->
+                    <div class="app-screen" id="screenSimulator">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>SIMULATED KYC FORM</h3>
+                                <small>Live Autofill & Biometric Gate</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            💡 Tap on any field icon to trigger Vector-Z Autofill. High-sensitivity attributes require Biometric confirmation.
+                        </div>
+
+                        <!-- Interactive Autofill Suggestion Popup Modal -->
+                        <div class="autofill-suggestion-modal" id="autofillModal">
+                            <div class="suggestion-card">
+                                <div class="suggestion-header">
+                                    <span class="icon">🛡️</span>
+                                    <div>
+                                        <strong id="suggestionFieldTitle">PAN Number Found</strong>
+                                        <small id="suggestionSubtitle">Protected by Keystore & Biometric Gate</small>
+                                    </div>
+                                </div>
+                                <div class="suggestion-value" id="suggestionMaskedVal">XXXXX1234X</div>
+                                <div class="suggestion-btn-row">
+                                    <button class="cancel-fill-btn" onclick="closeAutofillModal()">Reject</button>
+                                    <button class="confirm-fill-btn" id="confirmAutofillBtn" onclick="confirmAutofill()">Confirm & Fill</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kyc-form">
+                            <div class="form-group">
+                                <label>Full Legal Name</label>
+                                <div class="input-with-action">
+                                    <input type="text" id="kycFullName" placeholder="e.g. Aarav Sharma">
+                                    <button class="field-fill-trigger" onclick="triggerSimAutofill('FULL_NAME')">🔐</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Permanent Account Number (PAN) [High Sensitivity]</label>
+                                <div class="input-with-action">
+                                    <input type="text" id="kycPan" placeholder="e.g. ABCDE1234F">
+                                    <button class="field-fill-trigger" onclick="triggerSimAutofill('PAN_NUMBER')">👆</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>12-Digit Aadhaar Number [High Sensitivity]</label>
+                                <div class="input-with-action">
+                                    <input type="text" id="kycAadhaar" placeholder="e.g. 9081 4452 7819">
+                                    <button class="field-fill-trigger" onclick="triggerSimAutofill('AADHAAR_NUMBER')">👆</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Passport Number [High Sensitivity]</label>
+                                <div class="input-with-action">
+                                    <input type="text" id="kycPassport" placeholder="e.g. Z8912401">
+                                    <button class="field-fill-trigger" onclick="triggerSimAutofill('PASSPORT_NUMBER')">👆</button>
+                                </div>
+                            </div>
+
+                            <button class="secondary-btn mt-3" onclick="clearKycForm()">CLEAR FORM</button>
+                        </div>
+                    </div>
+
+                    <!-- Screen: PRIVACY DASHBOARD (P1) -->
+                    <div class="app-screen" id="screenPrivacy">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>PRIVACY DASHBOARD</h3>
+                                <small>On-Device Audit Ledger & Controls</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="section-label">MASTER POLICIES & CONTROLS</div>
+                        <div class="settings-card">
+                            <div class="settings-row">
+                                <div>
+                                    <strong>Pause Vector-Z Trust Layer</strong>
+                                    <small>Temporarily mute autofill suggestions & audit</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="pauseVectorZToggle" onchange="togglePauseVectorZ(this.checked)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="settings-row">
+                                <div>
+                                    <strong>Biometric Gate on High Sensitivity</strong>
+                                    <small class="green-text">Aadhaar, PAN & Passports require fingerprint/PIN</small>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="btn-row mt-2">
+                            <button class="secondary-btn" onclick="purgeEphemeralCache()">PURGE TEMP ARTIFACTS</button>
+                            <button class="secondary-btn" onclick="resetDemoData()">RESET DEMO DATA</button>
+                        </div>
+
+                        <div class="section-label mt-3">PER-APP AUTOFILL ACCESS POLICIES</div>
+                        <div class="settings-card">
+                            <div class="settings-row">
+                                <div>
+                                    <strong>Chrome Browser / Form Fields</strong>
+                                    <small>com.android.chrome</small>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="settings-row">
+                                <div>
+                                    <strong>FinTech KYC Onboarding Form</strong>
+                                    <small>com.demo.kycapp</small>
+                                </div>
+                                <label class="switch"><input type="checkbox" checked><span class="slider round"></span></label>
+                            </div>
+                        </div>
+
+                        <div class="section-label mt-3">RECENT SENSITIVE ACTION LEDGER (ZERO RAW SECRETS)</div>
+                        <div class="audit-ledger-list" id="auditLedgerList"></div>
+                    </div>
+
+                </div>
+
+                <!-- Phone Bottom Navigation Bar -->
+                <nav class="phone-bottom-nav">
+                    <button class="nav-item active" onclick="openScreen('home')">
+                        <span class="nav-icon">🏠</span>
+                        <span>Home</span>
+                    </button>
+                    <button class="nav-item" onclick="openScreen('vault')">
+                        <span class="nav-icon">🔒</span>
+                        <span>Vault</span>
+                    </button>
+                    <button class="nav-item" onclick="openScreen('payment')">
+                        <span class="nav-icon">💳</span>
+                        <span>Check</span>
+                    </button>
+                    <button class="nav-item" onclick="openScreen('commerce')">
+                        <span class="nav-icon">🛒</span>
+                        <span>Commerce</span>
+                    </button>
+                    <button class="nav-item" onclick="openScreen('privacy')">
+                        <span class="nav-icon">📊</span>
+                        <span>Privacy</span>
+                    </button>
+                </nav>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

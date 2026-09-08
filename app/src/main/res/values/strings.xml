@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VECTOR-Z</string>
+    <string name="tagline">Trust before action.</string>
+    <string name="bubble_service_name">Vector-Z Trust Bubble</string>
+    <string name="notification_channel_name">Vector-Z Protection Status</string>
+    <string name="notification_channel_desc">Active on-device trust layer and bubble overlay</string>
+</resources>
