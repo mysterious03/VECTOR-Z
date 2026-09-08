@@ -8,19 +8,71 @@
   <img src="assets/banner_hero.svg" alt="VECTOR-Z Banner" width="100%">
 </p>
 
-[![Android 14](https://img.shields.io/badge/Android-14%20(API%2034)-3DDC84?style=flat-square&logo=android&logoColor=white)](https://developer.android.com)
-[![Qualcomm Hexagon NPU](https://img.shields.io/badge/Qualcomm-Hexagon%20NPU%20(1.84ms)-FF5500?style=flat-square&logo=qualcomm&logoColor=white)](https://ai.google.dev/edge)
-[![Hardware Keystore](https://img.shields.io/badge/Security-AES--256--GCM%20Keystore-00E5FF?style=flat-square&logo=shield&logoColor=white)](https://developer.android.com/training/articles/keystore)
-[![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-7F52FF?style=flat-square&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
-[![Air-Gapped AI](https://img.shields.io/badge/Privacy-100%25%20On--Device%20(0%20Cloud)-00E676?style=flat-square)](https://github.com/mysterious03/VECTOR)
+[![Android 14](https://img.shields.io/badge/Android-14%20(API%2034)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
+[![Qualcomm Hexagon NPU](https://img.shields.io/badge/Qualcomm-Hexagon%20NPU%20(1.84ms)-FF5500?style=for-the-badge&logo=qualcomm&logoColor=white)](https://ai.google.dev/edge)
+[![Hardware Keystore](https://img.shields.io/badge/Security-AES--256--GCM%20Keystore-00E5FF?style=for-the-badge&logo=shield&logoColor=white)](https://developer.android.com/training/articles/keystore)
+[![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose%20M3-7F52FF?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
+[![Air-Gapped AI](https://img.shields.io/badge/Privacy-100%25%20On--Device%20(0%20Cloud)-00E676?style=for-the-badge)](https://github.com/mysterious03/VECTOR)
 
 <br/>
 
-### 🌐 [▶ CLICK HERE TO TEST LIVE WEB SIMULATOR (http://localhost:8080)](http://localhost:8080)
+<table>
+  <tr>
+    <td align="center" style="background:#12121E; padding:16px; border:2px solid #FF5500; border-radius:12px;">
+      <h3 style="margin:0; color:#FF5500;">🎮 LIVE INTERACTIVE PHONE COMPANION SANDBOX</h3>
+      <p style="margin:6px 0; color:#BBB; font-size:13px;">Experience the full iQOO 12 Pro physical smartphone interface directly in your browser.</p>
+      <a href="http://localhost:8080" target="_blank">
+        <img src="https://img.shields.io/badge/▶_LAUNCH_PHONE_SANDBOX-http%3A%2F%2Flocalhost%3A8080-FF5500?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch Web Companion">
+      </a>
+    </td>
+  </tr>
+</table>
 
 <br/>
 
 </div>
+
+---
+
+## 📱 Interactive Phone Sandbox Showcase
+
+> **Experience the physical iQOO 12 hardware frame, optical fingerprint modal, heads-up trust alerts, and 6-action floating bubble — 100% local on Qualcomm Hexagon NPU.**
+
+<p align="center">
+  <img src="assets/phone_sandbox_showcase.svg" alt="Phone Sandbox Showcase" width="100%">
+</p>
+
+<br/>
+
+<p align="center">
+  <img src="assets/phone_sandbox_features.svg" alt="Multi-Screen Phone Perspectives" width="100%">
+</p>
+
+---
+
+## 🎯 13-Step Interactive Sandbox Flow
+
+<details open>
+<summary><b>📱 Explore the 13 Interactive Steps in the Live Sandbox</b> (Click to collapse / expand)</summary>
+<br/>
+
+| Step | Interactive Module | What It Tests | On-Device NPU Execution |
+| :---: | :--- | :--- | :---: |
+| **01** | **Payment Intent Guard** | Scans QR claiming "Scan to RECEIVE ₹25,000 refund" and blocks debit payload | **1.84 ms** (Snapdragon NPU) |
+| **02** | **Encrypted Keystore Vault** | Synthetic Aadhaar / PAN card parsing & sealing in hardware enclave | **8.20 ms** (LiteRT Vision OCR) |
+| **03** | **Contextual Autofill** | Native Android Autofill with masked previews & Biometric gate challenge | **0.00 KB** (Zero Heap Leak) |
+| **04** | **Commerce Sanity Guard** | Identifies fake ₹19,999 ➔ ₹999 markdowns and non-returnable fine print | **2.15 ms** (Tensor Evaluator) |
+| **05** | **Truth & Media Audit** | Deconstructs sensational health/crypto claims into atomic verifiable signals | **4.30 ms** (Local NLP Core) |
+| **06** | **Bounded Safety Policy** | Enforces immutable block against AI agents touching OTPs, PINs, or funds | **HARD BLOCK** (Immutable) |
+| **07** | **SMS Trojan Interceptor** | Audits DLT headers and blocks fake "+91" 10-digit mobile electricity cut SMS | **0.92 ms** (Heuristic Engine) |
+| **08** | **Voice Clone Inspector** | Detects harmonic phase glitches & robotic reverberation in distress audio | **5.60 ms** (DSP Acoustic Core) |
+| **09** | **iQOO Office Kit Bridge** | Bi-directional cross-device trust mirroring between PC and iQOO Phone | **< 1.0 ms** (Mesh Transport) |
+| **10** | **15-Vector Stress Test** | Full automated benchmark across 15 synthetic Indian fraud archetypes | **< 30 ms** (Total Suite Run) |
+| **11** | **Monster Gaming & Duress** | 120 FPS in-game overlay shield & decoy vault (PIN `9999`) for hostage coercion | **0.85 ms** (Monster Thread) |
+| **12** | **AI Honeypot & 1930 Dossier** | Autonomous counter-scam bot & signed forensic dossier for `cybercrime.gov.in` | **ECDSA P-256** Signed |
+| **13** | **Indic Voice & QR Quishing** | 12 regional languages voice alerts + multi-hop shortener de-obfuscation | **6.10 ms** (Neural Synthesis) |
+
+</details>
 
 ---
 
@@ -60,45 +112,6 @@ Every month, millions of Indian smartphone users fall prey to **UPI QR refund tr
 | **16** | **Unmonitored Lockscreen Health** | Users unaware if their device hardware enclave or network has been tampered with before unlock. | **Always-On-Display (AOD) Ambient Glance** displays real-time hardware Keystore integrity & zero-leak RAM scores on the lockscreen. |
 | **17** | **Language & Literacy Barriers** | Non-English speakers & rural elders unable to read complex English security popups during fast-paced UPI fraud calls. | **Multi-Lingual Indic Trust Engine** delivers instantaneous on-device synthetic voice warnings in 12 regional languages (Hindi, Tamil, Telugu, Bengali, Marathi, etc.). |
 | **18** | **QR Quishing Multi-Hop Traps** | Malicious short links and redirect chains embedded in printed QR stickers masking rogue APK download payloads. | **QR Quishing De-Obfuscator** recursively traces redirect chains & homoglyph-obfuscated domains in under 3ms without downloading malicious bytes. |
-
----
-
-## 📱 Visual Smartphone Capabilities
-
-<br/>
-
-### 1. 💳 Payment Intent Guard (Anti-Scam Heuristics)
-> **Intercepts QR codes & UPI links before banking apps open.**
-
-<p align="center">
-  <img src="assets/card_payment_guard.svg" alt="Payment Guard Preview" width="100%">
-</p>
-
-* **Deterministic Intent Parser:** Parses `pa`, `pn`, `am`, and message parameters from standard `upi://pay` deep links.
-* **Intent-Conflict Engine:** Detects verbal/clipboard refund lures that contradict underlying debit payment payloads.
-* **Instant Prevention:** Executes in **1.84ms** on Qualcomm Hexagon NPU before launching Google Pay, PhonePe, or Paytm.
-
----
-
-### 2. 🔐 Hardware Keystore Identity Vault & Biometric Autofill
-> **Zero cloud leakage. Sensitive credentials stay locked in hardware.**
-
-<p align="center">
-  <img src="assets/card_identity_vault.svg" alt="Identity Vault Preview" width="100%">
-</p>
-
-* **Master Key Enclave:** Key generated directly inside Android Keystore (`KeyGenParameterSpec` with `PURPOSE_ENCRYPT | PURPOSE_DECRYPT`).
-* **Ephemeral Memory Zeroing:** Byte arrays containing unmasked data are explicitly overwritten with zeroes (`0x00`) immediately after insertion.
-* **Android Autofill Framework:** Native `AutofillService` implementation with per-app toggles and biometric authorization challenge.
-
----
-
-### 3. ⚡ 15-Vector Scam Benchmark & Hardware NPU Profiler
-> **Real-world stress testing across 15 synthetic Indian fraud archetypes.**
-
-<p align="center">
-  <img src="assets/card_benchmark.svg" alt="15-Vector Benchmark Preview" width="100%">
-</p>
 
 ---
 

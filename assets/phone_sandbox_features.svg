@@ -1,0 +1,126 @@
+<svg width="960" height="420" viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgFeat" x1="0" y1="0" x2="960" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#09090E" />
+      <stop offset="100%" stop-color="#14141F" />
+    </linearGradient>
+    <linearGradient id="phoneBorder" x1="0" y1="0" x2="260" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3A3A4E" />
+      <stop offset="100%" stop-color="#1D1D2B" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <rect width="960" height="420" rx="16" fill="url(#bgFeat)" stroke="#222230" stroke-width="1.5" />
+
+  <!-- PHONE 1: AOD Ambient Glance -->
+  <g transform="translate(45, 20)" filter="url(#cardShadow)">
+    <rect width="260" height="380" rx="28" fill="#0C0C12" stroke="url(#phoneBorder)" stroke-width="2.5" />
+    <!-- Dynamic notch -->
+    <rect x="95" y="10" width="70" height="12" rx="6" fill="#000000" />
+    
+    <!-- AOD Clock -->
+    <text x="130" y="70" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" text-anchor="middle">09:41</text>
+    <text x="130" y="86" fill="#777788" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" text-anchor="middle">TUESDAY, SEPT 8 • BENGALURU</text>
+
+    <!-- AOD Ambient Glance Card -->
+    <rect x="18" y="105" width="224" height="180" rx="14" fill="#13131D" stroke="#00E5FF" stroke-width="1" />
+    <text x="32" y="128" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">🛡️ AOD AMBIENT GLANCE</text>
+    <text x="32" y="142" fill="#8E8E9E" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5">Lockscreen Trust Health Status</text>
+    
+    <line x1="32" y1="152" x2="228" y2="152" stroke="#222233" stroke-width="1" />
+
+    <text x="32" y="172" fill="#BBB" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Keystore Integrity:</text>
+    <text x="228" y="172" fill="#00E676" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="end">STRONGBOX_OK</text>
+
+    <text x="32" y="194" fill="#BBB" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Active NPU Shield:</text>
+    <text x="228" y="194" fill="#00E5FF" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="end">120 FPS ARMED</text>
+
+    <text x="32" y="216" fill="#BBB" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">RAM Leakage:</text>
+    <text x="228" y="216" fill="#00E676" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="end">0.00 KB (Zero-Log)</text>
+
+    <text x="32" y="238" fill="#BBB" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Rogue APK Scans:</text>
+    <text x="228" y="238" fill="#FFB74D" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" text-anchor="end">0 DETECTED</text>
+
+    <rect x="32" y="252" width="196" height="24" rx="6" fill="#1A2830" />
+    <text x="130" y="268" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" text-anchor="middle">HARDWARE VAULT ARMED</text>
+
+    <text x="130" y="325" fill="#555566" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" text-anchor="middle">Touch Fingerprint to Unlock</text>
+    <rect x="95" y="365" width="70" height="3" rx="1.5" fill="#444455" />
+  </g>
+
+  <!-- PHONE 2: Encrypted Keystore Vault -->
+  <g transform="translate(350, 20)" filter="url(#cardShadow)">
+    <rect width="260" height="380" rx="28" fill="#0C0C12" stroke="url(#phoneBorder)" stroke-width="2.5" />
+    <rect x="95" y="10" width="70" height="12" rx="6" fill="#000000" />
+    
+    <text x="20" y="44" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800">HARDWARE VAULT</text>
+    <text x="20" y="58" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600">AES-256-GCM Keystore Sealed</text>
+
+    <!-- Aadhaar Card -->
+    <rect x="16" y="70" width="228" height="100" rx="10" fill="#151520" stroke="#00E676" stroke-width="1" />
+    <text x="28" y="90" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800">Aadhaar Card (UIDAI)</text>
+    <rect x="180" y="78" width="54" height="16" rx="4" fill="#002D15" />
+    <text x="207" y="89" fill="#00E676" font-family="'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="800" text-anchor="middle">ENCRYPTED</text>
+    
+    <text x="28" y="112" fill="#777" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">12-DIGIT AADHAAR</text>
+    <text x="28" y="126" fill="#FFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">XXXX-XXXX-7819</text>
+
+    <text x="28" y="145" fill="#777" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">FULL NAME</text>
+    <text x="28" y="158" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700">AARAV VIKRAM SHARMA</text>
+
+    <!-- PAN Card -->
+    <rect x="16" y="180" width="228" height="95" rx="10" fill="#151520" stroke="#2B2B3E" stroke-width="1" />
+    <text x="28" y="200" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800">PAN Card (Income Tax)</text>
+    
+    <text x="28" y="222" fill="#777" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">10-DIGIT PAN</text>
+    <text x="28" y="236" fill="#FFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">XXXXX1234X</text>
+
+    <rect x="160" y="224" width="74" height="22" rx="5" fill="#FF5500" />
+    <text x="197" y="238" fill="#FFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="800" text-anchor="middle">AUTOFILL</text>
+
+    <!-- Biometric status bar -->
+    <rect x="16" y="290" width="228" height="40" rx="8" fill="#0B1A24" stroke="#00E5FF" stroke-width="1" />
+    <text x="28" y="306" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800">BIOMETRIC PROMPT GATE</text>
+    <text x="28" y="320" fill="#8899AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="7.5">Master key requires hardware fingerprint verification</text>
+
+    <rect x="95" y="365" width="70" height="3" rx="1.5" fill="#444455" />
+  </g>
+
+  <!-- PHONE 3: Indic Voice & I4C 1930 Dossier -->
+  <g transform="translate(655, 20)" filter="url(#cardShadow)">
+    <rect width="260" height="380" rx="28" fill="#0C0C12" stroke="url(#phoneBorder)" stroke-width="2.5" />
+    <rect x="95" y="10" width="70" height="12" rx="6" fill="#000000" />
+    
+    <text x="20" y="44" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800">INDIC TRUST &amp; I4C 1930</text>
+    <text x="20" y="58" fill="#FF5500" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600">Voice Warnings &amp; Signed Evidence</text>
+
+    <!-- Indic Voice Card -->
+    <rect x="16" y="70" width="228" height="110" rx="10" fill="#1C151B" stroke="#FF5500" stroke-width="1" />
+    <text x="28" y="90" fill="#FF8833" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">🗣️ INDIC VOICE WARNING</text>
+    <rect x="160" y="78" width="74" height="16" rx="4" fill="#3D1500" />
+    <text x="197" y="89" fill="#FF8833" font-family="'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="800" text-anchor="middle">HINDI • TAMIL</text>
+
+    <text x="28" y="112" fill="#FFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600">"सावधान: पैसे प्राप्त करने के लिए"</text>
+    <text x="28" y="126" fill="#FFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600">"कभी भी UPI PIN दर्ज न करें।"</text>
+    
+    <rect x="28" y="140" width="204" height="26" rx="6" fill="#FF5500" />
+    <text x="130" y="156" fill="#FFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" text-anchor="middle">🔊 PLAY VOICE ALERT</text>
+
+    <!-- 1930 Dossier Card -->
+    <rect x="16" y="190" width="228" height="140" rx="10" fill="#101815" stroke="#10B981" stroke-width="1" />
+    <text x="28" y="210" fill="#10B981" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">📋 1930 FORENSIC DOSSIER</text>
+    
+    <text x="28" y="230" fill="#888" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">REPORT ID: <tspan fill="#FFF" font-family="'JetBrains Mono', monospace">I4C_908124</tspan></text>
+    <text x="28" y="246" fill="#888" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">TARGET: <tspan fill="#FF5252" font-family="'JetBrains Mono', monospace">refund-desk@fakebank</tspan></text>
+    <text x="28" y="262" fill="#888" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">PROOF: <tspan fill="#00E5FF" font-family="'JetBrains Mono', monospace">ECDSA_STRONGBOX_OK</tspan></text>
+
+    <rect x="28" y="280" width="204" height="34" rx="6" fill="#10B981" />
+    <text x="130" y="298" fill="#FFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="900" text-anchor="middle">DISPATCH TO 1930 / I4C</text>
+    <text x="130" y="309" fill="#D1FAE5" font-family="'Segoe UI', Roboto, sans-serif" font-size="7" text-anchor="middle">cybercrime.gov.in Direct Integration</text>
+
+    <rect x="95" y="365" width="70" height="3" rx="1.5" fill="#444455" />
+  </g>
+</svg>

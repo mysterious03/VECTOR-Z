@@ -1,0 +1,202 @@
+<svg width="960" height="600" viewBox="0 0 960 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgShowcase" x1="0" y1="0" x2="960" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#07070B" />
+      <stop offset="50%" stop-color="#0F0F17" />
+      <stop offset="100%" stop-color="#07070B" />
+    </linearGradient>
+    <linearGradient id="chassisGrad" x1="0" y1="0" x2="320" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2D2D3A" />
+      <stop offset="50%" stop-color="#1A1A24" />
+      <stop offset="100%" stop-color="#12121A" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0" y1="0" x2="300" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A0F" />
+      <stop offset="100%" stop-color="#12121B" />
+    </linearGradient>
+    <linearGradient id="redAlertGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF1744" />
+      <stop offset="100%" stop-color="#D50000" />
+    </linearGradient>
+    <linearGradient id="cyanNeon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#00B0FF" />
+    </linearGradient>
+    <linearGradient id="orangeGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6D00" />
+      <stop offset="100%" stop-color="#FF3D00" />
+    </linearGradient>
+    <filter id="phoneShadow" x="-20%" y="-10%" width="140%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="30" flood-color="#00E5FF" flood-opacity="0.15" />
+      <feDropShadow dx="0" dy="15" stdDeviation="15" flood-color="#000000" flood-opacity="0.9" />
+    </filter>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="600" rx="20" fill="url(#bgShowcase)" stroke="#222233" stroke-width="2"/>
+  
+  <!-- Subtle Blueprint Grid -->
+  <path d="M0 100 H960 M0 200 H960 M0 300 H960 M0 400 H960 M0 500 H960" stroke="#141420" stroke-width="1" />
+  <path d="M160 0 V600 M320 0 V600 M480 0 V600 M640 0 V600 M800 0 V600" stroke="#141420" stroke-width="1" />
+
+  <!-- LEFT COLUMN: Phone Interactive Sandbox Mockup -->
+  <g transform="translate(60, 30)" filter="url(#phoneShadow)">
+    <!-- Hardware Side Buttons -->
+    <rect x="-4" y="110" width="4" height="40" rx="2" fill="#444455" />
+    <rect x="-4" y="160" width="4" height="40" rx="2" fill="#444455" />
+    <rect x="300" y="130" width="4" height="55" rx="2" fill="#FF5500" />
+
+    <!-- Phone Chassis Frame (iQOO 12 Pro) -->
+    <rect x="0" y="0" width="300" height="540" rx="36" fill="url(#chassisGrad)" stroke="#38384E" stroke-width="3" />
+    <rect x="6" y="6" width="288" height="528" rx="30" fill="url(#screenGrad)" />
+
+    <!-- Status Bar -->
+    <text x="24" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">09:41</text>
+    <g transform="translate(225, 18)">
+      <!-- 5G / Wifi / Battery -->
+      <path d="M0 9 L3 9 L3 12 L0 12 Z M4 6 L7 6 L7 12 L4 12 Z M8 3 L11 3 L11 12 L8 12 Z M12 0 L15 0 L15 12 L12 12 Z" fill="#00E5FF" />
+      <rect x="22" y="1" width="18" height="9" rx="2" fill="none" stroke="#FFFFFF" stroke-width="1" />
+      <rect x="24" y="3" width="12" height="5" rx="1" fill="#00E676" />
+      <rect x="41" y="4" width="1.5" height="3" fill="#FFFFFF" />
+    </g>
+
+    <!-- Dynamic Island / Camera Punch Hole -->
+    <rect x="105" y="12" width="90" height="18" rx="9" fill="#000000" stroke="#1A1A24" stroke-width="1" />
+    <circle cx="120" cy="21" r="4" fill="#0D0D14" />
+    <circle cx="120" cy="21" r="1.5" fill="#0055FF" />
+    <text x="135" y="24" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700">VECTOR-Z NPU</text>
+
+    <!-- Heads-Up Scam Intercept Banner (Sliding Notification) -->
+    <g transform="translate(14, 40)">
+      <rect width="260" height="62" rx="12" fill="#1C0A0E" stroke="#FF1744" stroke-width="1.5" />
+      <rect x="8" y="10" width="6" height="42" rx="3" fill="url(#redAlertGrad)" />
+      <text x="22" y="24" fill="#FF1744" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800">🚨 PAYMENT SCAM BLOCKED</text>
+      <text x="22" y="38" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600">Scan claimed ₹25,000 Refund</text>
+      <text x="22" y="50" fill="#FF8A80" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5">Payload is DEBIT request to mule VPA</text>
+      <rect x="210" y="18" width="42" height="26" rx="6" fill="#FF1744" />
+      <text x="231" y="34" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800" text-anchor="middle">HALT</text>
+    </g>
+
+    <!-- Phone Screen Content (App Mockup) -->
+    <g transform="translate(14, 112)">
+      <!-- App Header -->
+      <text x="4" y="16" fill="#8E8E9F" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700">PHONEPE / GOOGLE PAY INTERCEPT</text>
+      
+      <!-- Simulated Scam Card -->
+      <rect y="24" width="260" height="150" rx="12" fill="#13131D" stroke="#262638" stroke-width="1" />
+      
+      <circle cx="24" cy="48" r="14" fill="#1F1F30" />
+      <text x="24" y="53" fill="#FF5500" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" text-anchor="middle">₹</text>
+      <text x="48" y="44" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">ABC Mart Refund Desk</text>
+      <text x="48" y="56" fill="#FF5252" font-family="'JetBrains Mono', monospace" font-size="8.5">refund-desk@fakebank (HIGH RISK)</text>
+
+      <!-- Amount Box -->
+      <rect x="12" y="70" width="236" height="42" rx="8" fill="#0A0A10" stroke="#FF1744" stroke-width="1" />
+      <text x="22" y="88" fill="#888" font-family="'Segoe UI', Roboto, sans-serif" font-size="9">Requested Debit Amount</text>
+      <text x="22" y="104" fill="#FF1744" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="900">₹ 25,000.00</text>
+      <rect x="180" y="80" width="60" height="22" rx="4" fill="#3D000A" />
+      <text x="210" y="94" fill="#FF5252" font-family="'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="800" text-anchor="middle">BLOCKED</text>
+
+      <!-- Threat Analysis Pill -->
+      <rect x="12" y="120" width="236" height="44" rx="8" fill="#181826" />
+      <text x="20" y="135" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700">⚡ NPU AUDIT: INVERSION FRAUD</text>
+      <text x="20" y="148" fill="#BBBBCC" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">Lure = Receive ₹25k | Intent = Send ₹25k (1.84ms)</text>
+    </g>
+
+    <!-- Indic Voice Warning Bar -->
+    <g transform="translate(14, 280)">
+      <rect width="260" height="60" rx="10" fill="#141822" stroke="#00E5FF" stroke-width="1" />
+      <circle cx="20" cy="24" r="10" fill="#002B36" />
+      <text x="20" y="28" fill="#00E5FF" font-size="11" text-anchor="middle">🔊</text>
+      <text x="36" y="20" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">INDIC VOICE ENGINE (HINDI / TAMIL)</text>
+      <text x="36" y="34" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="8">"सावधान: पैसे प्राप्त करने के लिए कभी भी UPI PIN न डालें"</text>
+      <text x="36" y="48" fill="#8899AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="7.5">100% Neural SpeechSynthesis On-Device</text>
+    </g>
+
+    <!-- Floating 6-Action Trust Bubble (Draggable on Real Phone) -->
+    <g transform="translate(220, 360)">
+      <circle cx="24" cy="24" r="22" fill="#FF5500" stroke="#FFFFFF" stroke-width="2" filter="url(#neonGlow)" />
+      <text x="24" y="32" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="900" text-anchor="middle">Z</text>
+      <circle cx="38" cy="10" r="5" fill="#00E676" stroke="#000" stroke-width="1" />
+    </g>
+
+    <!-- In-Display Ultrasonic Optical Fingerprint Scanner -->
+    <g transform="translate(115, 435)">
+      <circle cx="35" cy="35" r="28" fill="none" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="4 2" />
+      <circle cx="35" cy="35" r="22" fill="#091824" stroke="#00E5FF" stroke-width="1" />
+      <text x="35" y="41" fill="#00E5FF" font-size="16" text-anchor="middle">👆</text>
+      <text x="35" y="68" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="700" text-anchor="middle">BIOMETRIC GATE</text>
+    </g>
+
+    <!-- Android 14 Gesture Pill -->
+    <rect x="105" y="522" width="90" height="4" rx="2" fill="#666677" />
+  </g>
+
+  <!-- RIGHT COLUMN: Interactive Web Sandbox Callouts & Live Architecture -->
+  <g transform="translate(410, 45)">
+    <!-- Header -->
+    <rect width="180" height="24" rx="12" fill="#1C1A29" stroke="#FF5500" stroke-width="1" />
+    <text x="12" y="16" fill="#FF8833" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" letter-spacing="1">LIVE ON-DEVICE SANDBOX</text>
+
+    <text x="0" y="65" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="900" letter-spacing="-0.5">
+      The On-Device Trust Phone
+    </text>
+    <text x="0" y="92" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600">
+      Zero Cloud Leakage • Sub-2ms Snapdragon 8 Gen 3 NPU Inference
+    </text>
+
+    <!-- Interactive Features 4-Grid -->
+    <g transform="translate(0, 115)">
+      <!-- Card 1: Payment Guard -->
+      <rect width="240" height="100" rx="12" fill="#12121B" stroke="#252538" stroke-width="1" />
+      <circle cx="24" cy="24" r="12" fill="#3D000A" />
+      <text x="24" y="29" fill="#FF1744" font-size="12" text-anchor="middle">💳</text>
+      <text x="44" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">UPI Payment Intent Guard</text>
+      <text x="14" y="52" fill="#9999AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="9.5">Catches QR reversal fraud before banking apps execute intent.</text>
+      <text x="14" y="75" fill="#00E5FF" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">⚡ 1.84ms NPU • 0KB Cloud</text>
+
+      <!-- Card 2: Keystore Identity Vault -->
+      <g transform="translate(255, 0)">
+        <rect width="240" height="100" rx="12" fill="#12121B" stroke="#252538" stroke-width="1" />
+        <circle cx="24" cy="24" r="12" fill="#002D15" />
+        <text x="24" y="29" fill="#00E676" font-size="12" text-anchor="middle">🔒</text>
+        <text x="44" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">AES-256 Keystore Vault</text>
+        <text x="14" y="52" fill="#9999AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="9.5">Aadhaar, PAN &amp; Passkeys locked in hardware with memory scrubbers.</text>
+        <text x="14" y="75" fill="#00E676" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">🛡️ Ephemeral Zero-RAM</text>
+      </g>
+
+      <!-- Card 3: Multi-Lingual Indic Voice -->
+      <g transform="translate(0, 115)">
+        <rect width="240" height="100" rx="12" fill="#12121B" stroke="#252538" stroke-width="1" />
+        <circle cx="24" cy="24" r="12" fill="#002636" />
+        <text x="24" y="29" fill="#00E5FF" font-size="12" text-anchor="middle">🗣️</text>
+        <text x="44" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">12 Indic Voice Engines</text>
+        <text x="14" y="52" fill="#9999AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="9.5">Local voice alerts in Hindi, Tamil, Telugu for non-English speakers.</text>
+        <text x="14" y="75" fill="#FF8833" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">🎙️ 100% Neural Speech</text>
+      </g>
+
+      <!-- Card 4: QR Quishing Deobfuscator -->
+      <g transform="translate(255, 115)">
+        <rect width="240" height="100" rx="12" fill="#12121B" stroke="#252538" stroke-width="1" />
+        <circle cx="24" cy="24" r="12" fill="#361C00" />
+        <text x="24" y="29" fill="#FF9100" font-size="12" text-anchor="middle">🔍</text>
+        <text x="44" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">QR Quishing Unwrapper</text>
+        <text x="14" y="52" fill="#9999AA" font-family="'Segoe UI', Roboto, sans-serif" font-size="9.5">Recursively unwraps short links &amp; Cyrillic homoglyph domains.</text>
+        <text x="14" y="75" fill="#FF5252" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">🛑 Zero-Hop Trojan Defense</text>
+      </g>
+
+      <!-- Bottom Interactive Simulator Banner -->
+      <g transform="translate(0, 230)">
+        <rect width="495" height="70" rx="12" fill="#181729" stroke="#FF5500" stroke-width="1.5" />
+        <text x="20" y="28" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800">🚀 TEST IN YOUR BROWSER: 13-STEP INTERACTIVE SIMULATOR</text>
+        <text x="20" y="46" fill="#00E5FF" font-family="'Segoe UI', Roboto, sans-serif" font-size="10">Simulates physical iQOO 12 Pro • Hardware side buttons • Ultrasonic biometrics</text>
+        <rect x="360" y="16" width="120" height="38" rx="8" fill="#FF5500" />
+        <text x="420" y="39" fill="#FFFFFF" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" text-anchor="middle">LAUNCH SIM ▶</text>
+      </g>
+    </g>
+  </g>
+</svg>
