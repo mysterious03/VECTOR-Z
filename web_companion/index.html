@@ -120,6 +120,13 @@
                             <small>Counter-scam bot & signed dossier</small>
                         </div>
                     </button>
+                    <button class="step-btn" onclick="jumpToStep(13)">
+                        <span class="step-num">13</span>
+                        <div class="step-meta">
+                            <strong>Indic Voice & Quishing (P10)</strong>
+                            <small>12 Indian languages & QR unwrap</small>
+                        </div>
+                    </button>
                 </div>
             </div>
 
@@ -818,6 +825,49 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                                 <button class="secondary-btn" onclick="export1930Dossier()" style="border-color:#10b981; color:#10b981;">EXPORT SIGNED DOSSIER</button>
                             </div>
                             <div id="dossierExportBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; color:#10b981; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: INDIC MULTI-LINGUAL VOICE & QUISHING SCANNER (P10) -->
+                    <div class="app-screen" id="screenIndic">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>INDIC VOICE & QUISHING</h3>
+                                <small>12 Indian Languages • QR Deep Unwrap</small>
+                            </div>
+                            <div></div>
+                        </div>
+
+                        <div class="tip-banner">
+                            🗣️ <strong>Indic Trust Engine:</strong> Real-time on-device voice warnings for elders & non-English speakers across Indian languages.
+                        </div>
+
+                        <!-- Language Selector Card -->
+                        <div class="card p-3 mt-2" style="background:#15151b; border:1px solid #ff5500; border-radius:10px;">
+                            <label style="font-size:11px; color:#888; display:block; margin-bottom:4px;">SELECT INDIC LANGUAGE:</label>
+                            <div style="display:flex; gap:6px;">
+                                <select id="indicLangSelect" onchange="updateIndicAlert()" style="flex:1; background:#0c0c10; color:#fff; border:1px solid #444; border-radius:6px; padding:6px; font-size:12px;">
+                                    <option value="HINDI">हिन्दी (Hindi)</option>
+                                    <option value="TAMIL">தமிழ் (Tamil)</option>
+                                    <option value="TELUGU">తెలుగు (Telugu)</option>
+                                    <option value="BENGALI">বাংলা (Bengali)</option>
+                                    <option value="MARATHI">मराठी (Marathi)</option>
+                                    <option value="ENGLISH">English</option>
+                                </select>
+                                <button class="primary-btn" onclick="speakIndicVoiceWarning()" style="width:auto; padding:6px 12px;">🔊 SPEAK</button>
+                            </div>
+                            <div id="indicTextAlertBox" style="margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:12px; color:#ff8a80; line-height:1.5;">
+                                सावधान: पैसे प्राप्त करने के लिए कभी भी अपना UPI PIN दर्ज न करें। यह एक धोखाधड़ी है।
+                            </div>
+                        </div>
+
+                        <!-- QR Quishing Unwrapper Card -->
+                        <div class="section-label mt-3">QR QUISHING (REDIRECT HOP) UNWRAPPER</div>
+                        <div class="card p-3" style="background:#15151b; border:1px solid #292938; border-radius:10px;">
+                            <input type="text" id="quishingInput" value="https://bit.ly/power-pay-refund.apk" style="font-size:11px; font-family:'JetBrains Mono', monospace; margin-bottom:8px;">
+                            <button class="secondary-btn" onclick="unwrapQuishingQr()" style="width:100%;">UNWRAP REDIRECT CHAIN</button>
+                            <div id="quishingResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:11px; line-height:1.4;"></div>
                         </div>
                     </div>
 

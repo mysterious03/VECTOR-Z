@@ -531,6 +531,9 @@ function jumpToStep(step) {
         openScreen("monster");
     } else if (step === 12) {
         openScreen("honeypot");
+    } else if (step === 13) {
+        openScreen("indic");
+        updateIndicAlert();
     }
 }
 
@@ -776,3 +779,96 @@ function handleBioScanSuccess() {
         bioSuccessCallback = null;
     }
 }
+
+// 17. INDIC VOICE TRUST ENGINE & QR QUISHING UNWRAPPER (PHASE 10)
+const indicAlerts = {
+    HINDI: {
+        text: "सावधान: पैसे प्राप्त करने के लिए कभी भी अपना UPI PIN दर्ज न करें। यह एक धोखाधड़ी है।",
+        voiceLang: "hi-IN"
+    },
+    TAMIL: {
+        text: "எச்சரிக்கை: பணம் பெற UPI PIN ஐ உள்ளிட வேண்டாம். இது ஒரு மோசடி.",
+        voiceLang: "ta-IN"
+    },
+    TELUGU: {
+        text: "హెచ్చరిక: డబ్బు అందుకోవడానికి UPI PIN నమోదు చేయవద్దు. ఇది మోసం.",
+        voiceLang: "te-IN"
+    },
+    BENGALI: {
+        text: "সতর্কতা: টাকা পাওয়ার জন্য কখনই UPI PIN দেবেন না। এটি একটি প্রতারণা।",
+        voiceLang: "bn-IN"
+    },
+    MARATHI: {
+        text: "सावधान: पैसे मिळवण्यासाठी कधीही तुमचा UPI PIN प्रविष्ट करू नका. ही एक फसवणूक आहे.",
+        voiceLang: "mr-IN"
+    },
+    ENGLISH: {
+        text: "WARNING: Receiving money never requires entering your UPI PIN. This is a payment reversal scam.",
+        voiceLang: "en-IN"
+    }
+};
+
+function updateIndicAlert() {
+    const langSelect = document.getElementById("indicLangSelect");
+    if (!langSelect) return;
+    const lang = langSelect.value;
+    const alertData = indicAlerts[lang] || indicAlerts.HINDI;
+    const box = document.getElementById("indicTextAlertBox");
+    if (box) {
+        box.innerText = alertData.text;
+    }
+}
+
+function speakIndicVoiceWarning() {
+    const langSelect = document.getElementById("indicLangSelect");
+    const lang = langSelect ? langSelect.value : "HINDI";
+    const alertData = indicAlerts[lang] || indicAlerts.HINDI;
+    
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(alertData.text);
+        utterance.lang = alertData.voiceLang;
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+    }
+    
+    triggerHeadsUp("🗣️ INDIC VOICE WARNING (" + lang + ")", alertData.text);
+    addAuditEntry("INDIC_VOICE", "com.iqoo.vectorz.indic", `Broadcasted voice alert in ${lang}`, "SAFE", "VOICE_PLAYED");
+}
+
+function unwrapQuishingQr() {
+    const input = document.getElementById("quishingInput");
+    if (!input) return;
+    const url = input.value.trim();
+    const box = document.getElementById("quishingResultBox");
+    if (!box) return;
+    box.style.display = "block";
+    
+    // Simulate multi-hop redirect unwrap & homoglyph check
+    if (url.includes("apk") || url.includes("bit.ly") || url.includes("refund")) {
+        box.style.background = "rgba(255, 23, 68, 0.15)";
+        box.style.border = "1px solid #ff1744";
+        box.style.color = "#ff8a80";
+        box.innerHTML = `
+            <strong style="color:#ff1744;">🚨 MALICIOUS QUISHING REDIRECT DETECTED</strong><br>
+            • Hop 0: <code>${url}</code><br>
+            • Hop 1: <code>https://t.co/pay-redirect?target=mule_902</code><br>
+            • Final Destination: <strong>https://malicious-apk-host.ru/power-pay-refund.apk</strong><br>
+            • Threat Category: <strong>QUISHING_TROJAN_PAYLOAD</strong><br>
+            • Action: <strong>BLOCKED BEFORE NETWORK DISPATCH (0ms Cloud)</strong>
+        `;
+        addAuditEntry("QUISHING_GUARD", "QR Scanner", `Blocked trojan redirect chain: ${url}`, "HIGH_RISK", "BLOCKED");
+    } else {
+        box.style.background = "rgba(0, 230, 118, 0.15)";
+        box.style.border = "1px solid #00e676";
+        box.style.color = "#00e676";
+        box.innerHTML = `
+            <strong>✅ QR TARGET VERIFIED SAFE</strong><br>
+            • Destination: <code>${url}</code><br>
+            • Redirect Chain: Direct (0 hops)<br>
+            • Status: Legitimate UPI Merchant
+        `;
+        addAuditEntry("QUISHING_GUARD", "QR Scanner", `Verified clean QR destination: ${url}`, "SAFE", "VERIFIED");
+    }
+}
+

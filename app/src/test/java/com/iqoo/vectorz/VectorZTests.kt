@@ -350,7 +350,32 @@ class VectorZTests {
         assertEquals("HARDWARE_SEALED_AES256", glance.keystoreStatus)
         assertEquals("ACTIVE_DEFENSE", glance.threatLevel)
     }
+
+    @Test
+    fun `test Multi-Lingual Indic Trust Engine provides localized Hindi and Tamil alerts`() {
+        val indic = com.iqoo.vectorz.ai.indic.IndicTrustEngine()
+        
+        val hindiAlert = indic.getAlertForLanguage(com.iqoo.vectorz.ai.indic.IndicLanguage.HINDI)
+        assertTrue(hindiAlert.adviceText.contains("UPI PIN दर्ज न करें"))
+
+        val tamilAlert = indic.getAlertForLanguage(com.iqoo.vectorz.ai.indic.IndicLanguage.TAMIL)
+        assertTrue(tamilAlert.adviceText.contains("UPI PIN ஐ ஒருபோதும் உள்ளிட வேண்டாம்"))
+    }
+
+    @Test
+    fun `test QR Quishing Deobfuscator unwraps shortened links and homoglyphs`() {
+        val quishing = com.iqoo.vectorz.ai.quishing.QuishingDeobfuscator()
+        
+        val shortLinkResult = quishing.inspectQrPayload("https://bit.ly/power-pay-refund.apk")
+        assertEquals("HIGH_RISK", shortLinkResult.riskLevel)
+        assertTrue(shortLinkResult.isShortenerHopDetected)
+
+        val homoglyphResult = quishing.inspectQrPayload("https://\u0430mazon.in/deal")
+        assertEquals("HIGH_RISK", homoglyphResult.riskLevel)
+        assertTrue(homoglyphResult.containsHomoglyphSpoof)
+    }
 }
+
 
 
 
