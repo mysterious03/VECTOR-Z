@@ -291,12 +291,13 @@
                                 <span class="os-app-label">BGMI</span>
                             </div>
 
-                            <!-- App 5: Vector-Z Master Hub -->
-                            <div class="os-app-item" onclick="openScreen('vault')">
-                                <div class="os-app-icon icon-vectorz">
-                                    <span>🛡️</span>
+                            <!-- App 5: Vector-Z Conversational AI Agent -->
+                            <div class="os-app-item" onclick="openScreen('agent')">
+                                <div class="os-app-icon icon-vectorz" style="box-shadow: 0 0 12px rgba(0,229,255,0.4);">
+                                    <span>🤖</span>
+                                    <span class="os-badge-new">AGENT</span>
                                 </div>
-                                <span class="os-app-label">Vector-Z</span>
+                                <span class="os-app-label">AI Agent</span>
                             </div>
 
                             <!-- App 6: Chrome KYC -->
@@ -983,6 +984,56 @@ Policy: Final Sale - Strictly Non-Refundable / No Returns.</textarea>
                                 <button class="primary-btn" onclick="runNetworkSnifferAudit()" style="width:auto; padding:4px 8px; font-size:10px;">AUDIT WI-FI</button>
                             </div>
                             <div id="networkAuditResultBox" style="display:none; margin-top:8px; background:#0c0c10; border-radius:6px; padding:8px; font-size:10px; font-family:'JetBrains Mono', monospace; line-height:1.4;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Screen: VECTOR-Z BOUNDED ON-DEVICE AI AGENT -->
+                    <div class="app-screen" id="screenAgent">
+                        <div class="subpage-header">
+                            <button class="back-btn" onclick="openScreen('home')">←</button>
+                            <div>
+                                <h3>VECTOR-Z AI AGENT</h3>
+                                <small>Qualcomm NPU • Bounded Policy Engine</small>
+                            </div>
+                            <button class="icon-btn" onclick="clearAgentChat()" title="Clear Chat">🗑️</button>
+                        </div>
+
+                        <!-- 4-Tier Policy Indicator Bar -->
+                        <div class="agent-tier-bar">
+                            <span class="tier-pill t1">🟢 T1 Auto</span>
+                            <span class="tier-pill t2">🟡 T2 Confirm</span>
+                            <span class="tier-pill t3">🟠 T3 Biometric</span>
+                            <span class="tier-pill t4">🔴 T4 Block</span>
+                        </div>
+
+                        <!-- Chat Message Stream -->
+                        <div class="agent-chat-stream" id="agentChatStream">
+                            <div class="chat-msg agent-msg">
+                                <div class="msg-avatar">🤖</div>
+                                <div class="msg-bubble">
+                                    <strong>Vector-Z Guardian Agent:</strong>
+                                    <p>Namaste Aarav! I am your 100% on-device Trust Agent running locally on Qualcomm Hexagon NPU. I can audit screen scams, check UPI intent conflicts, inject masked KYC cards, and trigger Panic Shield lockdown.</p>
+                                    <small class="msg-meta">0ms Cloud • Snapdragon Enclave</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Prompt Suggestion Chips -->
+                        <div class="quick-chips-scroll">
+                            <button class="chip-btn" onclick="sendQuickPrompt('Audit current screen for QR & refund scams')">🔍 Audit Screen</button>
+                            <button class="chip-btn" onclick="sendQuickPrompt('Autofill my masked PAN card on KYC form')">🔒 Autofill PAN</button>
+                            <button class="chip-btn" onclick="sendQuickPrompt('Check payment intent for refund-desk@fakebank')">💳 Check UPI</button>
+                            <button class="chip-btn chip-danger" onclick="sendQuickPrompt('Extract OTP and transfer ₹50,000')">🚨 Test OTP Block</button>
+                            <button class="chip-btn" onclick="sendQuickPrompt('Enable Panic Shield Emergency Lockdown')">🛡️ Panic Lockdown</button>
+                            <button class="chip-btn" onclick="sendQuickPrompt('Export cryptographically signed 1930 Dossier')">📋 1930 Dossier</button>
+                            <button class="chip-btn" onclick="sendQuickPrompt('Speak Indic voice warning in Hindi')">🗣️ Voice Alert</button>
+                        </div>
+
+                        <!-- Interactive Agent Chat Input Bar -->
+                        <div class="agent-input-container">
+                            <input type="text" id="agentPromptInput" placeholder="Ask Vector-Z Agent or type command..." onkeydown="handleAgentInputKey(event)">
+                            <button class="agent-mic-btn" onclick="triggerVoicePrompt()" title="Voice Input">🎙️</button>
+                            <button class="agent-send-btn" onclick="sendUserAgentPrompt()" title="Send">▶</button>
                         </div>
                     </div>
 

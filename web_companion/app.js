@@ -515,7 +515,7 @@ function jumpToStep(step) {
         openScreen("truth");
         runTruthAudit();
     } else if (step === 6) {
-        openScreen("privacy");
+        openScreen("agent");
     } else if (step === 7) {
         openScreen("notification");
         auditIncomingNotification();
@@ -937,5 +937,195 @@ function runNetworkSnifferAudit() {
     `;
     addAuditEntry("NETWORK_AUDIT", "Wi-Fi Interface", "Audited Wi-Fi Gateway & DNS (Clean)", "SAFE", "VERIFIED");
 }
+
+// 19. CONVERSATIONAL ON-DEVICE BOUNDED AI AGENT ENGINE
+function sendUserAgentPrompt() {
+    const input = document.getElementById("agentPromptInput");
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    processAgentPrompt(text);
+}
+
+function handleAgentInputKey(e) {
+    if (e.key === "Enter") {
+        sendUserAgentPrompt();
+    }
+}
+
+function sendQuickPrompt(promptText) {
+    processAgentPrompt(promptText);
+}
+
+function clearAgentChat() {
+    const stream = document.getElementById("agentChatStream");
+    if (!stream) return;
+    stream.innerHTML = `
+        <div class="chat-msg agent-msg">
+            <div class="msg-avatar">🤖</div>
+            <div class="msg-bubble">
+                <strong>Vector-Z Guardian Agent:</strong>
+                <p>Chat cleared. Ready for your next on-device security or identity task.</p>
+                <small class="msg-meta">0ms Cloud • Snapdragon Enclave</small>
+            </div>
+        </div>
+    `;
+}
+
+function triggerVoicePrompt() {
+    const prompts = [
+        "Audit current screen for QR & refund scams",
+        "Autofill my masked PAN card on KYC form",
+        "Extract OTP and transfer ₹50,000",
+        "Enable Panic Shield Emergency Lockdown",
+        "Speak Indic voice warning in Hindi"
+    ];
+    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+    const input = document.getElementById("agentPromptInput");
+    if (input) input.value = randomPrompt;
+    triggerHeadsUp("🎙️ VOICE INPUT RECOGNIZED", `"${randomPrompt}"`);
+    setTimeout(() => {
+        sendUserAgentPrompt();
+    }, 600);
+}
+
+function processAgentPrompt(userText) {
+    const stream = document.getElementById("agentChatStream");
+    if (!stream) return;
+
+    // 1. Append User Message
+    const userMsgEl = document.createElement("div");
+    userMsgEl.className = "chat-msg user-msg";
+    userMsgEl.innerHTML = `
+        <div class="msg-avatar">👤</div>
+        <div class="msg-bubble">
+            <strong>Aarav Sharma:</strong>
+            <p>${escapeHtml(userText)}</p>
+        </div>
+    `;
+    stream.appendChild(userMsgEl);
+    stream.scrollTop = stream.scrollHeight;
+
+    const lower = userText.toLowerCase();
+
+    // 2. Simulate NPU Reasoning & Dispatch
+    setTimeout(() => {
+        const agentMsgEl = document.createElement("div");
+        agentMsgEl.className = "chat-msg agent-msg";
+
+        if (lower.includes("otp") || lower.includes("pin") || lower.includes("transfer") || lower.includes("fund")) {
+            // 🔴 TIER 4 HARD BLOCK
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[POLICY_AUDIT]: Detected Tier-4 Prohibited Intent (OTP/PIN/Fund Access)</div>
+                    <div class="policy-block-card">
+                        <strong>🚨 HARD POLICY BLOCK (TIER 4)</strong><br>
+                        Access to OTPs, UPI PINs, and automated fund transfers is mathematically barred on this hardware enclave. Zero exceptions allowed.
+                    </div>
+                    <small class="msg-meta">NPU Enforcement: Immutable Guardrail</small>
+                </div>
+            `;
+            triggerHeadsUp("🚨 AGENT BLOCKED TIER-4 ACTION", "OTP / PIN access is strictly prohibited by policy.");
+            addAuditEntry("BOUNDED_AGENT", "Agent Kernel", "Enforced Tier 4 Immutable Hard Block", "HIGH_RISK", "BLOCKED");
+
+        } else if (lower.includes("pan") || lower.includes("aadhaar") || lower.includes("autofill") || lower.includes("kyc")) {
+            // 🟠 TIER 3 BIOMETRIC GATE
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[POLICY_AUDIT]: High-Sensitivity Credential Access (Tier 3) -> Requesting Hardware Biometric Gate</div>
+                    <p>Releasing your Hardware Keystore PAN requires physical biometric authentication.</p>
+                    <small class="msg-meta">Waiting for in-display fingerprint sensor...</small>
+                </div>
+            `;
+            stream.appendChild(agentMsgEl);
+            stream.scrollTop = stream.scrollHeight;
+
+            showBioPrompt(() => {
+                const bioSuccessEl = document.createElement("div");
+                bioSuccessEl.className = "chat-msg agent-msg";
+                bioSuccessEl.innerHTML = `
+                    <div class="msg-avatar">🤖</div>
+                    <div class="msg-bubble">
+                        <strong>Vector-Z Guardian Agent:</strong>
+                        <div class="thought-trace-box">[BIOMETRIC_CONFIRMED]: Hardware Keystore AES-256 decrypted in ephemeral RAM</div>
+                        <p>✅ <strong>Masked PAN (XXXXX1234X)</strong> successfully prepared for KYC injection. Ephemeral memory buffer zeroed immediately.</p>
+                        <small class="msg-meta">0.00 KB RAM Leak • Zero Cloud Exposure</small>
+                    </div>
+                `;
+                stream.appendChild(bioSuccessEl);
+                stream.scrollTop = stream.scrollHeight;
+                addAuditEntry("BOUNDED_AGENT", "Agent Kernel", "Injected Masked PAN after Biometric Gate", "SAFE", "AUTOFILL_SUCCESS");
+            });
+            return;
+
+        } else if (lower.includes("panic") || lower.includes("lockdown") || lower.includes("emergency")) {
+            // 🟡 TIER 2 PANIC SHIELD
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[EMERGENCY_DISPATCH]: Triggering Panic Shield Lockdown Engine</div>
+                    <p>🛡️ <strong>PANIC SHIELD ARMED:</strong> Ephemeral memory heaps incinerated. Android Keystore keys frozen for 15 minutes.</p>
+                    <small class="msg-meta">Cooldown: 15m remaining • Hardware Sealed</small>
+                </div>
+            `;
+            triggerHeadsUp("🛡️ PANIC SHIELD ACTIVATED", "All identity buffers incinerated.");
+            addAuditEntry("PANIC_SHIELD", "Agent Kernel", "Triggered Emergency Lockdown via Agent", "HIGH_RISK", "LOCKED_DOWN");
+
+        } else if (lower.includes("1930") || lower.includes("dossier") || lower.includes("report") || lower.includes("cybercrime")) {
+            // DOSSIER EXPORT
+            const id = "I4C_" + Math.floor(100000 + Math.random() * 900000);
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[CRYPTO_SIGNING]: Compiling SHA-256 ECDSA Evidence Dossier ${id}</div>
+                    <p>📋 <strong>Dossier ${id} Compiled:</strong> Ready for 1-tap dispatch to cybercrime.gov.in / Helpline 1930.</p>
+                    <small class="msg-meta">Signed by Hardware Enclave P-256</small>
+                </div>
+            `;
+            addAuditEntry("I4C_REPORT", "Agent Kernel", `Compiled 1930 Dossier ${id}`, "SAFE", "EXPORTED");
+
+        } else if (lower.includes("hindi") || lower.includes("voice") || lower.includes("tamil") || lower.includes("speak")) {
+            // INDIC VOICE
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[INDIC_TTS]: Broadcasting neural voice warning in Hindi (hi-IN)</div>
+                    <p>🗣️ <em>"सावधान: पैसे प्राप्त करने के लिए कभी भी अपना UPI PIN दर्ज न करें।"</em></p>
+                    <small class="msg-meta">Local SpeechSynthesis Output</small>
+                </div>
+            `;
+            speakIndicVoiceWarning();
+
+        } else {
+            // 🟢 TIER 1 DEFAULT AUDIT
+            agentMsgEl.innerHTML = `
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-bubble">
+                    <strong>Vector-Z Guardian Agent:</strong>
+                    <div class="thought-trace-box">[NPU_INFERENCE (1.84ms)]: Executed on-device screen & network audit</div>
+                    <p>All active phone processes inspected. Current status: <strong>Zero Trust Active (100% Air-Gapped)</strong>. How can I assist you further?</p>
+                    <small class="msg-meta">Qualcomm Hexagon NPU • 0 Cloud Leak</small>
+                </div>
+            `;
+            addAuditEntry("BOUNDED_AGENT", "Agent Kernel", "Executed On-Device Screen & Process Audit", "SAFE", "AUDIT_OK");
+        }
+
+        stream.appendChild(agentMsgEl);
+        stream.scrollTop = stream.scrollHeight;
+    }, 400);
+}
+
+function escapeHtml(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 
 
