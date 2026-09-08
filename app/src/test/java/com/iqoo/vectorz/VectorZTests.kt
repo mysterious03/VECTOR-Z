@@ -254,7 +254,31 @@ class VectorZTests {
         assertTrue(meshEngine.verifyIncomingMeshPacket(packet))
         assertEquals(2, packet.vectorCount)
     }
+
+    @Test
+    fun `test App Sandbox Auditor detects clipboard snooping and keylogger threats`() {
+        val auditor = com.iqoo.vectorz.ai.sandbox.AppSandboxAuditor()
+        val threats = auditor.auditInstalledApps(listOf("com.unverified.cleanerapp", "com.fake.keyboard"))
+        
+        assertEquals(2, threats.size)
+        assertTrue(threats.any { it.riskFactor == com.iqoo.vectorz.ai.sandbox.SandboxRiskType.CLIPBOARD_SNOOPING })
+        assertTrue(threats.any { it.riskFactor == com.iqoo.vectorz.ai.sandbox.SandboxRiskType.ACCESSIBILITY_KEYLOGGING })
+    }
+
+    @Test
+    fun `test Passkey Vault registers and retrieves FIDO2 credentials`() {
+        val passkeyVault = com.iqoo.vectorz.core.security.PasskeyVaultEngine()
+        
+        val existing = passkeyVault.getPasskey("incometax.gov.in")
+        assertNotNull(existing)
+        assertEquals("AARAV_SHARMA_PAN", existing?.userHandle)
+
+        val newCred = passkeyVault.registerPasskey("epfo.gov.in", "UAN_9812903")
+        assertEquals("epfo.gov.in", newCred.relyingParty)
+        assertEquals(newCred, passkeyVault.getPasskey("epfo.gov.in"))
+    }
 }
+
 
 
 

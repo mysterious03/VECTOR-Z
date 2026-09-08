@@ -50,6 +50,8 @@ Every month, millions of Indian smartphone users fall prey to **UPI QR refund tr
 | **6** | **Emergency Physical Coercion** | Physical theft or coercion where an attacker demands device unlock and banking access. | **Panic Shield** allows 1-tap emergency lockdown that incinerates ephemeral memory heaps and freezes Keystore keys for 15 minutes. |
 | **7** | **Esports & Gaming Phishing** | Fake BGMI tournament overlays, diamond deposit traps, and Steam account hijacking links during gaming. | **iQOO Monster Trust Engine** prioritizes NPU execution threads for sub-1ms in-game threat auditing locked at 120 FPS. |
 | **8** | **Hostage / Duress Vault Coercion** | User forced at gunpoint/threat to unlock their Identity Vault PIN. | **Duress Decoy Engine** loads synthetic dummy credentials (Rohit Kumar) while stealthily dispatching an encrypted SOS beacon. |
+| **9** | **Background App Snooping** | Rogue cleaner apps reading clipboard data & keyboard logging during banking sessions. | **Zero-Trust App Sandbox Auditor** detects clipboard polling & accessibility keystroke capture in real-time. |
+| **10** | **Password Phishing On Portals** | Weak passwords and SMS OTPs intercepted on government and broker portals. | **FIDO2 Passkey Vault Engine** generates hardware-bound asymmetric ECDSA P-256 credentials in Android Keystore. |
 
 ---
 
